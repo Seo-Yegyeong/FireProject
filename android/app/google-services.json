@@ -1,20 +1,20 @@
 {
   "project_info": {
-    "project_number": "173639311400",
-    "project_id": "fire-75e52",
-    "storage_bucket": "fire-75e52.appspot.com"
+    "project_number": "509353600078",
+    "project_id": "fireproject-38d35",
+    "storage_bucket": "fireproject-38d35.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:173639311400:android:55e98e4fb9d0f59f25551d",
+        "mobilesdk_app_id": "1:509353600078:android:830705e48a8c242d8b0f1f",
         "android_client_info": {
           "package_name": "com.example.fireproject"
         }
       },
       "oauth_client": [
         {
-          "client_id": "173639311400-sgmi370feh7doq09j6pafm7imjurqbuu.apps.googleusercontent.com",
+          "client_id": "509353600078-h16dt10o1tpgskpo1un25sk4n5aihosg.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.fireproject",
@@ -22,20 +22,20 @@
           }
         },
         {
-          "client_id": "173639311400-m58hk1ftocbain8eubqv1qfrfkg3kmbj.apps.googleusercontent.com",
+          "client_id": "509353600078-lpml12glvenvj8v88dfqn8qcs791q0kp.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAW6F9iwnvaQFnec_3QALvSf70RM0u-Tok"
+          "current_key": "AIzaSyDpJPDtIYADF0v8XpKrPVKZUZaiPTEzqqs"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "173639311400-m58hk1ftocbain8eubqv1qfrfkg3kmbj.apps.googleusercontent.com",
+              "client_id": "509353600078-lpml12glvenvj8v88dfqn8qcs791q0kp.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
