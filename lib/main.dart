@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'bottomnavigationbar.dart';
 import 'login_page.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.amber,
       ),
-      home: LoginPage(),
+      home: bottomNavigationbar(),
     );
   }
 }
