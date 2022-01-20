@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:fireproject/SelectNoticeTypePage.dart';
+import 'package:real/ClassPage.dart';
+import 'package:real/SelectNoticeTypePage.dart';
+import 'package:real/SignUpIAmPage.dart';
 
 import 'SelectClasstypePage.dart';
 
@@ -12,10 +14,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Fire Project',
-      home: SelectNoticetypePage(),
+      home: SignUpIAm(),
     );
   }
 }
+
+
+
+
+
+
+
 
 
 

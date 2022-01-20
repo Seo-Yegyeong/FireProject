@@ -7,7 +7,19 @@ class SelectNoticetypePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 0.0,
+        backgroundColor: Colors.white,
+        title: Text("가정통신문 등록",
+          style: TextStyle(
+            color: Colors.black,
+            fontFamily: "DoHyeon",
+            fontSize: 25.0,
+          ),
+        ),
+
         leading: Image.asset('assets/logo.png'),
+
+
       ),
       body: Column(
         children: <Widget>[
@@ -24,7 +36,7 @@ class SelectNoticetypePage extends StatelessWidget {
                 ),
                 width: 320,
                 height: 220,
-                margin: const EdgeInsets.only(top: 50),
+                //margin: const EdgeInsets.only(top: 50),
                 padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
 
                 child:
@@ -32,16 +44,16 @@ class SelectNoticetypePage extends StatelessWidget {
 
                     mainAxisAlignment: MainAxisAlignment.center,
                     children:  [
-                      Text('새로운 소식통',
+                      Text('가정통신문',
                         style: TextStyle(
                           fontFamily: "DoHyeon",
-                          fontSize: 25.0,
+                          fontSize: 70.0,
                         ),
                       ),
-                      Text('생성',
+                      Text('등록하기',
                         style: TextStyle(
                           fontFamily: "DoHyeon",
-                          fontSize: 90.0,
+                          fontSize: 30.0,
                         ),
                       ),
                     ]
@@ -65,17 +77,17 @@ class SelectNoticetypePage extends StatelessWidget {
             Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children:const [
-                  Text('생성된 소식통',
+                  Text('학생공지',
                     style: TextStyle(
                       fontFamily: "DoHyeon",
-                      fontSize: 25.0,
+                      fontSize: 70.0,
 
                     ),
                   ),
-                  Text('참여',
+                  Text('등록하기',
                     style: TextStyle(
                       fontFamily: "DoHyeon",
-                      fontSize: 90.0,
+                      fontSize: 30.0,
                     ),
                   ),
                 ]
@@ -89,6 +101,9 @@ class SelectNoticetypePage extends StatelessWidget {
     );
   }
 }
+
+
+
 
 
 
