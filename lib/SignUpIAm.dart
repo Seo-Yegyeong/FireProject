@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class SignUpIAm extends StatelessWidget {
   //const SignUpIAm({Key? key}) : super(key: key);
@@ -10,16 +11,41 @@ class SignUpIAm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0.0,
+        leading: IconButton(
+          icon: SvgPicture.asset("assets/Icons/BackButton.svg"),
+          onPressed: () {
+
+          },
+        ),
+      ),
       body: Column(
         children: <Widget>[
+          const SizedBox(
+            height: 200,
+          ),
+          Center(
+            child: Text("나는", style: TextStyle(
+              fontFamily: "DoHyeon",
+              fontSize: 30.0,
+              color: Color(0xFF000000),
+            ),
+            ),
+
+          ),
+
           SizedBox(
-            height: 150,
+            height: 40,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
+
+
               Container(
-                height: 30,
+                height: 40,
                 width: 150,
                 child: ElevatedButton(
                   onPressed: () {
@@ -27,22 +53,23 @@ class SignUpIAm extends StatelessWidget {
                   },
                   child: Text('교사', style: TextStyle(
                     fontFamily: "DoHyeon",
-                    fontSize: 25.0,
+                    fontSize: 30.0,
                     color: Color(0xFF000000),
                   ),
                   ),
                   style: ElevatedButton.styleFrom(
+                      elevation: 0.0,
 
                       primary: Color(0xFFFFC700),
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15.0)
+                          borderRadius: BorderRadius.circular(20.0)
                       )
                   ),
                 ),
               ),
 
               Container(
-                height: 30,
+                height: 40,
                 width: 150,
                 child: ElevatedButton(
                   onPressed: () {
@@ -50,21 +77,50 @@ class SignUpIAm extends StatelessWidget {
                   },
                   child: Text('부모', style: TextStyle(
                     fontFamily: "DoHyeon",
-                    fontSize: 25.0,
+                    fontSize: 30.0,
                     color: Color(0xFF000000),
                   ),
                   ),
                   style: ElevatedButton.styleFrom(
+                      elevation: 0.0,
 
                       primary: Color(0xFFFFC700),
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15.0)
+                          borderRadius: BorderRadius.circular(20.0)
                       )
                   ),
                 ),
               ),
             ],
-          )
+          ),
+          SizedBox(
+            height: 50,
+          ),
+          Center(
+            child: Container(
+              height: 40,
+              width: 350,
+              child: ElevatedButton(
+                onPressed: () {
+                  print('Elevated button');
+                },
+                child: Text('다음', style: TextStyle(
+                  fontFamily: "DoHyeon",
+                  fontSize: 30.0,
+                  color: Color(0xFF000000),
+                ),
+                ),
+                style: ElevatedButton.styleFrom(
+                    elevation: 0.0,
+
+                    primary: Color(0xFFFFC700),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5.0)
+                    )
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
