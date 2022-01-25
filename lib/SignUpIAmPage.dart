@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class SignUpIAm extends StatelessWidget {
+class SignUpIAmPage extends StatelessWidget {
   //const SignUpIAm({Key? key}) : super(key: key);
   //final ButtonStyle raisedButtonStyle= ElevatedButton. styleFrom(
   //onPrimary: Color(0xFFFFC700),
