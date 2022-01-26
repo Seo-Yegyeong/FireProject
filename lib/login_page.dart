@@ -1,7 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 //import 'authentication.dart';
 
@@ -30,7 +28,6 @@ class LoginPage extends StatelessWidget {
   }
 
   Widget _bodyWidget(BuildContext context) {
-    final ThemeData theme = Theme.of(context);
     if (email != null) {
       _signInEmailController.text = email;
     }
@@ -105,18 +102,17 @@ class LoginPage extends StatelessWidget {
   }
 
   Widget _loginButton() {
-    final MaterialStateProperty<Size> fixedSize;
     return Obx(
           () => ElevatedButton(
         style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all<Color>(Color(0xFFFFC700)),
+          backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFFFFC700)),
         ),
         onPressed: () async {
 
         },
         child: !loginController.isLoging.value
             ? Container(
-          color: Color(0xFFFFC700),
+          color: const Color(0xFFFFC700),
           child: TextButton(
             child: const Text(
               '로그인',
