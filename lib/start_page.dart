@@ -16,6 +16,7 @@ class StartPage extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
+        Get.toNamed('/login');
       },
       child: Scaffold(
         body: _bodyWidget(context),

@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 //import 'authentication.dart';
 
@@ -34,66 +35,71 @@ class LoginPage extends StatelessWidget {
       _signInEmailController.text = email;
     }
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16),
-      child: Form(
-        key: _signInFormKey,
-        child: Column(
-          children: [
-            Column(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: ListView(
+        children: [
+          Form(
+            key: _signInFormKey,
+            child: Column(
               children: [
-                SizedBox(
-                  height: 70,
-                ),
-                Image.asset('assets/logo.PNG'),
-                SizedBox(
-                  height: 5,
-                ),
-                Text(
-                  '우리의 소식통',
-                  style: TextStyle(color: Color(0xFF000000),
-                    fontSize: 35,
-                    fontFamily: "DoHyeonFont",),
-                ),
-                SizedBox(
-                  height: 60,
-                ),
-                emailField(),
-                SizedBox(
-                  height: 20,
-                ),
-                passwordField(),
-              ],
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Row(
-              children: [
-                GestureDetector(
-                  child: Text(
-                    '회원가입',
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontFamily: "DoHyeonFont",
+                Column(
+                  children: [
+                    const SizedBox(
+                      height: 60,
                     ),
-                  ),
-                  onTap: () {
-                    Get.toNamed('/login/signup');
-                  },
+                    Image.asset('assets/logo.PNG'),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    const Text(
+                      '우리의 소식통',
+                      style: TextStyle(color: Color(0xFF000000),
+                        fontSize: 35,
+                        fontFamily: "DoHyeonFont",),
+                    ),
+                    const SizedBox(
+                      height: 45,
+                    ),
+                    emailField(),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    passwordField(),
+                  ],
                 ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  children: [
+                    GestureDetector(
+                      child: const Text(
+                        '회원가입',
+                        textAlign: TextAlign.right,
+                        style: TextStyle(
+                          color: Color(0xFFFFC700),
+                          fontFamily: "DoHyeonFont",
+                        ),
+                      ),
+                      onTap: () {
+                        Get.toNamed('/login/signup');
+                      },
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 75,
+                ),
+                _loginButton(),
+                const SizedBox(
+                  height: 33,
+                ),
+                const SizedBox(),
+                const SizedBox(),
               ],
             ),
-            SizedBox(
-              height: 75,
-            ),
-            _loginButton(),
-            SizedBox(
-              height: 33,
-            ),
-            const SizedBox(),
-            const SizedBox(),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -112,7 +118,7 @@ class LoginPage extends StatelessWidget {
             ? Container(
           color: Color(0xFFFFC700),
           child: TextButton(
-            child: Text(
+            child: const Text(
               '로그인',
               style: TextStyle(color: Color(0xFF000000),
                 fontFamily: "DoHyeonFont",),
@@ -138,12 +144,10 @@ class LoginPage extends StatelessWidget {
       controller: _signInEmailController,
       keyboardType: TextInputType.emailAddress,
       style: const TextStyle(color: Colors.black),
-      decoration: InputDecoration(
-        contentPadding: EdgeInsets.all(0),
-        // border: Border.all(
-        //     color: ,
-        // ),
-        hintText: "이메일 주소 입력",
+      decoration: const InputDecoration(
+        contentPadding: EdgeInsets.all(20),
+        border: OutlineInputBorder(),
+        hintText: "아이디를 입력하세요",
       ),
       validator: (value) {
         if (value!.trim().isEmpty) {
@@ -164,7 +168,8 @@ class LoginPage extends StatelessWidget {
         controller: _signInPasswordController,
         style: const TextStyle(color: Colors.black),
         decoration: InputDecoration(
-          contentPadding: const EdgeInsets.only(top: 16),
+          contentPadding: const EdgeInsets.all(20),
+          border: const OutlineInputBorder(),
           hintText: "비밀번호 입력",
           suffixIcon: IconButton(
             onPressed: () {

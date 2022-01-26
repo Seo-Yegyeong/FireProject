@@ -1,5 +1,8 @@
+import 'package:fireproject/sign_up_page.dart';
 import 'package:flutter/material.dart';
-
+import 'package:fireproject/start_page.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'login_page.dart';
 
 void main() {
@@ -12,12 +15,23 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Our Letter',
-      theme: ThemeData(
-        primarySwatch: Colors.amber,
-      ),
-      home: LoginPage(),
+    return GetMaterialApp(
+      home: SignUpPage(),
+      initialRoute: '/',
+      getPages: [
+        GetPage(
+          name: '/',
+          page: () => StartPage(),
+        ),
+        GetPage(
+          name: '/signup',
+          page: () => SignUpPage(),
+        ),
+        GetPage(
+          name: '/login',
+          page: () => LoginPage(),
+        ),
+      ],
     );
   }
 }
