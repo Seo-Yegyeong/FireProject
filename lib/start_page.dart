@@ -15,7 +15,6 @@ class StartPage extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
-        Get.toNamed('/login');
       },
       child: Scaffold(
         body: _bodyWidget(context),
@@ -53,6 +52,10 @@ class StartPage extends StatelessWidget {
                 child: Column(
                   children: [
                     Image.asset('assets/logo.PNG'),
+                    // IconButton(
+                    //   onPressed: () {},
+                    //   icon: SvgPicture.asset("assets/logo.svg"),
+                    // ),
                     const Text(
                       '우리의 소식통',
                       style: TextStyle(
@@ -89,7 +92,7 @@ class StartPage extends StatelessWidget {
   Widget _startButton(BuildContext context) {
     final MaterialStateProperty<Size> fixedSize;
     return SizedBox(
-      height: 100,
+      height: 125,
       width: 250,
       child: ElevatedButton(
         style: ButtonStyle(
@@ -103,7 +106,7 @@ class StartPage extends StatelessWidget {
             style: TextStyle(
               color: Color(0xFF000000),
               fontFamily: "DoHyeonFont",
-              fontSize: 40,
+              fontSize: 45,
               shadows: const [
                 Shadow(
                   color: Color(0xFF6D6A6A),
@@ -111,7 +114,9 @@ class StartPage extends StatelessWidget {
               ],
             ),
           ),
-          onPressed: () {},
+          onPressed: () {
+            Get.toNamed('/login');
+          },
         ),
       ),
     );

@@ -17,10 +17,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       home: SignUpPage(),
-      initialRoute: '/',
+      initialRoute: '/login',
       getPages: [
         GetPage(
-          name: '/',
+          name: '/start',
           page: () => StartPage(),
         ),
         GetPage(
