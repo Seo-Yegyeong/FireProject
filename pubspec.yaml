@@ -64,7 +64,11 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-     - assets/logo.svg
+      - assets/logo.PNG
+      - assets/icons/addlist.svg
+      - assets/icons/newslist.svg
+      - assets/icons/studentlist.svg
+      - assets/icons/studentstate.svg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -79,9 +83,10 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-     - family: DoHyeonFont
-       fonts:
-         - asset: assets/fonts/Do_Hyeon/DoHyeon-Regular.ttf
+    - family: DoHyeonFont
+      fonts:
+        - asset: assets/fonts/Do_Hyeon/DoHyeon-Regular.ttf
+
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

@@ -1,6 +1,4 @@
-import 'package:fireproject/sign_up_page.dart';
 import 'package:flutter/material.dart';
-import 'package:fireproject/start_page.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'login_page.dart';
@@ -16,17 +14,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      home: SignUpPage(),
       initialRoute: '/login',
       getPages: [
-        GetPage(
-          name: '/start',
-          page: () => StartPage(),
-        ),
-        GetPage(
-          name: '/signup',
-          page: () => SignUpPage(),
-        ),
         GetPage(
           name: '/login',
           page: () => LoginPage(),
