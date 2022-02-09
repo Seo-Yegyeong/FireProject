@@ -32,9 +32,17 @@ class _NewMessageState extends State<NewMessage> {
         children: [
           Expanded(
             child: TextField(
+              cursorColor: Colors.black,
               controller: _controller,
               decoration: const InputDecoration(
-                labelText: 'Send a message...'
+                //labelText: 'Send a message...',
+                  //labelStyle: TextStyle(color:Colors.amber),
+                hintText: 'Send a message...',
+
+
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.amber),
+                  )
               ),
                 onChanged: (value){
                 setState(() {
