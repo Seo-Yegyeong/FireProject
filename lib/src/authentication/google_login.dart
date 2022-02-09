@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
+import '../../chatting/chat/chat_screen.dart';
 import '../home.dart';
 
 class GoogleLogin extends StatefulWidget {
@@ -72,9 +73,7 @@ class _GoogleLoginState extends State<GoogleLogin> {
 
                 Navigator.of(context).pushReplacement(
                   MaterialPageRoute(
-                    builder: (context) => HomePage(
-                      user: user,
-                    ),
+                    builder: (context) => const ChatScreen(),
                   ),
                 );
 
