@@ -1,13 +1,26 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-class GoogleLogin extends StatelessWidget {
+import '../../chatting/chat/chat_screen.dart';
+import '../home.dart';
+
+class GoogleLogin extends StatefulWidget {
   const GoogleLogin({Key? key}) : super(key: key);
+
+  @override
+  _GoogleLoginState createState() => _GoogleLoginState();
+}
+
+class _GoogleLoginState extends State<GoogleLogin> {
+  CollectionReference database = FirebaseFirestore.instance.collection('user');
+  late QuerySnapshot querySnapshot;
 
   Future<UserCredential> signInWithGoogle() async {
     // Trigger the authentication flow
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
 
     // Obtain the auth details from the request
     final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
@@ -22,33 +35,56 @@ class GoogleLogin extends StatelessWidget {
     return await FirebaseAuth.instance.signInWithCredential(credential);
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ElevatedButton(
-              onPressed: signInWithGoogle,
-              child: const Text(
-                "Google Login",
-                style: TextStyle(
-                  fontFamily: "DoHyeonFont",
-                  fontSize: 25.0,
-                  color: Color(0xFF000000),
-                ),
-              ),
-              style: ElevatedButton.styleFrom(
-                  primary: const Color(0xFFFFC700),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5.0)
-                  )
-              ),
-              ),
-          ],
-        ),
+      body: ListView(
+        padding: const EdgeInsets.symmetric(horizontal: 24.0),
+        children: <Widget> [
+          const SizedBox(height: 150,),
+
+
+          ElevatedButton(
+            onPressed: () async {
+              final UserCredential userCredential = await signInWithGoogle();
+
+              User? user = userCredential.user;
+
+              if(user != null){
+                int i;
+                querySnapshot = await database.get();
+
+                for(i = 0; i < querySnapshot.docs.length; i++){
+                  var a = querySnapshot.docs[i];
+
+                  if(a.get('uid') == user.uid){
+                    break;
+                  }
+                }
+
+                if(i == (querySnapshot.docs.length)){
+                  database.doc(user.uid).set({
+                    'email' : user.email.toString(),
+                    'name': user.displayName.toString(),
+                    'uid': user.uid,
+                  });
+                }
+
+                Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(
+                    builder: (context) => const ChatScreen(),
+                  ),
+                );
+
+              }
+
+            },
+            child: const Text('GOOGLE'),
+          ),
+        ],
       ),
     );
   }
 }
+

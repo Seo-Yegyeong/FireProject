@@ -116,10 +116,9 @@ class LoginPage extends StatelessWidget {
                 height: 80,
                 width: 300,
                 child: ElevatedButton(
-                  onPressed: signInWithKakao,
-                  // onPressed: () {
-                  //   Get.toNamed('/KakaoLogin');
-                  // },
+                  onPressed: () {
+                    Get.toNamed('/KakaoLogin');
+                  },
                   child: const Text(
                     '카카오로 로그인',
                     style: TextStyle(
@@ -165,4 +164,3 @@ class LoginPage extends StatelessWidget {
     );
   }
 }
-
