@@ -1,10 +1,13 @@
-import 'package:fireproject/chatting/chat/chat_bubble.dart';
-import 'package:flutter/material.dart';
+
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fireproject/chatting/chatuser/user_bubble.dart';
+import 'package:flutter/material.dart';
 
-class Messages extends StatelessWidget {
-  const Messages({Key? key}) : super(key: key);
+class UserList extends StatelessWidget {
+  const UserList({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -20,17 +23,24 @@ class Messages extends StatelessWidget {
         }
         final chatDocs = snapshot.data!.docs;
 
+        for(int i=0; i<;)
+
         return ListView.builder(
           reverse: true,
           itemCount: chatDocs.length,
           itemBuilder: (context, index){
-            return ChatBubble(
-                chatDocs[index]['text'],
-                chatDocs[index]['sendId'].toString() == user!.uid,
+            Set<String> userlist = {};
+            if(chatDocs[index]['sendId'].toString() == user!.uid){
+              userlist.add(chatDocs[index]['takeId'].toString());
+            }
+
+
+            return UserBubble(
+
             );
           },
         );
-    },
+      },
     );
   }
 }
