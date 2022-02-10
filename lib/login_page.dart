@@ -1,6 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -16,8 +15,8 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
 
-  CollectionReference database = FirebaseFirestore.instance.collection('user');
-  late QuerySnapshot querySnapshot;
+  //CollectionReference database = FirebaseFirestore.instance.collection('user');
+  //late QuerySnapshot querySnapshot;
 
   Future<UserCredential> signInWithGoogle() async {
     // Trigger the authentication flow
@@ -157,12 +156,10 @@ class _LoginPageState extends State<LoginPage> {
 
 
 
-
               ),
 
           ],
-        ),
+        )
 
-    );
-  }
+}
 }
