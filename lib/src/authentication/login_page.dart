@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:flutter_web_auth/flutter_web_auth.dart';
+import 'package:kakao_flutter_sdk/all.dart';
 import 'package:uuid/uuid.dart';
 
 
@@ -15,9 +16,12 @@ import 'package:uuid/uuid.dart';
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
 
-
-
   Future<UserCredential> signInWithKakao() async {
+    KakaoContext.clientId = '02819f8512e479fc874e04daef7c858e';
+
+    String authCode = await AuthCodeClient.instance.request();
+    print(authCode);
+
     final clientState = Uuid().v4();
     final url = Uri.https('kauth.kakao.com', '/oauth/authorize', {
       'response_type': 'code',
@@ -67,7 +71,6 @@ class LoginPage extends StatelessWidget {
     return Column(
       children: [
         Center(
-          //Image.asset('assets/Icons/logo.svg'),
           child: Column(
             children: [
               const SizedBox(
@@ -116,9 +119,7 @@ class LoginPage extends StatelessWidget {
                 height: 80,
                 width: 300,
                 child: ElevatedButton(
-                  onPressed: () {
-                    Get.toNamed('/KakaoLogin');
-                  },
+                  onPressed: signInWithKakao,
                   child: const Text(
                     '카카오로 로그인',
                     style: TextStyle(
