@@ -1,46 +1,67 @@
-
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:fireproject/chatting/chatuser/user_bubble.dart';
+import 'package:fireproject/chatting/chatuser/user_card.dart';
 import 'package:flutter/material.dart';
 
-class UserList extends StatelessWidget {
+class UserList extends StatefulWidget {
   const UserList({Key? key}) : super(key: key);
 
 
   @override
+  _UserListState createState() => _UserListState();
+}
+
+class _UserListState extends State<UserList> {
+  final user = FirebaseAuth.instance.currentUser;
+  CollectionReference database = FirebaseFirestore.instance.collection('chat');
+  late QuerySnapshot querySnapshot;
+  late Map<String, List<String>> chatInfo ={};
+  Set<String> takeIdSet ={};
+
+
+
+  @override
   Widget build(BuildContext context) {
-    final user = FirebaseAuth.instance.currentUser;
     return StreamBuilder(
-      stream: FirebaseFirestore.instance.collection('chat').orderBy('time',descending: true).snapshots(),
+      stream: FirebaseFirestore.instance.collection('chat').snapshots(),
 
       builder: (context, AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot){
         if(snapshot.connectionState==ConnectionState.waiting){
-          return Center(
+          return const Center(
             child:CircularProgressIndicator(),
           );
         }
-        final chatDocs = snapshot.data!.docs;
+        if (snapshot.hasData) {
+          final chatDocs = snapshot.data!.docs;
 
-        for(int i=0; i<;)
+          for (int i = 0; i < chatDocs.length; i++) {
+            var a = chatDocs[i];
+            if (chatDocs[i]['sendId'] == user!.uid) {
+              Timestamp t = chatDocs[i]['time'];
+              String time = DateTime.fromMicrosecondsSinceEpoch(t.microsecondsSinceEpoch).toString().split(" ")[0];
+              chatInfo.putIfAbsent(
+                  chatDocs[i]['takeId'], () => [chatDocs[i]['takeId'], chatDocs[i]['text'],time,chatDocs[i]['takeId']]);
+              takeIdSet.add(chatDocs[i]['takeId']);
+              print(chatInfo[chatDocs[i]['takeId']]);
+              print("this");
+            }
+          }
+        }
+
+
+
+
 
         return ListView.builder(
-          reverse: true,
-          itemCount: chatDocs.length,
+          itemCount: chatInfo.length,
           itemBuilder: (context, index){
-            Set<String> userlist = {};
-            if(chatDocs[index]['sendId'].toString() == user!.uid){
-              userlist.add(chatDocs[index]['takeId'].toString());
-            }
-
-
-            return UserBubble(
-
+            return UserCard(
+              chatInfo[takeIdSet.toList()[index]],
             );
           },
         );
       },
     );
   }
+
 }
