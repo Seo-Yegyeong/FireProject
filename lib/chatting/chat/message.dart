@@ -27,7 +27,8 @@ class Messages extends StatelessWidget {
         if(snapshot.hasData){
           for(int i=0; i<snapshot.data!.docs.length; i++){
             var a = snapshot.data!.docs[i];
-            if(a.get('sendId')==user!.uid && a.get('takeId')==takeId){
+            if(a.get('sendId')==user!.uid&&a.get('takeId')==takeId
+                || a.get('takeId')==user!.uid && a.get('sendId')){
               Timestamp t = a.get('time');
               String time = DateTime.fromMicrosecondsSinceEpoch(t.microsecondsSinceEpoch).toString().split(" ")[0];
               Chat c = Chat(a.get('text'),a.get('sendId'),a.get('takeId'),time);
