@@ -5,7 +5,8 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 import '../../AnnouncementPage.dart';
 import '../../chatting/chat/chat_screen.dart';
-import '../home.dart';
+import '../../chatting/chatuser/user_screen.dart';
+
 
 class GoogleLogin extends StatefulWidget {
   const GoogleLogin({Key? key}) : super(key: key);
@@ -49,6 +50,7 @@ class _GoogleLoginState extends State<GoogleLogin> {
           ElevatedButton(
             onPressed: () async {
               final UserCredential userCredential = await signInWithGoogle();
+
               User? user = userCredential.user;
 
               if(user != null){
@@ -71,9 +73,11 @@ class _GoogleLoginState extends State<GoogleLogin> {
                   });
                 }
 
+
                 Navigator.of(context).pushReplacement(
                   MaterialPageRoute(
-                    builder: (context) =>  WriteSchoolContentsPage(user: user),
+                    //builder: (context) => ChatScreen(),
+                    builder: (context) => UserScreen(),
                   ),
                 );
 

@@ -9,6 +9,8 @@ import 'package:image_picker/image_picker.dart';
 //import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:multi_image_picker2/multi_image_picker2.dart';
 import 'dart:async';
+import 'package:video_player/video_player.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class ImagePickerBox extends StatefulWidget {
   final User? user;
@@ -61,9 +63,11 @@ class _ImagePickerBoxState extends State<ImagePickerBox> {
 
     // try {
       resultList = await MultiImagePicker.pickImages(
-        maxImages: 300,
+        maxImages: 10,
         enableCamera: true,
         selectedAssets: images);
+
+
         // cupertinoOptions: CupertinoOptions(
         //   takePhotoIcon: "chat",
         //   doneButtonTitle: "Fatto",
@@ -134,7 +138,21 @@ class _ImagePickerBoxState extends State<ImagePickerBox> {
                         color: Color(0xFF000000),
                       ),
                     ),
-                    onPressed: () {
+                    onPressed: (
+
+                        ) {
+                      Future<bool> _getStatuses() async {
+                        Map<Permission, PermissionStatus> statuses =
+                        await [Permission.storage, Permission.camera].request();
+
+                        if (await Permission.camera.isGranted &&
+                            await Permission.storage.isGranted) {
+                          return Future.value(true);
+                        } else {
+                          return Future.value(false);
+                        }
+                      }
+
                       showDialog(
                           context: context,
                           barrierDismissible: true,
@@ -172,14 +190,15 @@ class _ImagePickerBoxState extends State<ImagePickerBox> {
                                       ),
                                     ),
                                     TextButton(
-                                      onPressed: () async {
-                                        var image = await ImagePicker.platform
-                                            .pickVideo(
-                                                source: ImageSource.gallery);
-                                        setState(() {
-                                          _image = image!;
-                                        });
-                                      },
+                                      onPressed: loadAssets,
+                                      // onPressed: () async {
+                                      //   var image = await ImagePicker.platform
+                                      //       .pickVideo(
+                                      //           source: ImageSource.gallery);
+                                      //   setState(() {
+                                      //     _image = image!;
+                                      //   });
+                                      // },
                                       child: const Text(
                                         "동영상 추가",
                                         style: TextStyle(

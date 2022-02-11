@@ -4,7 +4,8 @@ import 'message.dart';
 import 'new_message.dart';
 
 class ChatScreen extends StatefulWidget {
-  const ChatScreen({Key? key}) : super(key: key);
+  ChatScreen(this.takeId, {Key? key}) : super(key: key);
+  String takeId;
 
   @override
   _ChatScreenState createState() => _ChatScreenState();
@@ -26,10 +27,10 @@ class _ChatScreenState extends State<ChatScreen> {
       final user = _authentication.currentUser;
       if(user != null){
         loggedUser = user;
-        //print(loggedUser!.email);
+        print(loggedUser!.email);
       }
     }catch(e){
-      //print(e);
+      print(e);
     }
   }
   @override
@@ -37,15 +38,19 @@ class _ChatScreenState extends State<ChatScreen> {
     return Scaffold(
       appBar: AppBar(
         title:const Text('Chat Screen'),
+        titleTextStyle: const TextStyle(
+          color: Colors.black,
+        ),
+        backgroundColor: Colors.white,
         actions: [
           IconButton(
             icon: const Icon(
               Icons.exit_to_app_sharp,
-              color: Colors.white,
+              color: Colors.amber,
             ),
             onPressed: (){
-                _authentication.signOut();
-                Navigator.pop(context);
+              _authentication.signOut();
+              Navigator.pop(context);
             },
           )
         ],
@@ -53,12 +58,12 @@ class _ChatScreenState extends State<ChatScreen> {
 
       body: Container(
         child: Column(
-          children: const [
-            Expanded(
-              child: Messages(),
-            ),
-            NewMessage(),
-          ]
+            children: [
+              Expanded(
+                child: Messages(widget.takeId),
+              ),
+              NewMessage(widget.takeId),
+            ]
         ),
       ),
     );

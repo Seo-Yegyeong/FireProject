@@ -32,6 +32,8 @@ dependencies:
   flutter_svg: ^0.22.0
   image_picker: ^0.8.4+7
   multi_image_picker2: ^5.0.2
+  permission_handler: ^8.3.0
+  video_player: ^2.2.18
 
 
 
