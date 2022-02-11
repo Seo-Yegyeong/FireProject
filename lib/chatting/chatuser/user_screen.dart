@@ -1,43 +1,28 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fireproject/chatting/chatuser/user_list.dart';
 import 'package:flutter/material.dart';
-import 'message.dart';
-import 'new_message.dart';
 
-class ChatScreen extends StatefulWidget {
-  ChatScreen(this.takeId, {Key? key}) : super(key: key);
-  String takeId;
+class UserScreen extends StatefulWidget {
+  UserScreen({Key? key}) : super(key: key);
+
 
   @override
-  _ChatScreenState createState() => _ChatScreenState();
+  _UserScreenState createState() => _UserScreenState();
 }
 
-class _ChatScreenState extends State<ChatScreen> {
+class _UserScreenState extends State<UserScreen> {
   final _authentication = FirebaseAuth.instance;
   User? loggedUser;
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    getCurrentUser();
-  }
 
-  void getCurrentUser(){
-    try{
-      final user = _authentication.currentUser;
-      if(user != null){
-        loggedUser = user;
-        print(loggedUser!.email);
-      }
-    }catch(e){
-      print(e);
-    }
-  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title:const Text('Chat Screen'),
+
         titleTextStyle: const TextStyle(
           color: Colors.black,
         ),
@@ -58,11 +43,11 @@ class _ChatScreenState extends State<ChatScreen> {
 
       body: Container(
         child: Column(
-            children: [
+            children: const [
               Expanded(
-                child: Messages(widget.takeId),
+                child: UserList(),
               ),
-              NewMessage(widget.takeId),
+
             ]
         ),
       ),

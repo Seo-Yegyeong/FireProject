@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 import '../../chatting/chat/chat_screen.dart';
+import '../../chatting/chatuser/user_screen.dart';
+
 import '../pages/announcement/home.dart';
 
 class GoogleLogin extends StatefulWidget {
@@ -73,7 +75,7 @@ class _GoogleLoginState extends State<GoogleLogin> {
 
                 Navigator.of(context).pushReplacement(
                   MaterialPageRoute(
-                    builder: (context) => const ChatScreen(),
+                    builder: (context) => UserScreen(),
                   ),
                 );
 

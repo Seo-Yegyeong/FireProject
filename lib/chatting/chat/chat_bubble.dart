@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
-class ChatBubble extends StatelessWidget {
-  const ChatBubble(this.message, this.isMe, {Key? key}) : super(key: key);
+import '../chat.dart';
 
-  final String message;
+class ChatBubble extends StatelessWidget {
+  const ChatBubble(this.chatDocs, this.isMe, {Key? key}) : super(key: key);
+
+  final Chat chatDocs;
   final bool isMe;
 
   @override
@@ -26,7 +28,7 @@ class ChatBubble extends StatelessWidget {
           padding: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
           margin: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
           child: Text(
-              message,
+              chatDocs.text,
               style: TextStyle(
                 //color: isMe? Colors.white : Colors.black,
                 color: Colors.black,
