@@ -4,7 +4,8 @@ import 'message.dart';
 import 'new_message.dart';
 
 class ChatScreen extends StatefulWidget {
-  const ChatScreen({Key? key}) : super(key: key);
+  ChatScreen(this.takeId, {Key? key}) : super(key: key);
+  String takeId;
 
   @override
   _ChatScreenState createState() => _ChatScreenState();
@@ -48,8 +49,8 @@ class _ChatScreenState extends State<ChatScreen> {
               color: Colors.amber,
             ),
             onPressed: (){
-                _authentication.signOut();
-                Navigator.pop(context);
+              _authentication.signOut();
+              Navigator.pop(context);
             },
           )
         ],
@@ -57,12 +58,12 @@ class _ChatScreenState extends State<ChatScreen> {
 
       body: Container(
         child: Column(
-          children: const [
-            Expanded(
-              child: Messages(),
-            ),
-            NewMessage(),
-          ]
+            children: [
+              Expanded(
+                child: Messages(widget.takeId),
+              ),
+              NewMessage(),
+            ]
         ),
       ),
     );

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+
+import '../chat.dart';
 class UserCard extends StatelessWidget {
-  UserCard(this.chatInfo,  {Key? key}) : super(key: key);
-  List<String>? chatInfo;
+  UserCard(this.chatInfo,   {Key? key}) : super(key: key);
+  Chat? chatInfo;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -13,13 +15,13 @@ class UserCard extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(chatInfo![0]),Text(chatInfo![1]),
+            Text(chatInfo!.takeId),Text(chatInfo!.text),
           ],
         ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            Text(chatInfo![2]),
+            Text(chatInfo!.time),
           ],
         ),
       ],
