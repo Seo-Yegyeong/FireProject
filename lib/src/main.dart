@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
 
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: '/bottom',
+      initialRoute: '/auth',
       getPages: [
         GetPage(
           name: '/login',
