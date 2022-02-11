@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 import '../../../bottomnavigationbar.dart';
+import 'announce_detail_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -38,19 +41,28 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
                 const Divider(
-                  thickness: 5,
-                  color: Colors.black12,
+                  thickness: 1,
+                  color: Colors.black54,
                 ),
                 Container(
                   child: Column(
                     children: [
-                      const SizedBox(
+                      SizedBox(
                         height: 300,
-                        child: Center(
-                          child: Text(
-                            "여기는 글을 올릴 부분입니다!! 1",
-                            //style: optionStyle,
-                          ),
+                        child: ListView.separated(
+                          itemCount: 20,
+                          itemBuilder: (context, index) {
+                            return ListTile(
+                              onTap: () {
+                                Get.to(AnnounceDetailPage(index), arguments: "home.dart에서 Getx로 arguments를 넘겨준 부분이야!");
+                              },
+                              title: Text("제목1"),
+                              leading: Text("1"),
+                            );
+                          },
+                          separatorBuilder: (context, index) {
+                            return Divider();
+                          },
                         ),
                       ),
                       const SizedBox(
@@ -58,15 +70,6 @@ class _HomePageState extends State<HomePage> {
                         child: Center(
                           child: Text(
                             "여기는 글을 올릴 부분입니다!! 2",
-                            //style: optionStyle,
-                          ),
-                        ),
-                      ),
-                      Container(
-                        height: 300,
-                        child: Center(
-                          child: Text(
-                            "여기는 글을 올릴 부분입니다!! 3",
                             //style: optionStyle,
                           ),
                         ),

@@ -75,7 +75,7 @@ class _bottomNavigationbarState extends State<bottomNavigationbar> {
       appBar: AppBar(
         toolbarHeight: getAppBarHeight(context),
         backgroundColor: Colors.white,
-        elevation: 0.0,
+        //elevation: 0.0,
         title: Padding(
           padding: const EdgeInsets.all(5.0),
           child: _appBarOptions.elementAt(_selectedIndex),
