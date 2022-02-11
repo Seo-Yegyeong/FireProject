@@ -20,7 +20,7 @@ class WriteSchoolContentsPage extends StatelessWidget {
               Text(
                 "가정통신문 등록",
                 style: TextStyle(
-                  fontFamily: "DoHyeonFont",
+                  fontFamily: "DoHyeon",
                   fontSize: 30.0,
                   color: Color(0xFF000000),
                 ),

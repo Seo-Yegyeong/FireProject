@@ -29,22 +29,29 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  image_picker: ^0.8.4+7
+  multi_image_picker2: ^5.0.2
+  permission_handler: ^8.3.0
+  video_player: ^2.2.18
+
 
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  firebase_core: ^1.12.0
   get: ^4.6.1
-  firebase_auth: ^3.3.5
+  firebase_auth: ^3.3.6
   cloud_firestore: ^3.1.6
-  firebase_core: ^1.11.0
   flutter_svg: ^1.0.3
   flutterfire_ui: ^0.3.2
-  google_sign_in: ^5.2.1
   http: ^0.13.4
   flutter_web_auth: ^0.4.0
   uuid: ^3.0.2
   kakao_flutter_sdk: ^0.9.0
+
+  google_sign_in: ^5.2.3
+
 
 dev_dependencies:
   flutter_test:
@@ -72,10 +79,12 @@ flutter:
   assets:
       - assets/logo.svg
       - assets/Icons/addlist.svg
-      - assets/Icons/BackButton.svg
       - assets/Icons/newslist.svg
       - assets/Icons/studentlist.svg
       - assets/Icons/studentstate.svg
+      - assets/Icons/BackButton.svg
+      - assets/Icons/NextButton.svg
+      - assets/Icons/DeleteButton.svg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
