@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
@@ -15,8 +16,8 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
 
-  //CollectionReference database = FirebaseFirestore.instance.collection('user');
-  //late QuerySnapshot querySnapshot;
+  CollectionReference database = FirebaseFirestore.instance.collection('user');
+  late QuerySnapshot querySnapshot;
 
   Future<UserCredential> signInWithGoogle() async {
     // Trigger the authentication flow
@@ -125,6 +126,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: ElevatedButton(
                         onPressed: () async {
                           final UserCredential userCredential = await signInWithGoogle();
+                          User? user = userCredential.user;
 
                             Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
@@ -160,6 +162,6 @@ class _LoginPageState extends State<LoginPage> {
 
           ],
         )
-
-}
+    );
+  }
 }
