@@ -62,7 +62,7 @@ class _ChatScreenState extends State<ChatScreen> {
               Expanded(
                 child: Messages(widget.takeId),
               ),
-              NewMessage(),
+              NewMessage(widget.takeId),
             ]
         ),
       ),
