@@ -18,9 +18,9 @@ class _UserListState extends State<UserList> {
   final user = FirebaseAuth.instance.currentUser;
   CollectionReference database = FirebaseFirestore.instance.collection('chat');
   late QuerySnapshot querySnapshot;
-  late List<Chat> chatInfo =[];
-
-
+  late Map<String, Chat> chatInfo={};
+  late Set<String> connectId ={};
+  //late List<Chat> chatInfo =[];
 
   @override
   Widget build(BuildContext context) {
@@ -38,18 +38,26 @@ class _UserListState extends State<UserList> {
 
           for (int i = 0; i < chatDocs.length; i++) {
             var a = chatDocs[i];
-            if (chatDocs[i]['sendId'] == user!.uid) {
+            if (chatDocs[i]['sendId'] == user!.uid || chatDocs[i]['takeId'] == user!.uid) {
               Timestamp t = chatDocs[i]['time'];
               String time = DateTime.fromMicrosecondsSinceEpoch(t.microsecondsSinceEpoch).toString().split(" ")[0];
               Chat chat = Chat(chatDocs[i]['text'],chatDocs[i]['sendId'],chatDocs[i]['takeId'],time);
 
-              chatInfo.add(chat);
+              if(chatDocs[i]['takeId']==user!.uid){
+                chatInfo.putIfAbsent(chatDocs[i]['sendId'], () => chat);
+                connectId.add(chatDocs[i]['sendId']);
+              }
+              else{
+                chatInfo.putIfAbsent(chatDocs[i]['takeId'], () => chat);
+                connectId.add(chatDocs[i]['takeId']);
+              }
+
             }
           }
         }
 
         return ListView.builder(
-          itemCount: chatInfo.length,
+          itemCount: connectId.toList().length,
           itemBuilder: (context, index){
 
             return GestureDetector(
@@ -57,12 +65,12 @@ class _UserListState extends State<UserList> {
 
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => ChatScreen(chatInfo[index].takeId),
+                    builder: (context) => ChatScreen(connectId.toList()[index]),
                   ),
                 );
               },
                 child: UserCard(
-                  chatInfo[index],
+                  chatInfo[connectId.toList()[index]],
                 ),
 
             );
