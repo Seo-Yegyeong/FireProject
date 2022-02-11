@@ -3,6 +3,7 @@ import 'package:fireproject/src/pages/announcement/home.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
+import '../bottomnavigationbar.dart';
 import 'authentication/authentication.dart';
 import 'authentication/google_login.dart';
 import 'authentication/kakao_login.dart';
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
 
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: '/home',
+      initialRoute: '/bottom',
       getPages: [
         GetPage(
           name: '/login',
@@ -55,6 +56,10 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: '/home',
           page: () => HomePage(),
+        ),
+        GetPage(
+          name: '/bottom',
+          page: () => bottomNavigationbar(),
         ),
       ],
     );

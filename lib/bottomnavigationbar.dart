@@ -1,4 +1,5 @@
 import 'package:fireproject/src/pages/announcement/home.dart';
+import 'package:fireproject/src/size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -10,23 +11,23 @@ class bottomNavigationbar extends StatefulWidget {
 }
 
 class _bottomNavigationbarState extends State<bottomNavigationbar> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 0; //선택한 메뉴의 인덱스를 기억
+  bool _visibility = true; //floating button의 표시 여부 결정
 
+  //특정 텍스트 스타일을 상수로 지정
   static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+      TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold);
 
-  // static const List<Widget> _appBarOptions = <Widget>[
-  //   Text('우리의 소식통',
-  //       style: TextStyle(
-  //         fontFamily: "DoHyeonFont",
-  //         fontWeight: FontWeight.bold,
-  //         color: Color(0xFF000000),
-  //       )),
-  //   Text('학생 의사표현'),
-  //   Text('참여 게시판'),
-  //   Text('○○○ 계정'),
-  // ];
+  //메뉴별 다른 AppBar의 텍스트 지정을 위해 List<Text> 선언
+  static const List<Text> _appBarOptions = <Text>[
+    Text('우리의 소식통',
+        style: optionStyle),
+    Text('학생 의사표현', style: optionStyle,),
+    Text('참여 게시판', style: optionStyle,),
+    Text('○○○ 계정', style: optionStyle,),
+  ];
 
+  //메뉴별 다른 body 지정을 위해 List<Widget> 선언
   static const List<Widget> _bodyOptions = <Widget>[
     HomePage(),
     Text(
@@ -43,15 +44,37 @@ class _bottomNavigationbarState extends State<bottomNavigationbar> {
     ),
   ];
 
+
+  //함수 구현
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
   }
 
+  void _show(){
+    setState(() {
+      _visibility = true;
+    });
+  }
+  void _hide(){
+    setState(() {
+      _visibility = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        toolbarHeight: getAppBarHeight(context),
+        backgroundColor: Colors.white,
+        elevation: 0.0,
+        title: Padding(
+          padding: const EdgeInsets.all(5.0),
+          child: _appBarOptions.elementAt(_selectedIndex),
+        ),
+      ),
       body: Center(
         child: _bodyOptions.elementAt(_selectedIndex),
       ),

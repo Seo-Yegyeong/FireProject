@@ -11,67 +11,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  static const TextStyle optionStyle = TextStyle(
-    fontSize: 20,
-    color: Color(0xFF000000),
-    fontFamily: "DoHyeonFont",
-    fontWeight: FontWeight.normal,
-    fontStyle: FontStyle.normal,
-  );
-  int _selectedIndex = 0;
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0.0,
-        title: Text('우리의 소식통',
-            style: TextStyle(
-              fontFamily: "DoHyeonFont",
-              fontWeight: FontWeight.bold,
-              color: Color(0xFF000000),
-            )),
-      ),
-      body: _bodyWidget(context),
-      bottomNavigationBar: BottomNavigationBar(
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset("assets/icons/newslist.svg"),
-            label: '공지사항',
-          ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset("assets/icons/studentstate.svg"),
-            label: '학생상태',
-          ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset("assets/icons/addlist.svg"),
-            label: '참여게시판',
-          ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset("assets/icons/studentlist.svg"),
-            label: '계정',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
-        onTap: _onItemTapped,
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        tooltip: 'Increment Counter',
-        child: const Icon(Icons.add),
-      ),
-    );
-  }
-
-  Widget _bodyWidget(BuildContext context) {
     return Container(
       color: Colors.white,
       child: Padding(
@@ -108,7 +49,7 @@ class _HomePageState extends State<HomePage> {
                         child: Center(
                           child: Text(
                             "여기는 글을 올릴 부분입니다!! 1",
-                            style: optionStyle,
+                            //style: optionStyle,
                           ),
                         ),
                       ),
@@ -117,7 +58,7 @@ class _HomePageState extends State<HomePage> {
                         child: Center(
                           child: Text(
                             "여기는 글을 올릴 부분입니다!! 2",
-                            style: optionStyle,
+                            //style: optionStyle,
                           ),
                         ),
                       ),
@@ -126,7 +67,7 @@ class _HomePageState extends State<HomePage> {
                         child: Center(
                           child: Text(
                             "여기는 글을 올릴 부분입니다!! 3",
-                            style: optionStyle,
+                            //style: optionStyle,
                           ),
                         ),
                       ),
