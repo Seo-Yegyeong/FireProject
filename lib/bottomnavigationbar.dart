@@ -50,6 +50,12 @@ class _bottomNavigationbarState extends State<bottomNavigationbar> {
     setState(() {
       _selectedIndex = index;
     });
+
+    if(_selectedIndex == 0 || _selectedIndex == 2) {
+      _show();
+    } else {
+      _hide();
+    }
   }
 
   void _show(){
@@ -101,10 +107,13 @@ class _bottomNavigationbarState extends State<bottomNavigationbar> {
         selectedItemColor: Colors.amber[800],
         onTap: _onItemTapped,
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        tooltip: 'Increment Counter',
-        child: const Icon(Icons.add),
+      floatingActionButton: Visibility(
+        child: FloatingActionButton(
+          onPressed: () {},
+          tooltip: 'Increment Counter',
+          child: const Icon(Icons.add),
+        ),
+        visible: _visibility,
       ),
     );
   }
