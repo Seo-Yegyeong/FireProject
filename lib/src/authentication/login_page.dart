@@ -1,9 +1,59 @@
+import 'dart:convert';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:flutterfire_ui/auth.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
+import 'package:flutter_web_auth/flutter_web_auth.dart';
+import 'package:kakao_flutter_sdk/all.dart';
+import 'package:uuid/uuid.dart';
+
+
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
+
+  Future<UserCredential> signInWithKakao() async {
+    KakaoContext.clientId = '02819f8512e479fc874e04daef7c858e';
+
+    String authCode = await AuthCodeClient.instance.request();
+    print(authCode);
+
+    final clientState = Uuid().v4();
+    final url = Uri.https('kauth.kakao.com', '/oauth/authorize', {
+      'response_type': 'code',
+      'client_id': "f6ffe0fb6ad868316948676f3e1150b8",
+      'response_mode': 'form_post',
+      'redirect_uri':
+        'https://thin-savory-frigate.glitch.me/callbacks/kakao/sign_in',
+      'state': clientState,
+    });
+
+    final result = await FlutterWebAuth.authenticate(
+      url: url.toString(), callbackUrlScheme: "webauthcallback");
+    final body = Uri.parse(result).queryParameters;
+    final tokenUrl = Uri.https('kauth.kakao.com', '/oauth/token', {
+      'grant_type': 'authorization_code',
+      'client_id': "f6ffe0fb6ad868316948676f3e1150b8",
+      'redirect_uri':
+        'https://thin-savory-frigate.glitch.me/callbacks/kakao/sign_in',
+      'code': body['code'],
+    });
+
+    var response = await http.post(tokenUrl);
+    Map<String, dynamic> accessTokenResult = json.decode(response.body);
+    var responseCustomToken = await http.post(
+      Uri.parse("https://onyx-deep-pepperberry.glitch.me/callbacks/kakao/token"),
+        body: {
+          "accessToken": accessTokenResult['access_token']
+        });
+
+    return await FirebaseAuth.instance.signInWithCustomToken(responseCustomToken.body);
+  }
+
 
  @override
   Widget build(BuildContext context) {
@@ -21,7 +71,6 @@ class LoginPage extends StatelessWidget {
     return Column(
       children: [
         Center(
-          //Image.asset('assets/Icons/logo.svg'),
           child: Column(
             children: [
               const SizedBox(
@@ -70,9 +119,7 @@ class LoginPage extends StatelessWidget {
                 height: 80,
                 width: 300,
                 child: ElevatedButton(
-                  onPressed: () {
-                    Get.toNamed('/KakaoLogin');
-                  },
+                  onPressed: signInWithKakao,
                   child: const Text(
                     '카카오로 로그인',
                     style: TextStyle(
