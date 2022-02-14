@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fireproject/bottomnavigationbar.dart';
 import 'package:flutter/material.dart';
-import '../pages/login_page.dart';
+import 'login_page.dart';
 
 class Authentication extends StatelessWidget {
   const Authentication({Key? key}) : super(key: key);
@@ -14,41 +15,43 @@ class Authentication extends StatelessWidget {
           return LoginPage();
         }
         else {
-          return Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "${snapshot.data?.displayName}님 환영합니다.",
-                  style: const TextStyle(
-                    fontFamily: "DoHyeonFont",
-                    fontSize: 30.0,
-                    color: Color(0xFFFFFFFF),
-                  ),
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                ElevatedButton(
-                  onPressed: FirebaseAuth.instance.signOut,
-                  child: const Text(
-                    "로그아웃",
-                    style: TextStyle(
-                      fontFamily: "DoHyeonFont",
-                      fontSize: 30.0,
-                      color: Color(0xFF000000),
-                    ),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                      primary: const Color(0xFFFFC700),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5.0)
-                      )
-                  ),
-                ),
-              ],
-            ),
-          );
+          return bottomNavigationbar(user: snapshot.data,);
+            //WriteSchoolContentsPage(user: snapshot.data);
+          //   Center(
+          //   child: Column(
+          //     mainAxisAlignment: MainAxisAlignment.center,
+          //     children: [
+          //       Text(
+          //         "${snapshot.data?.displayName}님 환영합니다.",
+          //         style: const TextStyle(
+          //           fontFamily: "DoHyeonFont",
+          //           fontSize: 30.0,
+          //           color: Color(0xFFFFFFFF),
+          //         ),
+          //       ),
+          //       const SizedBox(
+          //         height: 30,
+          //       ),
+          //       ElevatedButton(
+          //         onPressed: FirebaseAuth.instance.signOut,
+          //         child: const Text(
+          //           "로그아웃",
+          //           style: TextStyle(
+          //             fontFamily: "DoHyeonFont",
+          //             fontSize: 30.0,
+          //             color: Color(0xFF000000),
+          //           ),
+          //         ),
+          //         style: ElevatedButton.styleFrom(
+          //             primary: const Color(0xFFFFC700),
+          //             shape: RoundedRectangleBorder(
+          //                 borderRadius: BorderRadius.circular(5.0)
+          //             )
+          //         ),
+          //       ),
+          //     ],
+          //   ),
+          // );
         }
       },
     );

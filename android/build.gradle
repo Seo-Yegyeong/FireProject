@@ -17,15 +17,19 @@ allprojects {
     repositories {
         google()
         mavenCentral()
+        maven { url 'https://devrepo.kakao.com/nexus/content/groups/public/'}
     }
 }
 
 rootProject.buildDir = '../build'
 subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
-}
-subprojects {
     project.evaluationDependsOn(':app')
+    repositories {
+        google()
+        jcenter()
+        maven { url 'https://devrepo.kakao.com/nexus/content/groups/public/' }
+    }
 }
 
 task clean(type: Delete) {

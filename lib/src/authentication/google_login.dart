@@ -7,6 +7,7 @@ import '../../AnnouncementPage.dart';
 import '../../chatting/chat/chat_screen.dart';
 import '../../chatting/chatuser/user_screen.dart';
 
+import '../pages/announcement/home.dart';
 
 class GoogleLogin extends StatefulWidget {
   const GoogleLogin({Key? key}) : super(key: key);
@@ -73,10 +74,8 @@ class _GoogleLoginState extends State<GoogleLogin> {
                   });
                 }
 
-
                 Navigator.of(context).pushReplacement(
                   MaterialPageRoute(
-                    //builder: (context) => ChatScreen(),
                     builder: (context) => UserScreen(),
                   ),
                 );
