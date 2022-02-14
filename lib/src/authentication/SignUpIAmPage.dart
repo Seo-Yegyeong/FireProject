@@ -24,7 +24,7 @@ class SignUpIAmPage extends StatelessWidget {
       body: Column(
         children: <Widget>[
           const SizedBox(
-            height: 200,
+            height: 20,
           ),
           Center(
             child: Text("나는", style: TextStyle(
