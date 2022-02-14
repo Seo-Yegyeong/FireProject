@@ -22,6 +22,7 @@ class ImagePickerBox extends StatefulWidget {
 
 class _ImagePickerBoxState extends State<ImagePickerBox> {
   PickedFile? _image;
+  //File _video;
   //late Reference firebaseStorageRef;
   //late UploadTask uploadTask;
   late var downloadUrl;
@@ -190,15 +191,15 @@ class _ImagePickerBoxState extends State<ImagePickerBox> {
                                       ),
                                     ),
                                     TextButton(
-                                      onPressed: loadAssets,
-                                      // onPressed: () async {
-                                      //   var image = await ImagePicker.platform
-                                      //       .pickVideo(
-                                      //           source: ImageSource.gallery);
-                                      //   setState(() {
-                                      //     _image = image!;
-                                      //   });
-                                      // },
+                                      //onPressed: loadAssets,
+                                      onPressed: () async {
+                                        var image = await ImagePicker.platform
+                                            .pickVideo(
+                                                source: ImageSource.gallery);
+                                        setState(() {
+                                          _image = image!;
+                                        });
+                                      },
                                       child: const Text(
                                         "동영상 추가",
                                         style: TextStyle(
