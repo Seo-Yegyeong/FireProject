@@ -1,10 +1,15 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fireproject/AnnouncementPage.dart';
 import 'package:fireproject/src/pages/announcement/home.dart';
 import 'package:fireproject/src/size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+
 
 class bottomNavigationbar extends StatefulWidget {
-  const bottomNavigationbar({Key? key}) : super(key: key);
+  const bottomNavigationbar({Key? key, User? user}) : super(key: key);
 
   @override
   _bottomNavigationbarState createState() => _bottomNavigationbarState();
@@ -12,7 +17,7 @@ class bottomNavigationbar extends StatefulWidget {
 
 class _bottomNavigationbarState extends State<bottomNavigationbar> {
   int _selectedIndex = 0; //선택한 메뉴의 인덱스를 기억
-  bool _visibility = true; //floating button의 표시 여부 결정
+  bool _visibility = true; //floating button의 표시 여부 결정'
 
   //특정 텍스트 스타일을 상수로 지정
   static const TextStyle optionStyle =
@@ -69,6 +74,18 @@ class _bottomNavigationbarState extends State<bottomNavigationbar> {
     });
   }
 
+  bool _moveWritingPage() {
+    bool writingType = true;
+
+    if(_selectedIndex == 0) {
+      writingType = true;
+    } else if(_selectedIndex == 2) {
+      writingType = false;
+    }
+
+    return writingType;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -108,10 +125,13 @@ class _bottomNavigationbarState extends State<bottomNavigationbar> {
         onTap: _onItemTapped,
       ),
       floatingActionButton: Visibility(
-        child: FloatingActionButton(
-          onPressed: () {},
-          tooltip: 'Increment Counter',
-          child: const Icon(Icons.add),
+        child: IconButton(
+          onPressed: () {
+            _moveWritingPage()? WriteAnnouncePage(user: null,) : Get.toNamed('/detail');
+          },
+          tooltip: '글을 작성하세요.',
+          icon: SvgPicture.asset("assets/Icons/pencil.svg"),
+          iconSize: 55.0,
         ),
         visible: _visibility,
       ),

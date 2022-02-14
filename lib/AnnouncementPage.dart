@@ -246,9 +246,9 @@ class _ImagePickerBoxState extends State<ImagePickerBox> {
   }
 }
 
-class WriteSchoolContentsPage extends StatelessWidget {
+class WriteAnnouncePage extends StatelessWidget {
   final User? user;
-  WriteSchoolContentsPage({Key? key, required this.user}) : super(key: key);
+  WriteAnnouncePage({Key? key, required this.user}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

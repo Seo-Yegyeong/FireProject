@@ -1,85 +1,105 @@
-import 'dart:convert';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:flutterfire_ui/auth.dart';
-import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
+import 'package:google_sign_in/google_sign_in.dart';
 
-import 'package:flutter_web_auth/flutter_web_auth.dart';
-import 'package:kakao_flutter_sdk/all.dart';
-import 'package:uuid/uuid.dart';
+import '../../bottomnavigationbar.dart';
 
-
-
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
-  Future<UserCredential> signInWithKakao() async {
-    KakaoContext.clientId = '02819f8512e479fc874e04daef7c858e';
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
 
-    String authCode = await AuthCodeClient.instance.request();
-    print(authCode);
+class _LoginPageState extends State<LoginPage> {
+  CollectionReference database = FirebaseFirestore.instance.collection('user');
+  late QuerySnapshot querySnapshot;
 
-    final clientState = Uuid().v4();
-    final url = Uri.https('kauth.kakao.com', '/oauth/authorize', {
-      'response_type': 'code',
-      'client_id': "f6ffe0fb6ad868316948676f3e1150b8",
-      'response_mode': 'form_post',
-      'redirect_uri':
-        'https://thin-savory-frigate.glitch.me/callbacks/kakao/sign_in',
-      'state': clientState,
-    });
+  Future<UserCredential> signInWithGoogle() async {
+    // Trigger the authentication flow
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
-    final result = await FlutterWebAuth.authenticate(
-      url: url.toString(), callbackUrlScheme: "webauthcallback");
-    final body = Uri.parse(result).queryParameters;
-    final tokenUrl = Uri.https('kauth.kakao.com', '/oauth/token', {
-      'grant_type': 'authorization_code',
-      'client_id': "f6ffe0fb6ad868316948676f3e1150b8",
-      'redirect_uri':
-        'https://thin-savory-frigate.glitch.me/callbacks/kakao/sign_in',
-      'code': body['code'],
-    });
+    // Obtain the auth details from the request
+    final GoogleSignInAuthentication? googleAuth =
+    await googleUser?.authentication;
 
-    var response = await http.post(tokenUrl);
-    Map<String, dynamic> accessTokenResult = json.decode(response.body);
-    var responseCustomToken = await http.post(
-      Uri.parse("https://onyx-deep-pepperberry.glitch.me/callbacks/kakao/token"),
-        body: {
-          "accessToken": accessTokenResult['access_token']
-        });
+    // Create a new credential
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
 
-    return await FirebaseAuth.instance.signInWithCustomToken(responseCustomToken.body);
+    // Once signed in, return the UserCredential
+    return await FirebaseAuth.instance.signInWithCredential(credential);
   }
 
+  // For Kakao Login
+  // Future<UserCredential> signInWithKakao() async {
+  //   KakaoContext.clientId = '02819f8512e479fc874e04daef7c858e';
+  //
+  //   String authCode = await AuthCodeClient.instance.request();
+  //   print(authCode);
+  //
+  //   final clientState = Uuid().v4();
+  //   final url = Uri.https('kauth.kakao.com', '/oauth/authorize', {
+  //     'response_type': 'code',
+  //     'client_id': "f6ffe0fb6ad868316948676f3e1150b8",
+  //     'response_mode': 'form_post',
+  //     'redirect_uri':
+  //       'https://thin-savory-frigate.glitch.me/callbacks/kakao/sign_in',
+  //     'state': clientState,
+  //   });
+  //
+  //   final result = await FlutterWebAuth.authenticate(
+  //     url: url.toString(), callbackUrlScheme: "webauthcallback");
+  //   final body = Uri.parse(result).queryParameters;
+  //   final tokenUrl = Uri.https('kauth.kakao.com', '/oauth/token', {
+  //     'grant_type': 'authorization_code',
+  //     'client_id': "f6ffe0fb6ad868316948676f3e1150b8",
+  //     'redirect_uri':
+  //       'https://thin-savory-frigate.glitch.me/callbacks/kakao/sign_in',
+  //     'code': body['code'],
+  //   });
+  //
+  //   var response = await http.post(tokenUrl);
+  //   Map<String, dynamic> accessTokenResult = json.decode(response.body);
+  //   var responseCustomToken = await http.post(
+  //     Uri.parse("https://onyx-deep-pepperberry.glitch.me/callbacks/kakao/token"),
+  //       body: {
+  //         "accessToken": accessTokenResult['access_token']
+  //       });
+  //
+  //   return await FirebaseAuth.instance.signInWithCustomToken(responseCustomToken.body);
+  // }
 
- @override
+
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
-        body: _bodyWidget(context),
+        body: _bodyWidget(),
       ),
     );
   }
 
-  _bodyWidget(BuildContext context) {
+  _bodyWidget() {
     return Column(
       children: [
         Center(
           child: Column(
             children: [
-              const SizedBox(
+              SizedBox(
                 height: 80,
               ),
-              IconButton(
-                onPressed: () {},
-                icon: SvgPicture.asset("assets/logo.svg"),
-              ),
+              Image.asset('assets/Icons/logo.svg'),
+              // IconButton(
+              //   onPressed: () {},
+              //   icon: SvgPicture.asset("assets/Icons/logo.svg"),
+              // ),
               const Text(
                 '우리의 소식통',
                 style: TextStyle(
@@ -91,14 +111,13 @@ class LoginPage extends StatelessWidget {
               const SizedBox(
                 height: 30,
               ),
-              SizedBox(
+              Container(
                 height: 80,
                 width: 300,
                 child: ElevatedButton(
                   onPressed: () {
-                    Get.toNamed('/NaverLogin');
                   },
-                  child: const Text(
+                  child: Text(
                     '네이버로 로그인',
                     style: TextStyle(
                       fontFamily: "DoHyeonFont",
@@ -107,47 +126,55 @@ class LoginPage extends StatelessWidget {
                     ),
                   ),
                   style: ElevatedButton.styleFrom(
-                      primary: const Color(0xFFFFC700),
+                      primary: Color(0xFFFFC700),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5.0))),
                 ),
               ),
-              const SizedBox(
+              SizedBox(
                 height: 25,
               ),
               SizedBox(
                 height: 80,
                 width: 300,
                 child: ElevatedButton(
-                  onPressed: signInWithKakao,
-                  child: const Text(
+                  onPressed: () {},
+                  child: Text(
                     '카카오로 로그인',
                     style: TextStyle(
-                      fontFamily: "DoHyeonFont",
+                      fontFamily: "DoHyeon",
                       fontSize: 30.0,
                       color: Color(0xFF000000),
                     ),
                   ),
                   style: ElevatedButton.styleFrom(
-                      primary: const Color(0xFFFFC700),
+                      primary: Color(0xFFFFC700),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5.0))),
                 ),
               ),
-              const SizedBox(
+              SizedBox(
                 height: 25,
               ),
-              SizedBox(
+              Container(
                 height: 80,
                 width: 300,
                 child: ElevatedButton(
-                  onPressed: () {
-                    Get.toNamed('/GoogleLogin');
+                  onPressed: () async {
+                    final UserCredential userCredential =
+                    await signInWithGoogle();
+                    User? user = userCredential.user;
+
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (context) => const bottomNavigationbar(),
+                      ),
+                    );
                   },
-                  child: const Text(
+                  child: Text(
                     '구글로 로그인',
                     style: TextStyle(
-                      fontFamily: "DoHyeonFont",
+                      fontFamily: "DoHyeon",
                       fontSize: 30.0,
                       color: Color(0xFF000000),
                     ),
