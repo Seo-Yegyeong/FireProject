@@ -40,7 +40,6 @@ class _FreeBoardScreenState extends State<FreeBoardScreen> {
               Expanded(
                 child: FreeBoardList(),
               ),
-
             ]
         ),
       ),

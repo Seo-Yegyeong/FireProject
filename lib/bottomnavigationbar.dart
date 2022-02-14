@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fireproject/AnnouncementPage.dart';
+import 'package:fireproject/board/boardList.dart';
 import 'package:fireproject/src/pages/announcement/home.dart';
 import 'package:fireproject/src/size.dart';
 import 'package:flutter/material.dart';
@@ -39,10 +40,7 @@ class _bottomNavigationbarState extends State<bottomNavigationbar> {
       '여기에 홈페이지 당겨오면 돼용',
       style: optionStyle,
     ),
-    Text(
-      'Index 2: School',
-      style: optionStyle,
-    ),
+    BoardList(),
     Text(
       'Index 3: Account balance',
       style: optionStyle,
