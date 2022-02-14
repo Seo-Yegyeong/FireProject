@@ -85,7 +85,8 @@ flutter:
       - assets/Icons/BackButton.svg
       - assets/Icons/NextButton.svg
       - assets/Icons/DeleteButton.svg
-  #   - images/a_dot_ham.jpeg
+      - assets/Icons/heart.svg
+      - assets/Icons/comment.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
