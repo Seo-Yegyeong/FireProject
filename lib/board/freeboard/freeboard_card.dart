@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fireproject/board/PopupMenu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-enum choice { edit, delete}
 
 class FreeBoardCard extends StatefulWidget {
   //const FreeBoardCard(  {Key? key}) : super(key: key);
@@ -39,21 +39,7 @@ class _FreeBoardCardState extends State<FreeBoardCard> {
                             fontSize: 22,
                           )
                       ),
-                    widget.isMe?
-                    PopupMenuButton<choice>(
-                      icon: Icon(Icons.more_horiz),
-                      onSelected: (choice result) { setState(() { }); },
-                      itemBuilder: (BuildContext context) => <PopupMenuEntry<choice>>[
-                        const PopupMenuItem<choice>(
-                          value: choice.edit,
-                          child: Text('수정'),
-                        ),
-                        const PopupMenuItem<choice>(
-                          value: choice.delete,
-                          child: Text('삭제'),
-                        ),
-                      ],
-                    )
+                    widget.isMe? PopupMenu()
                         :Text(" ",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,

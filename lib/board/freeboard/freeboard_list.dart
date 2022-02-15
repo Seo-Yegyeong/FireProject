@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fireproject/board/freeboard/freeboard_card.dart';
+import 'package:fireproject/board/freeboard/freeboard_detail_screen.dart';
 import 'package:flutter/material.dart';
 
 class FreeBoardList extends StatefulWidget {
@@ -33,11 +34,11 @@ class _FreeBoardListState extends State<FreeBoardList> {
             return GestureDetector(
               onTap: (){
 
-                /*Navigator.of(context).push(
+                Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => ChatScreen(connectId.toList()[index]),
+                    builder: (context) => DetailScreen(freeDocs[index],freeDocs[index]['wid']==user!.uid,),
                   ),
-                );*/
+                );
               },
               child: FreeBoardCard(
                 freeDocs[index],
