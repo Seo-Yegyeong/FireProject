@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:fireproject/bottomnavigationbar.dart';
+import 'package:fireproject/AnnouncementPage.dart';
 import 'package:flutter/material.dart';
 import 'login_page.dart';
 
@@ -15,7 +15,7 @@ class Authentication extends StatelessWidget {
           return LoginPage();
         }
         else {
-          return bottomNavigationbar(user: snapshot.data,);
+          return WriteAnnouncePage(user: snapshot.data,);
             //WriteSchoolContentsPage(user: snapshot.data);
           //   Center(
           //   child: Column(

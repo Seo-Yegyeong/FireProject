@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fireproject/AnnouncementPage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-import '../../bottomnavigationbar.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -167,7 +167,7 @@ class _LoginPageState extends State<LoginPage> {
 
                     Navigator.of(context).pushReplacement(
                       MaterialPageRoute(
-                        builder: (context) => const bottomNavigationbar(),
+                        builder: (context) => WriteAnnouncePage(user: user,),
                       ),
                     );
                   },

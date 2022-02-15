@@ -1,3 +1,9 @@
+import 'package:fireproject/src/components/custom_ElevatedButton.dart';
+import 'package:fireproject/src/components/custom_RadioButton.dart';
+import 'package:fireproject/src/components/custom_TextFormField.dart';
+import 'package:fireproject/src/size.dart';
+import 'package:fireproject/start_page.dart';
+import 'package:fireproject/util/validator_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'dart:io';
@@ -5,11 +11,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 //import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:image_picker/image_picker.dart';
-//import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:multi_image_picker2/multi_image_picker2.dart';
 import 'dart:async';
-import 'package:video_player/video_player.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class ImagePickerBox extends StatefulWidget {
@@ -29,6 +35,11 @@ class _ImagePickerBoxState extends State<ImagePickerBox> {
   String _error = 'No Error Dectected';
 
   late CollectionReference database;
+
+  static const TextStyle customStyle = TextStyle(
+    fontFamily: "DoHyeonFont",
+    fontSize: 20.0,
+  );
 
   void imageInitState() {
     super.initState();
@@ -62,23 +73,20 @@ class _ImagePickerBoxState extends State<ImagePickerBox> {
     String error = 'No Error Detected';
 
     // try {
-      resultList = await MultiImagePicker.pickImages(
-        maxImages: 10,
-        enableCamera: true,
-        selectedAssets: images);
+    resultList = await MultiImagePicker.pickImages(
+        maxImages: 10, enableCamera: true, selectedAssets: images);
 
-
-        // cupertinoOptions: CupertinoOptions(
-        //   takePhotoIcon: "chat",
-        //   doneButtonTitle: "Fatto",
-        // ),
-        // materialOptions: MaterialOptions(
-        //   actionBarColor: "#abcdef",
-        //   actionBarTitle: "Example App",
-        //   allViewTitle: "All Photos",
-        //   useDetailsView: false,
-        //   selectCircleStrokeColor: "#000000",
-        // ),
+    // cupertinoOptions: CupertinoOptions(
+    //   takePhotoIcon: "chat",
+    //   doneButtonTitle: "Fatto",
+    // ),
+    // materialOptions: MaterialOptions(
+    //   actionBarColor: "#abcdef",
+    //   actionBarTitle: "Example App",
+    //   allViewTitle: "All Photos",
+    //   useDetailsView: false,
+    //   selectCircleStrokeColor: "#000000",
+    // ),
     //   );
     // } on Exception catch (e) {
     //   error = e.toString();
@@ -132,18 +140,14 @@ class _ImagePickerBoxState extends State<ImagePickerBox> {
                     style: ElevatedButton.styleFrom(primary: Color(0xFFFFC700)),
                     child: Text(
                       '사진 및 동영상 선택',
-                      style: TextStyle(
-                        fontFamily: "DoHyeon",
-                        fontSize: 20.0,
-                        color: Color(0xFF000000),
-                      ),
+                      style: customStyle,
                     ),
-                    onPressed: (
-
-                        ) {
+                    onPressed: () {
                       Future<bool> _getStatuses() async {
-                        Map<Permission, PermissionStatus> statuses =
-                        await [Permission.storage, Permission.camera].request();
+                        Map<Permission, PermissionStatus> statuses = await [
+                          Permission.storage,
+                          Permission.camera
+                        ].request();
 
                         if (await Permission.camera.isGranted &&
                             await Permission.storage.isGranted) {
@@ -160,11 +164,7 @@ class _ImagePickerBoxState extends State<ImagePickerBox> {
                             return AlertDialog(
                               title: Text(
                                 '사진 및 동영상 선택',
-                                style: TextStyle(
-                                  fontFamily: "DoHyeon",
-                                  fontSize: 20.0,
-                                  color: Color(0xFF000000),
-                                ),
+                                style: customStyle,
                               ),
                               content: SingleChildScrollView(
                                 child: ListBody(
@@ -182,11 +182,7 @@ class _ImagePickerBoxState extends State<ImagePickerBox> {
                                       // },
                                       child: const Text(
                                         "사진 추가",
-                                        style: TextStyle(
-                                          fontFamily: "DoHyeon",
-                                          fontSize: 15.0,
-                                          color: Color(0xFF000000),
-                                        ),
+                                        style: customStyle,
                                       ),
                                     ),
                                     TextButton(
@@ -201,11 +197,7 @@ class _ImagePickerBoxState extends State<ImagePickerBox> {
                                       // },
                                       child: const Text(
                                         "동영상 추가",
-                                        style: TextStyle(
-                                          fontFamily: "DoHyeon",
-                                          fontSize: 15.0,
-                                          color: Color(0xFF000000),
-                                        ),
+                                        style: customStyle,
                                       ),
                                     ),
                                     TextButton(
@@ -219,11 +211,7 @@ class _ImagePickerBoxState extends State<ImagePickerBox> {
                                       },
                                       child: const Text(
                                         "카메라",
-                                        style: TextStyle(
-                                          fontFamily: "DoHyeon",
-                                          fontSize: 15.0,
-                                          color: Color(0xFF000000),
-                                        ),
+                                        style: customStyle,
                                       ),
                                     ),
                                   ],
@@ -248,7 +236,14 @@ class _ImagePickerBoxState extends State<ImagePickerBox> {
 
 class WriteAnnouncePage extends StatelessWidget {
   final User? user;
+  final _formKey = GlobalKey<FormState>();
+
   WriteAnnouncePage({Key? key, required this.user}) : super(key: key);
+
+  static const TextStyle customStyle = TextStyle(
+    fontFamily: "DoHyeonFont",
+    fontSize: 30.0,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -260,51 +255,27 @@ class WriteAnnouncePage extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: Colors.white,
           elevation: 0.0,
-          title: Center(
-            child: const Text(
+          title: const Center(
+            child: Text(
               "가정통신문 등록",
-              style: TextStyle(
-                fontFamily: "DoHyeon",
-                fontSize: 20.0,
-                color: Color(0xFF000000),
-              ),
+              style: customStyle,
             ),
           ),
           leading: IconButton(
-            icon: SvgPicture.asset("assets/Icons/BackButton.svg"),
+            icon: SvgPicture.asset("assets/icons/BackButton.svg"),
             iconSize: 50.0,
             onPressed: () {},
           ),
           actions: [
             IconButton(
-              icon: SvgPicture.asset("assets/Icons/NextButton.svg"),
+              icon: SvgPicture.asset("assets/icons/NextButton.svg"),
               iconSize: 50.0,
               onPressed: () {},
             ),
           ],
         ),
         body: _bodyWidget(context),
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.black,
-          onPressed: () {},
-          child: IconButton(
-            icon: SvgPicture.asset("assets/Icons/DeleteButton.svg"),
-            iconSize: 25.0,
-            onPressed: () {},
-          ),
-        ),
-        // bottomNavigationBar: BottomAppBar(
-        //   child: Row(
-        //     mainAxisAlignment: MainAxisAlignment.end,
-        //     children: [
-        //       IconButton(
-        //         icon: SvgPicture.asset("assets/Icons/Delete.svg"),
-        //         iconSize: 25.0,
-        //         onPressed: () {},
-        //       ),
-        //     ],
-        //   ),
-        // ),
+        bottomNavigationBar: buildBottomAppBar(),
       ),
     );
   }
@@ -314,149 +285,87 @@ class WriteAnnouncePage extends StatelessWidget {
     //bool isButtonActive = true;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: ListView(
-        children: <Widget>[
-          // const SizedBox(
-          //   height: 10,
-          // ),
-          ImagePickerBox(user: user),
-          // const SizedBox(
-          //   height: 10,
-          // ),
-          Container(
-            child: Text(
+      child: Form(
+        key: _formKey,
+        child: ListView(
+          children: [
+            ImagePickerBox(user: user),
+            const Text(
               "제목",
-              style: TextStyle(
-                fontFamily: "DoHyeon",
-                fontSize: 30.0,
-                color: Color(0xFF000000),
-              ),
+              style: customStyle,
             ),
-          ),
-          const SizedBox(
-            height: 10.0,
-          ),
-          Title(),
-          const SizedBox(
-            height: 30.0,
-          ),
-          Container(
-            child: Text(
+            const SizedBox(
+              height: 10.0,
+            ),
+            CustomTextFormField(
+              hint: '제목을 입력해주세요.',
+              funValidator: validateTitle(),
+            ),
+            const SizedBox(
+              height: 30.0,
+            ),
+            const Text(
               "내용",
-              style: TextStyle(
-                fontFamily: "DoHyeon",
-                fontSize: 30.0,
-                color: Color(0xFF000000),
+              style: customStyle,
+            ),
+            const SizedBox(
+              height: 10.0,
+            ),
+            CustomTextFormField(
+              hint: '내용을 입력해주세요.',
+              funValidator: validateContent(),
+            ),
+            const SizedBox(
+              height: 50,
+            ),
+            Container(
+              height: 180,
+              width: getScreenWidth(context) * 0.9,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(
+                    width: 1,
+                    color: Colors.black,
+                  )),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Text(
+                    "서명이 필요한 공지인가요?",
+                    style: customStyle,
+                  ),
+                  RadioButtonWidget(),
+                ],
               ),
             ),
-          ),
-          const SizedBox(
-            height: 10.0,
-          ),
-          Content(),
-          SizedBox(
-            height: 5.0,
-          ),
-          SizedBox(
-            height: 50,
-          ),
-          Container(
-            height: 180,
-            width: 70,
-            decoration: BoxDecoration(
-                border: Border.all(
-              width: 1,
-              color: Colors.black,
-            )),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "서명이 필요한 공지인가요?",
-                  style: TextStyle(
-                    fontFamily: "DoHyeon",
-                    fontSize: 30.0,
-                    color: Color(0xFF000000),
-                  ),
-                ),
-                RadioButtonWidget(),
-              ],
+            const SizedBox(
+              height: 50,
             ),
+            Custom_ElevatedButton(
+              text: '등록',
+              funPageRoute: () {
+                if(_formKey.currentState!.validate())
+                  Get.to(StartPage());
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  BottomAppBar buildBottomAppBar() {
+    return BottomAppBar(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          IconButton(
+            icon: SvgPicture.asset("assets/icons/DeleteButton.svg"),
+            iconSize: 30.0,
+            onPressed: () {},
           ),
         ],
       ),
-    );
-  }
-
-  Widget Title() {
-    return TextFormField(
-      decoration: const InputDecoration(
-        fillColor: Colors.grey,
-        labelText: "제목을 입력해주세요.",
-        border: OutlineInputBorder(),
-        contentPadding: const EdgeInsets.all(20),
-      ),
-    );
-  }
-
-  Widget Content() {
-    return TextFormField(
-      maxLines: 12,
-      decoration: const InputDecoration(
-        fillColor: Colors.grey,
-        labelText: "내용을 입력해주세요.",
-        border: OutlineInputBorder(),
-        //contentPadding: const EdgeInsets.fromLTRB(20, 300, 100, 10),
-      ),
-    );
-  }
-}
-
-enum Choice { Yes, No }
-
-class RadioButtonWidget extends StatefulWidget {
-  const RadioButtonWidget({Key? key}) : super(key: key);
-
-  @override
-  State<RadioButtonWidget> createState() => _RadioButtonWidgetState();
-}
-
-/// This is the private State class that goes with MyStatefulWidget.
-class _RadioButtonWidgetState extends State<RadioButtonWidget> {
-//처음에는 사과가 선택되어 있도록 Apple로 초기화 -> groupValue에 들어갈 값!
-  Choice? _Choice = Choice.Yes;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        ListTile(
-          //ListTile - title에는 내용,
-          //leading or trailing에 체크박스나 더보기와 같은 아이콘을 넣는다.
-          title: const Text('네'),
-          leading: Radio<Choice>(
-            value: Choice.Yes,
-            groupValue: _Choice,
-            onChanged: (Choice? value) {
-              setState(() {
-                _Choice = value;
-              });
-            },
-          ),
-        ),
-        ListTile(
-          title: const Text('아니오'),
-          leading: Radio<Choice>(
-            value: Choice.No,
-            groupValue: _Choice,
-            onChanged: (Choice? value) {
-              setState(() {
-                _Choice = value;
-              });
-            },
-          ),
-        ),
-      ],
     );
   }
 }

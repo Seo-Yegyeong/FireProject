@@ -3,14 +3,14 @@ import 'package:fireproject/AnnouncementPage.dart';
 import 'package:fireproject/board/boardList.dart';
 import 'package:fireproject/src/pages/announcement/home.dart';
 import 'package:fireproject/src/size.dart';
+import 'package:fireproject/start_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 
 class bottomNavigationbar extends StatefulWidget {
-  const bottomNavigationbar({Key? key, User? user}) : super(key: key);
+  final User? user;
+  const bottomNavigationbar({this.user});
 
   @override
   _bottomNavigationbarState createState() => _bottomNavigationbarState();
@@ -46,6 +46,8 @@ class _bottomNavigationbarState extends State<bottomNavigationbar> {
       style: optionStyle,
     ),
   ];
+
+  get user => this.user;
 
 
   //함수 구현
@@ -125,10 +127,22 @@ class _bottomNavigationbarState extends State<bottomNavigationbar> {
       floatingActionButton: Visibility(
         child: IconButton(
           onPressed: () {
-            _moveWritingPage()? WriteAnnouncePage(user: null,) : Get.toNamed('/detail');
+            if(_moveWritingPage()){
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (context) => WriteAnnouncePage(user: user),
+                ),
+              );
+            }else{
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (context) => StartPage(),
+                ),
+              );
+            }
           },
           tooltip: '글을 작성하세요.',
-          icon: SvgPicture.asset("assets/Icons/pencil.svg"),
+          icon: SvgPicture.asset("assets/icons/pencil.svg"),
           iconSize: 55.0,
         ),
         visible: _visibility,
