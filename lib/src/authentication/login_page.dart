@@ -95,7 +95,7 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(
                 height: 80,
               ),
-              Image.asset('assets/Icons/logo.svg'),
+              Image.asset('assets/icons/logo.svg'),
               // IconButton(
               //   onPressed: () {},
               //   icon: SvgPicture.asset("assets/Icons/logo.svg"),

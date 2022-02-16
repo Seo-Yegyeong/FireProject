@@ -5,26 +5,24 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-class AnnounceCard extends StatelessWidget {
+class TeacherCard extends StatelessWidget {
   final String name;
-  final QueryDocumentSnapshot<Map<String, dynamic>> doc;
-
-  const AnnounceCard({required this.name, required this.doc});
+  const TeacherCard({required this.name});
 
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(left: 20),
+      padding: EdgeInsets.only(left: 10),
       child: GestureDetector(
         onTap: () {
           FocusScope.of(context).unfocus();
         },
         child: SizedBox(
-          width: getScreenWidth(context),
-          height: getScreenHeight(context),
+          width: getScreenWidth(context)*0.2,
+          height: getScreenWidth(context)*0.2,
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(100),
             child: Stack(
               children: [
                 Container(
@@ -33,45 +31,35 @@ class AnnounceCard extends StatelessWidget {
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
                       colors: [
-                        Color(0xFF343434).withOpacity(0.4),
-                        Color(0xFF343434).withOpacity(0.15),
+                        Color(0xFFFFC700).withOpacity(0.4),
+                        Color(0xFFFFC700).withOpacity(0.15),
                       ],
                     ),
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 10,
-                    vertical: 15,
-                  ),
-                  child:
-                  Column(
-                    children: [
-                      //Text(doc['name'],),
-                      Text.rich(
-                        TextSpan(
-                          style: TextStyle(color: Colors.white),
-                          children: [
-                            TextSpan(
-                              text: "이름: ",
-                              style: TextStyle(
-                                fontSize: 30,
-                                fontWeight: FontWeight.bold,
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text.rich(
+                          TextSpan(
+                            style: TextStyle(color: Colors.black),
+                            children: [
+                              TextSpan(
+                                text: name,
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
-                            ),
-
-                            TextSpan(
-                              text: doc['name'],
-                              style: TextStyle(
-                                fontSize: 30,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
+                      ],
+                    ),
+                  ],
                 ),
               ],
             ),

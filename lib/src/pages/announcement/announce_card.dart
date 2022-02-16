@@ -6,10 +6,10 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 class AnnounceCard extends StatelessWidget {
-  final String name;
+  //final String name;
   final QueryDocumentSnapshot<Map<String, dynamic>> doc;
 
-  const AnnounceCard({required this.name, required this.doc});
+  const AnnounceCard({required this.doc});
 
 
   @override
@@ -21,8 +21,8 @@ class AnnounceCard extends StatelessWidget {
           FocusScope.of(context).unfocus();
         },
         child: SizedBox(
-          width: getScreenWidth(context),
-          height: getScreenHeight(context),
+          width: getScreenWidth(context)*0.8,
+          height: getScreenWidth(context)*0.5,
           child: ClipRRect(
             borderRadius: BorderRadius.circular(20),
             child: Stack(
@@ -33,8 +33,8 @@ class AnnounceCard extends StatelessWidget {
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
                       colors: [
-                        Color(0xFF343434).withOpacity(0.4),
-                        Color(0xFF343434).withOpacity(0.15),
+                        Color(0xFFFFC700).withOpacity(0.4),
+                        Color(0xFFFFC700).withOpacity(0.15),
                       ],
                     ),
                   ),
@@ -51,18 +51,13 @@ class AnnounceCard extends StatelessWidget {
                       Text.rich(
                         TextSpan(
                           style: TextStyle(color: Colors.white),
+
                           children: [
                             TextSpan(
-                              text: "이름: ",
+                              text: doc['title'],
                               style: TextStyle(
-                                fontSize: 30,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-
-                            TextSpan(
-                              text: doc['name'],
-                              style: TextStyle(
+                                color: Colors.black,
+                                fontFamily: "DoHyeonFont",
                                 fontSize: 30,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -70,6 +65,27 @@ class AnnounceCard extends StatelessWidget {
                           ],
                         ),
                       ),
+                      SizedBox(height: 10,),
+                      Container(
+                        height: 85,
+                        child: Expanded(
+                          child: Text(doc['content'], style: TextStyle(
+                            fontSize: 15,
+                          ),),
+                        ),
+                      ),
+                      SizedBox(height: 10,),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text(
+                              DateTime.fromMicrosecondsSinceEpoch(doc['time'].microsecondsSinceEpoch).toString().split(" ")[0],
+                              style: TextStyle(
+                                fontWeight: FontWeight.w300,
+                              )
+                          ),
+                        ],
+                      )
                     ],
                   ),
                 ),

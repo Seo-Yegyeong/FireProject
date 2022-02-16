@@ -26,27 +26,6 @@ class _HomePageState extends State<HomePage> {
           children: <Widget>[
             Column(
               children: [
-                Row(
-                  children: [
-                    Container(
-                      height: 70,
-                      width: 70,
-                      color: Colors.amber,
-                      margin: EdgeInsets.all(10),
-                    ),
-                    Container(
-                      height: 70,
-                      width: 70,
-                      color: Colors.amber,
-                      margin: EdgeInsets.all(10),
-                    ),
-                  ],
-                ),
-                const Divider(
-                  thickness: 1,
-                  color: Colors.black54,
-                ),
-                //AnnounceList(),
                 Container(
                   child: Column(
                     children: [
