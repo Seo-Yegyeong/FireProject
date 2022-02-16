@@ -33,10 +33,10 @@ class _FreeBoardListState extends State<FreeBoardList> {
 
             return GestureDetector(
               onTap: (){
-
+                print(freeDocs[index].id);
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => DetailScreen(freeDocs[index],freeDocs[index]['wid']==user!.uid,),
+                    builder: (context) => DetailScreen(freeDocs[index],freeDocs[index]['wid']==user!.uid,freeDocs[index].id),
                   ),
                 );
               },
