@@ -19,8 +19,10 @@ class AnnounceDetailPage extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0.0,
         leading: IconButton(
-          onPressed: () {},
-          icon: SvgPicture.asset("assets/Icons/BackButton.svg"),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: SvgPicture.asset("assets/icons/BackButton.svg"),
         ),
         title: Padding(
           padding: const EdgeInsets.all(5.0),

@@ -28,8 +28,7 @@ class ImagePickerBox extends StatefulWidget {
 
 class _ImagePickerBoxState extends State<ImagePickerBox> {
   PickedFile? _image;
-  //late Reference firebaseStorageRef;
-  //late UploadTask uploadTask;
+
   late var downloadUrl;
   List<Asset> images = <Asset>[];
   String _error = 'No Error Dectected';
@@ -238,7 +237,7 @@ class WriteAnnouncePage extends StatelessWidget {
   final User? user;
   final _formKey = GlobalKey<FormState>();
 
-  WriteAnnouncePage({Key? key, required this.user}) : super(key: key);
+  WriteAnnouncePage({required this.user});
 
   static const TextStyle customStyle = TextStyle(
     fontFamily: "DoHyeonFont",
@@ -345,7 +344,9 @@ class WriteAnnouncePage extends StatelessWidget {
               text: '등록',
               funPageRoute: () {
                 if(_formKey.currentState!.validate())
-                  Get.to(StartPage());
+                  //https://blog.codefactory.ai/flutter/form/
+                  print(_formKey.currentState);
+                  Get.to(() => StartPage());
               },
             ),
           ],

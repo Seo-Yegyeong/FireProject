@@ -6,7 +6,7 @@ Function validateTitle() {
     } else if (value.length > 30) {
       return "제목의 길이를 초과하였습니다.";
     } else {
-      return null;
+      return value;
     }
   };
 }
@@ -21,7 +21,7 @@ Function validateContent() {
     } else if (value.length > 1000) {
       return "제목의 길이를 초과하였습니다.";
     } else {
-      return null;
+      return value;
     }
   };
 }

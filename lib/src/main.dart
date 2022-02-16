@@ -11,7 +11,7 @@ import 'authentication/kakao_login.dart';
 import 'authentication/naver_login.dart';
 import 'authentication/login_page.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(const MyApp());

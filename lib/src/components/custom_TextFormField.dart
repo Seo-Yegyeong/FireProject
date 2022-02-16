@@ -5,8 +5,9 @@ class CustomTextFormField extends StatelessWidget {
 
   final String hint;
   final funValidator;
+  var _content;
 
-  const CustomTextFormField({required this.hint, required this.funValidator});
+  CustomTextFormField({required this.hint, required this.funValidator});
 
   Widget build(BuildContext context){
     return Padding(
@@ -30,6 +31,9 @@ class CustomTextFormField extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
           ),
         ),
+        onChanged: (value){
+
+        },
       ),
     );
   }

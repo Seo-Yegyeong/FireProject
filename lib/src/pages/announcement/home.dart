@@ -1,3 +1,4 @@
+import 'package:fireproject/src/pages/announcement/announce_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -16,11 +17,12 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Material(
       color: Colors.white,
       child: Padding(
         padding: EdgeInsets.all(15),
-        child: ListView(
+        child:
+        ListView(
           children: <Widget>[
             Column(
               children: [
@@ -44,9 +46,11 @@ class _HomePageState extends State<HomePage> {
                   thickness: 1,
                   color: Colors.black54,
                 ),
+                //AnnounceList(),
                 Container(
                   child: Column(
                     children: [
+                      AnnounceList(),
                       SizedBox(
                         height: 300,
                         child: ListView.separated(
@@ -65,16 +69,17 @@ class _HomePageState extends State<HomePage> {
                           },
                         ),
                       ),
-                      const SizedBox(
-                        height: 300,
-                        child: Center(
-                          child: Text(
-                            "여기는 글을 올릴 부분입니다!! 2",
-                            //style: optionStyle,
-                          ),
-                        ),
-                      ),
+
                     ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 300,
+                  child: Center(
+                    child: Text(
+                      "여기는 글을 올릴 부분입니다!! 2",
+                      //style: optionStyle,
+                    ),
                   ),
                 ),
               ],
