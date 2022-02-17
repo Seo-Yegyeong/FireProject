@@ -19,18 +19,18 @@ class ModifyStudentPage extends StatefulWidget {
 class _ModifyStudentPageState extends State<ModifyStudentPage> {
   bool click = true;
   bool isHovering = false;
-  double num=0;
-  double num1=0;
-  double num2=0;
-  double num3=0;
-  double num4=0;
-  double num5=0;
-  double num6=0;
-  double num7=0;
-  double num8=0;
-  double num9=0;
-  double num10=0;
-  double num11=0;
+  double num=100;
+
+  double num2=100;
+
+  double num4=100;
+
+  double num6=100;
+
+  double num8=100;
+
+  double num10=100;
+
   var _selection;
   final user = FirebaseAuth.instance.currentUser;
 
@@ -104,7 +104,7 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
                                             onPressed: () {
                                               if (isHovering == true) {
                                                 isHovering = false;
-                                                num=100;
+                                                num=190;
 
                                               }
                                               else {
@@ -117,9 +117,6 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
                                               });
                                               print('좋아요');
                                             },
-                                          ),
-                                          decoration: BoxDecoration(
-                                            border: Border.all(width: num1),
                                           ),
                                         ),
                                       ),
@@ -171,23 +168,21 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
                                         onPressed: () {
                                           if (isHovering == true) {
                                             isHovering = false;
-                                            num2=100;
-                                            num3 = 1.0;
+                                            num2=160;
+
                                           }
                                           else {
                                             isHovering = true;
                                             num2=130;
-                                            num3 = 2.0;
+
                                           }
                                           setState(() {
                                             _selection=2;
                                           });
-                                          print('쉬고 싶어요');
+                                          print('기뻐요');
                                         },
                                       ),
-                                      decoration: BoxDecoration(
-                                        border: Border.all(width: num1),
-                                      ),
+
                                     ),
                                   ),
 
@@ -204,7 +199,7 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
                                   ),
                                   Container(
                                     child: Text(
-                                      '쉬고 싶어요',
+                                      '기뻐요',
                                       style: TextStyle(
                                         fontFamily: "DoHyeon",
                                         fontSize: 20.0,
@@ -242,23 +237,21 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
                                             onPressed: () {
                                               if (isHovering == true) {
                                                 isHovering = false;
-                                                num4=100;
-                                                num5 = 1.0;
+                                                num4=160;
+
                                               }
                                               else {
                                                 isHovering = true;
                                                 num4=130;
-                                                num5 = 2.0;
+
                                               }
                                               setState(() {
                                                 _selection=3;
                                               });
-                                              print('기뻐요');
+                                              print('쉬고 싶어요');
                                             },
                                           ),
-                                          decoration: BoxDecoration(
-                                            border: Border.all(width: num1),
-                                          ),
+
                                         ),
                                       ),
                                       SizedBox(
@@ -274,7 +267,7 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
                                       ),
                                       Container(
                                         child: Text(
-                                          '기뻐요',
+                                          '쉬고 싶어요',
                                           style: TextStyle(
                                             fontFamily: "DoHyeon",
                                             fontSize: 20.0,
@@ -308,13 +301,13 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
                                         onPressed: () {
                                           if (isHovering == true) {
                                             isHovering = false;
-                                            num6=100;
-                                            num7 = 1.0;
+                                            num6=160;
+
                                           }
                                           else {
                                             isHovering = true;
                                             num6=130;
-                                            num7 = 2.0;
+
                                           }
                                           setState(() {
                                             _selection=4;
@@ -322,9 +315,7 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
                                           print('화나요');
                                         },
                                       ),
-                                      decoration: BoxDecoration(
-                                        border: Border.all(width: num1),
-                                      ),
+
                                     ),
                                   ),
                                   SizedBox(
@@ -378,13 +369,13 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
                                             onPressed: () {
                                               if (isHovering == true) {
                                                 isHovering = false;
-                                                num8=100;
-                                                num9 = 1.0;
+                                                num8=160;
+
                                               }
                                               else {
                                                 isHovering = true;
                                                 num8=130;
-                                                num9 = 2.0;
+
                                               }
                                               setState(() {
                                                 _selection=5;
@@ -392,9 +383,7 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
                                               print('제 이야기를 들어주세요');
                                             },
                                           ),
-                                          decoration: BoxDecoration(
-                                            border: Border.all(width: num1),
-                                          ),
+
                                         ),
                                       ),
                                       SizedBox(
@@ -444,23 +433,21 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
                                         onPressed: () {
                                           if (isHovering == true) {
                                             isHovering = false;
-                                            num10=100;
-                                            num11 = 1.0;
+                                            num10=160;
+
                                           }
                                           else {
                                             isHovering = true;
                                             num10=130;
-                                            num11 = 2.0;
+
                                           }
                                           setState(() {
                                             _selection=6;
                                           });
-                                          print('슬퍼요');
+                                          print('기뻐요');
                                         },
                                       ),
-                                      decoration: BoxDecoration(
-                                        border: Border.all(width: num1),
-                                      ),
+
                                     ),
                                   ),
                                   SizedBox(
@@ -476,7 +463,7 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
                                   ),
                                   Container(
                                     child: Text(
-                                      '슬퍼요',
+                                      '기뻐요',
                                       style: TextStyle(
                                         fontFamily: "DoHyeon",
                                         fontSize: 20.0,

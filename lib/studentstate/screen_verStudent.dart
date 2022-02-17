@@ -18,6 +18,9 @@ class screen_verStudent extends StatelessWidget {
         ),
       ),
       body: Container(
+        decoration: BoxDecoration(
+          color: Color(0xFFffd336),
+        ),
         child: Column(
           children: [
             Expanded(
