@@ -40,7 +40,7 @@ class _bottomNavigationbarState extends State<bottomNavigationbar> {
     HomePage(),
     BoardList(),
     UserScreen(),
-    InfoScreen(),
+    WriteAnnouncePage(user: FirebaseAuth.instance.currentUser,),
   ];
 
 
