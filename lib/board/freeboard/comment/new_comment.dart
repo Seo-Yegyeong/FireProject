@@ -2,26 +2,27 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class NewMessage extends StatefulWidget {
-  const NewMessage(this.takeId, {Key? key}) : super(key: key);
-  final String takeId;
+class NewComment extends StatefulWidget {
+  NewComment(this.docId, {Key? key}) : super(key: key);
+  String docId;
 
   @override
-  _NewMessageState createState() => _NewMessageState();
+  _NewCommentState createState() => _NewCommentState();
 }
 
-class _NewMessageState extends State<NewMessage> {
+class _NewCommentState extends State<NewComment> {
   final _controller = TextEditingController();
   var _userEnterMessage = '';
 
   void _sendMessage(){
     FocusScope.of(context).unfocus();
     final user = FirebaseAuth.instance.currentUser;
-    FirebaseFirestore.instance.collection('chat').add({
-      'text': _userEnterMessage,
+    FirebaseFirestore.instance.collection('board/2fw6mf2i4PHLVwjp0M3m/comment').add({
+      'comment': _userEnterMessage,
       'time': Timestamp.now(),
-      'sendId': user!.uid,
-      'takeId': widget.takeId,
+      'uid': user!.uid,
+      'documentId': widget.docId,
+      'name': user!.displayName,
     });
     _controller.clear();
   }
@@ -38,11 +39,11 @@ class _NewMessageState extends State<NewMessage> {
               controller: _controller,
               decoration: InputDecoration(
                 //labelText: 'Send a message...',
-                  //labelStyle: TextStyle(color:Colors.amber),
+                //labelStyle: TextStyle(color:Colors.amber),
                 hintText: 'Send a message...',
-                  border: const OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                  ),
+                border: const OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                ),
                 enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: _userEnterMessage.trim().isEmpty?Colors.grey:Colors.amberAccent, width: 1.0),
                   borderRadius: BorderRadius.all(Radius.circular(15.0)),
@@ -52,17 +53,18 @@ class _NewMessageState extends State<NewMessage> {
                   borderRadius: BorderRadius.all(Radius.circular(15.0)),
                 ),
                 suffixIcon: IconButton(
+
                   onPressed: _userEnterMessage.trim().isEmpty? null : _sendMessage,
-                  icon: const Icon(Icons.send),
+                  icon: const Icon(Icons.send,),
                   color: Colors.amber,
                 ),
 
               ),
-                onChanged: (value){
+              onChanged: (value){
                 setState(() {
                   _userEnterMessage = value;
                 });
-                },
+              },
             ),
           ),
 

@@ -4,9 +4,10 @@ import 'package:fireproject/board/boardList.dart';
 import 'package:fireproject/chatting/chatuser/user_list.dart';
 import 'package:fireproject/src/pages/announcement/home.dart';
 import 'package:fireproject/src/size.dart';
-import 'package:fireproject/start_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 
 class bottomNavigationbar extends StatefulWidget {
