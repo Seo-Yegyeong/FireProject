@@ -1,9 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fireproject/src/pages/announcement/announce_detail_page.dart';
 import 'package:fireproject/src/size.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 class AnnounceCard extends StatelessWidget {
   //final String name;
@@ -47,11 +44,9 @@ class AnnounceCard extends StatelessWidget {
                   child:
                   Column(
                     children: [
-                      //Text(doc['name'],),
                       Text.rich(
                         TextSpan(
                           style: TextStyle(color: Colors.white),
-
                           children: [
                             TextSpan(
                               text: doc['title'],
@@ -85,7 +80,7 @@ class AnnounceCard extends StatelessWidget {
                               )
                           ),
                         ],
-                      )
+                      ),
                     ],
                   ),
                 ),

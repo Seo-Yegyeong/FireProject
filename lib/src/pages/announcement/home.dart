@@ -1,4 +1,5 @@
 import 'package:fireproject/src/pages/announcement/announce_list.dart';
+import 'package:fireproject/src/pages/announcement/teacher_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -29,6 +30,7 @@ class _HomePageState extends State<HomePage> {
                 Container(
                   child: Column(
                     children: [
+                      TeacherList(),
                       AnnounceList(),
                       SizedBox(
                         height: 300,
