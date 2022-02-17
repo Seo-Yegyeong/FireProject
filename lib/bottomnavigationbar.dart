@@ -1,5 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fireproject/AnnouncementPage.dart';
+import 'package:fireproject/board/boardList.dart';
+import 'package:fireproject/chatting/chatuser/user_screen.dart';
+import 'package:fireproject/practice/info_screen.dart';
 import 'package:fireproject/practice/infor_screen.dart';
 import 'package:fireproject/src/pages/announcement/home.dart';
 import 'package:fireproject/src/size.dart';
@@ -34,7 +37,7 @@ class _bottomNavigationbarState extends State<bottomNavigationbar> {
   ];
 
   //메뉴별 다른 body 지정을 위해 List<Widget> 선언
-  static const List<Widget> _bodyOptions = <Widget>[
+  static List<Widget> _bodyOptions = <Widget>[
     HomePage(),
     infor_screen(),
     // Text(
@@ -49,6 +52,9 @@ class _bottomNavigationbarState extends State<bottomNavigationbar> {
       'Index 3: Account balance',
       style: optionStyle,
     ),
+    BoardList(),
+    UserScreen(),
+    WriteAnnouncePage(user: FirebaseAuth.instance.currentUser,),
   ];
 
 

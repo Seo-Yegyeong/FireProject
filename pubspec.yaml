@@ -33,8 +33,6 @@ dependencies:
   multi_image_picker2: ^5.0.2
   permission_handler: ^8.3.0
   video_player: ^2.2.18
-  hovering: ^1.0.4
-
 
 
 
@@ -87,6 +85,9 @@ flutter:
       - assets/Icons/BackButton.svg
       - assets/Icons/NextButton.svg
       - assets/Icons/DeleteButton.svg
+      - assets/Icons/heart.svg
+      - assets/Icons/comment.svg
+      - assets/Icons/send.svg
       - assets/Icons/pencil.svg
       - assets/Icons/Good.svg
       - assets/Icons/Good.png

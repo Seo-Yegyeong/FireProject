@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fireproject/ModifyStudentPage.dart';
 import 'package:fireproject/practice/infor_screen.dart';
+import 'package:fireproject/board/boardList.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -78,6 +79,7 @@ class _GoogleLoginState extends State<GoogleLogin> {
 
                 Navigator.of(context).pushReplacement(
                   MaterialPageRoute(
+                    builder: (context) => const BoardList(),
                     builder: (context) => infor_screen(),
                   ),
                 );
