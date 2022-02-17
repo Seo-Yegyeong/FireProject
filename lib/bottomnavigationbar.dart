@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fireproject/AnnouncementPage.dart';
 import 'package:fireproject/board/boardList.dart';
+import 'package:fireproject/chatting/chatuser/user_list.dart';
 import 'package:fireproject/src/pages/announcement/home.dart';
 import 'package:fireproject/src/size.dart';
 import 'package:fireproject/start_page.dart';
@@ -28,9 +29,10 @@ class _bottomNavigationbarState extends State<bottomNavigationbar> {
   static const List<Text> _appBarOptions = <Text>[
     Text('우리의 소식통',
         style: optionStyle),
-    Text('학생 의사표현', style: optionStyle,),
+    Text('학생 상태', style: optionStyle,),
+    Text('채팅', style: optionStyle,),
     Text('참여 게시판', style: optionStyle,),
-    Text('○○○ 계정', style: optionStyle,),
+    Text('계정', style: optionStyle,),
   ];
 
   //메뉴별 다른 body 지정을 위해 List<Widget> 선언
@@ -40,6 +42,7 @@ class _bottomNavigationbarState extends State<bottomNavigationbar> {
       '여기에 홈페이지 당겨오면 돼용',
       style: optionStyle,
     ),
+    UserList(),
     BoardList(),
     Text(
       'Index 3: Account balance',
@@ -56,7 +59,7 @@ class _bottomNavigationbarState extends State<bottomNavigationbar> {
       _selectedIndex = index;
     });
 
-    if(_selectedIndex == 0 || _selectedIndex == 2) {
+    if(_selectedIndex == 0 || _selectedIndex == 3) {
       _show();
     } else {
       _hide();
@@ -110,6 +113,10 @@ class _bottomNavigationbarState extends State<bottomNavigationbar> {
           BottomNavigationBarItem(
             icon: SvgPicture.asset("assets/icons/studentstate.svg"),
             label: '학생상태',
+          ),
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset("assets/icons/logo.svg"),
+            label: '채팅',
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset("assets/icons/addlist.svg"),
