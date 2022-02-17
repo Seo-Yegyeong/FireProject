@@ -15,7 +15,7 @@ class SignUpIAmPage extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0.0,
         leading: IconButton(
-          icon: SvgPicture.asset("assets/Icons/BackButton.svg"),
+          icon: SvgPicture.asset("assets/icons/BackButton.svg"),
           onPressed: () {
 
           },

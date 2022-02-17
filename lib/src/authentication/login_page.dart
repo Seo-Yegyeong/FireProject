@@ -1,9 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:fireproject/AnnouncementPage.dart';
+import 'package:fireproject/src/authentication/authentication.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -22,7 +21,7 @@ class _LoginPageState extends State<LoginPage> {
 
     // Obtain the auth details from the request
     final GoogleSignInAuthentication? googleAuth =
-    await googleUser?.authentication;
+        await googleUser?.authentication;
 
     // Create a new credential
     final credential = GoogleAuthProvider.credential(
@@ -73,7 +72,6 @@ class _LoginPageState extends State<LoginPage> {
   //   return await FirebaseAuth.instance.signInWithCustomToken(responseCustomToken.body);
   // }
 
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -95,10 +93,10 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(
                 height: 80,
               ),
-              Image.asset('assets/icons/logo.svg'),
+              Image.asset('assets/logo.png'),
               // IconButton(
               //   onPressed: () {},
-              //   icon: SvgPicture.asset("assets/Icons/logo.svg"),
+              //   icon: SvgPicture.asset("assets/icons/logo.svg"),
               // ),
               const Text(
                 '우리의 소식통',
@@ -115,15 +113,10 @@ class _LoginPageState extends State<LoginPage> {
                 height: 80,
                 width: 300,
                 child: ElevatedButton(
-                  onPressed: () {
-                  },
+                  onPressed: () {},
                   child: Text(
                     '네이버로 로그인',
-                    style: TextStyle(
-                      fontFamily: "DoHyeonFont",
-                      fontSize: 30.0,
-                      color: Color(0xFF000000),
-                    ),
+                    style: TextStyle( fontFamily: "DoHyeonFont", fontSize: 30.0, color: Color(0xFF000000),),
                   ),
                   style: ElevatedButton.styleFrom(
                       primary: Color(0xFFFFC700),
@@ -141,11 +134,7 @@ class _LoginPageState extends State<LoginPage> {
                   onPressed: () {},
                   child: Text(
                     '카카오로 로그인',
-                    style: TextStyle(
-                      fontFamily: "DoHyeon",
-                      fontSize: 30.0,
-                      color: Color(0xFF000000),
-                    ),
+                    style: TextStyle( fontFamily: "DoHyeonFont", fontSize: 30.0, color: Color(0xFF000000),),
                   ),
                   style: ElevatedButton.styleFrom(
                       primary: Color(0xFFFFC700),
@@ -162,22 +151,40 @@ class _LoginPageState extends State<LoginPage> {
                 child: ElevatedButton(
                   onPressed: () async {
                     final UserCredential userCredential =
-                    await signInWithGoogle();
+                        await signInWithGoogle();
+
                     User? user = userCredential.user;
 
-                    Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(
-                        builder: (context) => WriteAnnouncePage(user: user,),
-                      ),
-                    );
+                    if (user != null) {
+                      int i;
+                      querySnapshot = await database.get();
+
+                      for (i = 0; i < querySnapshot.docs.length; i++) {
+                        var a = querySnapshot.docs[i];
+
+                        if (a.get('uid') == user.uid) {
+                          break;
+                        }
+                      }
+
+                      if (i == (querySnapshot.docs.length)) {
+                        database.doc(user.uid).set({
+                          'email': user.email.toString(),
+                          'name': user.displayName.toString(),
+                          'uid': user.uid,
+                        });
+                      }
+
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(
+                          builder: (context) => const Authentication(),
+                        ),
+                      );
+                    }
                   },
                   child: Text(
                     '구글로 로그인',
-                    style: TextStyle(
-                      fontFamily: "DoHyeon",
-                      fontSize: 30.0,
-                      color: Color(0xFF000000),
-                    ),
+                    style: TextStyle( fontFamily: "DoHyeonFont", fontSize: 30.0, color: Color(0xFF000000),),
                   ),
                   style: ElevatedButton.styleFrom(
                       primary: Color(0xFFFFC700),

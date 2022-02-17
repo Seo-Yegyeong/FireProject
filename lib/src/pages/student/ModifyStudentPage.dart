@@ -15,7 +15,7 @@ class ModifyStudentPage extends StatelessWidget {
           backgroundColor: Colors.white,
           elevation: 0.0,
           leading: IconButton(
-            icon: SvgPicture.asset("assets/Icons/BackButton.svg"),
+            icon: SvgPicture.asset("assets/icons/BackButton.svg"),
             onPressed: () {},
           ),
         ),
@@ -92,25 +92,25 @@ class ModifyStudentPage extends StatelessWidget {
                             children: [
                               IconButton(
                                 icon:
-                                SvgPicture.asset("assets/Icons/SadButton.svg"),
+                                SvgPicture.asset("assets/icons/SadButton.svg"),
                                 iconSize: 60.0,
                                 onPressed: () {},
                               ),
                               IconButton(
                                 icon:
-                                SvgPicture.asset("assets/Icons/SosoButton.svg"),
+                                SvgPicture.asset("assets/icons/SosoButton.svg"),
                                 iconSize: 60.0,
                                 onPressed: () {},
                               ),
                               IconButton(
                                 icon: SvgPicture.asset(
-                                    "assets/Icons/SmileButton.svg"),
+                                    "assets/icons/SmileButton.svg"),
                                 iconSize: 60.0,
                                 onPressed: () {},
                               ),
                               IconButton(
                                 icon: SvgPicture.asset(
-                                    "assets/Icons/AngryButton.svg"),
+                                    "assets/icons/AngryButton.svg"),
                                 iconSize: 60.0,
                                 onPressed: () {},
                               ),

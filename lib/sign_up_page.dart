@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fireproject/start_page.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +26,7 @@ class SignUpPage extends StatelessWidget {
           //Image.asset('assets/logo.svg'),
           leading: IconButton(
             icon: SvgPicture.asset(
-              "assets/logo.svg",
+              "assets/icons/logo.svg",
             ),
             onPressed: () {
               Get.toNamed('/');

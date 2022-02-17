@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../practice/edit_info.dart';
-
 enum choice{edit,delete}
 
 class PopupMenu extends StatefulWidget {
@@ -18,7 +16,7 @@ class _PopupMenuState extends State<PopupMenu> {
     return Container(
 
         child: PopupMenuButton<choice>(
-          //icon: Icon(Icons.more_horiz),
+          //icon: Icon(icons.more_horiz),
           onSelected: (choice result) { setState(() {
             if(result == choice.edit){
 

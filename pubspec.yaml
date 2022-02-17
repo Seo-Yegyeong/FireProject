@@ -34,10 +34,11 @@ dependencies:
   permission_handler: ^8.3.0
   video_player: ^2.2.18
   validators: ^3.0.0
+  provider: ^6.0.2
 
 
 
-  # The following adds the Cupertino Icons font to your application.
+  # The following adds the Cupertino icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   firebase_core: ^1.12.0
@@ -71,24 +72,15 @@ dev_dependencies:
 # The following section is specific to Flutter.
 flutter:
 
-  # The following line ensures that the Material Icons font is
+  # The following line ensures that the Material icons font is
   # included with your application, so that you can use the icons in
-  # the material Icons class.
+  # the material icons class.
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
   assets:
-      - assets/Icons/logo.svg
-      - assets/Icons/addlist.svg
-      - assets/Icons/newslist.svg
-      - assets/Icons/studentlist.svg
-      - assets/Icons/studentstate.svg
-      - assets/Icons/BackButton.svg
-      - assets/Icons/NextButton.svg
-      - assets/Icons/DeleteButton.svg
-      - assets/Icons/heart.svg
-      - assets/Icons/comment.svg
-      - assets/Icons/send.svg
+      - assets/icons/
+      - assets/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

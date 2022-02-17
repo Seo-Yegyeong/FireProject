@@ -13,7 +13,7 @@ class AnnounceTypePage extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0.0,
         leading: IconButton(
-          icon: SvgPicture.asset("assets/Icons/logo.svg"),
+          icon: SvgPicture.asset("assets/icons/logo.svg"),
           iconSize: 50.0,
           onPressed: () {},
         ),

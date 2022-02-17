@@ -4,15 +4,13 @@ import 'package:fireproject/board/boardList.dart';
 import 'package:fireproject/chatting/chatuser/user_list.dart';
 import 'package:fireproject/src/pages/announcement/home.dart';
 import 'package:fireproject/src/size.dart';
+import 'package:fireproject/start_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-
 
 class bottomNavigationbar extends StatefulWidget {
   final User? user;
-  const bottomNavigationbar({this.user});
+  const bottomNavigationbar({required this.user});
 
   @override
   _bottomNavigationbarState createState() => _bottomNavigationbarState();
@@ -24,7 +22,7 @@ class _bottomNavigationbarState extends State<bottomNavigationbar> {
 
   //특정 텍스트 스타일을 상수로 지정
   static const TextStyle optionStyle =
-      TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold);
+      TextStyle(color: Colors.black, fontSize: 25, fontWeight: FontWeight.bold, fontFamily: "DoHyeonFont");
 
   //메뉴별 다른 AppBar의 텍스트 지정을 위해 List<Text> 선언
   static const List<Text> _appBarOptions = <Text>[
@@ -83,7 +81,7 @@ class _bottomNavigationbarState extends State<bottomNavigationbar> {
 
     if(_selectedIndex == 0) {
       writingType = true;
-    } else if(_selectedIndex == 2) {
+    } else if(_selectedIndex == 3) {
       writingType = false;
     }
 
@@ -96,10 +94,10 @@ class _bottomNavigationbarState extends State<bottomNavigationbar> {
       appBar: AppBar(
         toolbarHeight: getAppBarHeight(context),
         backgroundColor: Colors.white,
-        //elevation: 0.0,
+        elevation: 0.1,
         title: Padding(
           padding: const EdgeInsets.all(5.0),
-          child: _appBarOptions.elementAt(_selectedIndex),
+          child: Center(child: _appBarOptions.elementAt(_selectedIndex)),
         ),
       ),
       body: Center(
