@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -16,13 +17,16 @@ class ImagePickerBox extends StatefulWidget {
   final User? user;
   const ImagePickerBox({Key? key, required this.user}) : super(key: key);
 
+
   @override
   _ImagePickerBoxState createState() => _ImagePickerBoxState();
 }
 
 class _ImagePickerBoxState extends State<ImagePickerBox> {
   PickedFile? _image;
-  //File _video;
+  //PickedFile? _video;
+
+
   //late Reference firebaseStorageRef;
   //late UploadTask uploadTask;
   late var downloadUrl;
@@ -67,6 +71,7 @@ class _ImagePickerBoxState extends State<ImagePickerBox> {
         maxImages: 10,
         enableCamera: true,
         selectedAssets: images);
+
 
 
         // cupertinoOptions: CupertinoOptions(
@@ -190,16 +195,33 @@ class _ImagePickerBoxState extends State<ImagePickerBox> {
                                         ),
                                       ),
                                     ),
+
+
                                     TextButton(
+
                                       //onPressed: loadAssets,
                                       onPressed: () async {
+                                        //File _video;
                                         var image = await ImagePicker.platform
                                             .pickVideo(
-                                                source: ImageSource.gallery);
+                                            source: ImageSource.gallery);
+
                                         setState(() {
                                           _image = image!;
                                         });
                                       },
+
+                                  //PickedFile? _video;
+
+                                    //   onPressed: _pickVideo() async{
+                                    // File video = await ImagePicker.pickVideo(source: ImageSource.gallery);
+                                    // _video = video;
+                                    // _videoPlayerController = VideoPlayerController.file(_video)..initialize().then((_) {
+                                    // setState(() { });
+                                    // _videoPlayerController.play();
+                                    // });
+                                    //
+                                    // },
                                       child: const Text(
                                         "동영상 추가",
                                         style: TextStyle(
@@ -244,6 +266,11 @@ class _ImagePickerBoxState extends State<ImagePickerBox> {
         ],
       ),
     );
+  }
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+   // properties.add(DiagnosticsProperty<File>('_video', _video));
   }
 }
 
@@ -424,7 +451,6 @@ class RadioButtonWidget extends StatefulWidget {
 
 /// This is the private State class that goes with MyStatefulWidget.
 class _RadioButtonWidgetState extends State<RadioButtonWidget> {
-//처음에는 사과가 선택되어 있도록 Apple로 초기화 -> groupValue에 들어갈 값!
   Choice? _Choice = Choice.Yes;
 
   @override
@@ -432,8 +458,7 @@ class _RadioButtonWidgetState extends State<RadioButtonWidget> {
     return Column(
       children: <Widget>[
         ListTile(
-          //ListTile - title에는 내용,
-          //leading or trailing에 체크박스나 더보기와 같은 아이콘을 넣는다.
+
           title: const Text('네'),
           leading: Radio<Choice>(
             value: Choice.Yes,
