@@ -1,4 +1,4 @@
-import 'package:fireproject/ModifyStudentPage.dart';
+import 'package:fireproject/studentstate/ModifyStudentPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -48,6 +48,23 @@ class _IdentifyStudentPageState extends State<IdentifyStudentPage> {
                   SizedBox(
                     height: 20,
                   ),
+                  Container(
+                    width: 350,
+                    height: 200,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.grey,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey,
+                          offset: Offset(0.0,1.0),
+                          blurRadius: 6.0,
+                        ),
+                      ],
+                    ),
+
+                  ),
+
                 ],
               ),
             )

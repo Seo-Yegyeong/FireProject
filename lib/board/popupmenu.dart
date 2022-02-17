@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../practice/edit_info.dart';
+
 
 enum choice{edit,delete}
 

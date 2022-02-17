@@ -2,8 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fireproject/AnnouncementPage.dart';
 import 'package:fireproject/board/boardList.dart';
 import 'package:fireproject/chatting/chatuser/user_screen.dart';
-import 'package:fireproject/practice/info_screen.dart';
-import 'package:fireproject/practice/infor_screen.dart';
+
 import 'package:fireproject/src/pages/announcement/home.dart';
 import 'package:fireproject/src/size.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +24,7 @@ class _bottomNavigationbarState extends State<bottomNavigationbar> {
 
   //특정 텍스트 스타일을 상수로 지정
   static const TextStyle optionStyle =
-      TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold);
+  TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold);
 
   //메뉴별 다른 AppBar의 텍스트 지정을 위해 List<Text> 선언
   static const List<Text> _appBarOptions = <Text>[
@@ -39,19 +38,6 @@ class _bottomNavigationbarState extends State<bottomNavigationbar> {
   //메뉴별 다른 body 지정을 위해 List<Widget> 선언
   static List<Widget> _bodyOptions = <Widget>[
     HomePage(),
-    infor_screen(),
-    // Text(
-    //   '여기에 홈페이지 당겨오면 돼용',
-    //   style: optionStyle,
-    // ),
-    Text(
-      'Index 2: School',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 3: Account balance',
-      style: optionStyle,
-    ),
     BoardList(),
     UserScreen(),
     WriteAnnouncePage(user: FirebaseAuth.instance.currentUser,),

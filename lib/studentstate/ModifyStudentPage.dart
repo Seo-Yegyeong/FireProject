@@ -1,7 +1,11 @@
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fireproject/studentstate/IdentifyStudentPage.dart';
+import 'package:fireproject/studentstate/screen_verStudent.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'IdentifyStudentPage.dart';
+
 
 
 
@@ -27,6 +31,8 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
   double num9=0;
   double num10=0;
   double num11=0;
+  var _selection;
+  final user = FirebaseAuth.instance.currentUser;
 
 
   @override
@@ -107,7 +113,7 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
 
                                               }
                                               setState(() {
-                                                //_currentState = isHovering;
+                                                _selection= 1;
                                               });
                                               print('좋아요');
                                             },
@@ -174,7 +180,7 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
                                             num3 = 2.0;
                                           }
                                           setState(() {
-                                            //_currentState = isHovering;
+                                            _selection=2;
                                           });
                                           print('쉬고 싶어요');
                                         },
@@ -245,7 +251,7 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
                                                 num5 = 2.0;
                                               }
                                               setState(() {
-                                                //_currentState = isHovering;
+                                                _selection=3;
                                               });
                                               print('기뻐요');
                                             },
@@ -311,7 +317,7 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
                                             num7 = 2.0;
                                           }
                                           setState(() {
-                                            //_currentState = isHovering;
+                                            _selection=4;
                                           });
                                           print('화나요');
                                         },
@@ -381,7 +387,7 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
                                                 num9 = 2.0;
                                               }
                                               setState(() {
-                                                //_currentState = isHovering;
+                                                _selection=5;
                                               });
                                               print('제 이야기를 들어주세요');
                                             },
@@ -447,7 +453,7 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
                                             num11 = 2.0;
                                           }
                                           setState(() {
-                                            //_currentState = isHovering;
+                                            _selection=6;
                                           });
                                           print('슬퍼요');
                                         },
@@ -502,10 +508,17 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
                   padding: const EdgeInsets.all(8.0),
                   child: ElevatedButton(
                     onPressed: () {
+                      FirebaseFirestore.instance.collection('state').add({
+                        'selection': _selection,
+                        'name': user!.displayName,
+                        'uid' : user!.uid,
+                        'time': Timestamp.now(),
+
+                      });
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (_) => IdentifyStudentPage()));
+                              builder: (_) => screen_verStudent()));
                     },
                     child: Text(
                       '저장',
