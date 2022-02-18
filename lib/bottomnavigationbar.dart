@@ -2,17 +2,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fireproject/src/pages/announcement/AnnouncementPage.dart';
 import 'package:fireproject/board/boardList.dart';
 import 'package:fireproject/chatting/chatuser/user_list.dart';
-import 'package:fireproject/chatting/chatuser/user_screen.dart';
 
 import 'package:fireproject/src/pages/announcement/home.dart';
 import 'package:fireproject/src/size.dart';
-import 'package:fireproject/start_page.dart';
 import 'package:fireproject/studentstate/ModifyStudentPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class bottomNavigationbar extends StatefulWidget {
-  bottomNavigationbar({required this.user});
   var user = FirebaseAuth.instance.currentUser;
 
   @override
@@ -76,17 +73,18 @@ class _bottomNavigationbarState extends State<bottomNavigationbar> {
     });
   }
 
-  bool _moveWritingPage() {
-    bool writingType = true;
-
-    if(_selectedIndex == 0) {
-      writingType = true;
-    } else if(_selectedIndex == 3) {
-      writingType = false;
-    }
-
-    return writingType;
-  }
+  /*유용한 코드*/
+  // bool _moveWritingPage() {
+  //   bool writingType = true;
+  //
+  //   if(_selectedIndex == 0) {
+  //     writingType = true;
+  //   } else if(_selectedIndex == 3) {
+  //     writingType = false;
+  //   }
+  //
+  //   return writingType;
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -106,15 +104,15 @@ class _bottomNavigationbarState extends State<bottomNavigationbar> {
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: SvgPicture.asset("assets/icons/newslist.svg"),
+            icon: SvgPicture.asset("assets/Icons/newslist.svg"),
             label: '공지사항',
           ),
           BottomNavigationBarItem(
-            icon: SvgPicture.asset("assets/icons/studentstate.svg"),
+            icon: SvgPicture.asset("assets/Icons/studentstate.svg"),
             label: '학생상태',
           ),
           BottomNavigationBarItem(
-            icon: SvgPicture.asset("assets/icons/addlist.svg"),
+            icon: SvgPicture.asset("assets/Icons/addlist.svg"),
             label: '대화방',
           ),
           BottomNavigationBarItem(
@@ -122,7 +120,7 @@ class _bottomNavigationbarState extends State<bottomNavigationbar> {
             label: '우소톡',
           ),
           BottomNavigationBarItem(
-            icon: SvgPicture.asset("assets/icons/studentlist.svg"),
+            icon: SvgPicture.asset("assets/Icons/studentlist.svg"),
             label: '계정',
           ),
         ],
@@ -135,22 +133,14 @@ class _bottomNavigationbarState extends State<bottomNavigationbar> {
       Visibility(
         child: IconButton(
           onPressed: () {
-            if(_moveWritingPage()){
-              Navigator.of(context).pushReplacement(
-                MaterialPageRoute(
-                  builder: (context) => WriteAnnouncePage(user: widget.user),
-                ),
-              );
-            }else{
-              Navigator.of(context).pushReplacement(
-                MaterialPageRoute(
-                  builder: (context) => StartPage(),
-                ),
-              );
-            }
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(
+                builder: (context) => WriteAnnouncePage(user: widget.user),
+              ),
+            );
           },
           tooltip: '글을 작성하세요.',
-          icon: SvgPicture.asset("assets/icons/pencil.svg"),
+          icon: SvgPicture.asset("assets/Icons/pencil.svg"),
           iconSize: 55.0,
         ),
         visible: _visibility,

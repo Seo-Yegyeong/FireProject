@@ -16,7 +16,7 @@ class Authentication extends StatelessWidget {
         }
         else {
           return bottomNavigationbar(
-            user: snapshot.data,
+            //user: snapshot.data,
           );
           //ModifyStudentPage();
           //   Center(
