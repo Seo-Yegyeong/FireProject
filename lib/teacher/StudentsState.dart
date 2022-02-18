@@ -2,14 +2,9 @@ import 'package:fireproject/studentstate/ModifyStudentPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class IdentifyStudentPage extends StatefulWidget {
-  const IdentifyStudentPage({Key? key}) : super(key: key);
+class StudentsState extends StatelessWidget {
+  const StudentsState({Key? key}) : super(key: key);
 
-  @override
-  _IdentifyStudentPageState createState() => _IdentifyStudentPageState();
-}
-
-class _IdentifyStudentPageState extends State<IdentifyStudentPage> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -23,21 +18,19 @@ class _IdentifyStudentPageState extends State<IdentifyStudentPage> {
           leading: IconButton(
             icon: SvgPicture.asset("assets/Icons/BackButton.svg"),
             onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (_) => ModifyStudentPage()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (_) => ModifyStudentPage()));
             },
           ),
         ),
         body: ListView(
           children: [
-            Padding(padding: EdgeInsets.all(20),
-            child:
-              Column(
+            Padding(
+              padding: EdgeInsets.all(20),
+              child: Column(
                 children: [
                   Text(
-                    '지금 나의 기분',
+                    '지금 우리 아이들의 기분',
                     style: TextStyle(
                       fontFamily: "DoHyeon",
                       fontSize: 35.0,
@@ -57,14 +50,12 @@ class _IdentifyStudentPageState extends State<IdentifyStudentPage> {
                       boxShadow: [
                         BoxShadow(
                           color: Colors.grey,
-                          offset: Offset(0.0,1.0),
+                          offset: Offset(0.0, 1.0),
                           blurRadius: 6.0,
                         ),
                       ],
                     ),
-
                   ),
-
                 ],
               ),
             )
