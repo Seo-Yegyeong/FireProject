@@ -47,16 +47,6 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
-        // appBar: AppBar(
-        //   backgroundColor: Colors.white,
-        //   elevation: 0.0,
-        //   leading: IconButton(
-        //     icon: SvgPicture.asset("assets/icons/BackButton.svg"),
-        //     onPressed: () {
-        //       Navigator.pop(context);
-        //     },
-        //   ),
-        // ),
         body: ListView(
           children: [
             Padding(
@@ -100,7 +90,7 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
                                         child: Container(
                                           child: IconButton(
                                             icon: SvgPicture.asset(
-                                                "assets/icons/Good.svg"),
+                                                "assets/Icons/Good.svg"),
                                             iconSize: num,
                                             onPressed: () {
                                               if (isHovering == true) {
@@ -161,7 +151,7 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
                                     child: Container(
                                       child: IconButton(
                                         icon: SvgPicture.asset(
-                                            "assets/icons/Good.svg"),
+                                            "assets/Icons/Good.svg"),
                                         iconSize: num2,
                                         onPressed: () {
                                           if (isHovering == true) {
@@ -227,7 +217,7 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
                                         child: Container(
                                           child: IconButton(
                                             icon: SvgPicture.asset(
-                                                "assets/icons/Good.svg"),
+                                                "assets/Icons/Good.svg"),
                                             iconSize: num4,
                                             onPressed: () {
                                               if (isHovering == true) {
@@ -288,7 +278,7 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
                                     child: Container(
                                       child: IconButton(
                                         icon: SvgPicture.asset(
-                                            "assets/icons/Good.svg"),
+                                            "assets/Icons/Good.svg"),
                                         iconSize: num6,
                                         onPressed: () {
                                           if (isHovering == true) {
@@ -353,7 +343,7 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
                                         child: Container(
                                           child: IconButton(
                                             icon: SvgPicture.asset(
-                                                "assets/icons/Good.svg"),
+                                                "assets/Icons/Good.svg"),
                                             iconSize: num8,
                                             onPressed: () {
                                               if (isHovering == true) {
@@ -414,7 +404,7 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
                                     child: Container(
                                       child: IconButton(
                                         icon: SvgPicture.asset(
-                                            "assets/icons/Good.svg"),
+                                            "assets/Icons/Good.svg"),
                                         iconSize: num10,
                                         onPressed: () {
                                           if (isHovering == true) {

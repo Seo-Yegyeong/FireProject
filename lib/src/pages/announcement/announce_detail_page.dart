@@ -57,12 +57,18 @@ class AnnounceDetailPage extends StatelessWidget {
                 child: Row(
                   children: [
                     Container(
-                      height: 50,
-                      width: 50,
-                      color: Color(0xFFFFC700),
+                      height: getScreenWidth(context) * 0.13,
+                      width: getScreenWidth(context) * 0.13,
+                      child: CircleAvatar(
+                        backgroundColor: Colors.amberAccent,
+                        child:IconButton(
+                          onPressed: () {  },
+                          icon: SvgPicture.asset("assets/icons/emptyProfile.svg"),
+                        ),
+                      ),
                     ),
                     SizedBox(
-                      width: 16,
+                      width: 13,
                     ),
                     Text(
                       "현창기",
@@ -99,17 +105,16 @@ class AnnounceDetailPage extends StatelessWidget {
                       height: 10,
                     ),
                     Text(doc['content']),
+                    SizedBox(
+                      height: 10,
+                    ),
                     Row(
                       children: [
                         Container(
                           margin: EdgeInsets.symmetric(vertical: 10),
                           height: 130,
                           width: 130,
-                          color: Colors.lightGreenAccent,
-                          child: Text(
-                            "사진 넣을 자리",
-                            style: TextStyle(fontSize: 20),
-                          ),
+                          color: Color(0xFFBDBDBD),
                         ),
                         SizedBox(
                           width: 15,
@@ -118,11 +123,7 @@ class AnnounceDetailPage extends StatelessWidget {
                           margin: EdgeInsets.symmetric(vertical: 10),
                           height: 130,
                           width: 130,
-                          color: Colors.lightGreenAccent,
-                          child: Text(
-                            "사진 넣을 자리",
-                            style: TextStyle(fontSize: 20),
-                          ),
+                          color: Color(0xFFBDBDBD),
                         ),
                       ],
                     ),
@@ -134,13 +135,14 @@ class AnnounceDetailPage extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Text("좋아요랑 댓글개수 표시"),
+                        Text("좋아요 : "),
+                        Text(doc['loveCount'].toString()),
                       ],
                     ),
                     Container(
                       width: getScreenWidth(context),
                       height: 300,
-                      color: Colors.orange,
+                      color: Color(0xFFBDBDBD),
                       child: AnnounceCommentList(docId),
                     ),
                   ],

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../size.dart';
+
 class AccountPage extends StatefulWidget {
   const AccountPage({Key? key}) : super(key: key);
 
@@ -16,23 +18,39 @@ class _AccountPageState extends State<AccountPage> {
       onTap: () {
         FocusScope.of(context).unfocus();
       },
-      child: Column(children: [
-        Column(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
 
-                Text(
-                  '김한동 보호자',
-                  style: TextStyle(
-                    fontFamily: "DoHyeon",
-                    fontSize: 25.0,
-                    color: Colors.black,
-                  ),
+                Column(
+                  children: [
+                    Text(
+                      '김한동 보호자',
+                      style: TextStyle(
+                        fontFamily: "DoHyeonFont",
+                        fontSize: 25.0,
+                        color: Colors.black,
+                      ),
+                    ),
+                    Container(
+                      height: getScreenWidth(context) * 0.13,
+                      width: getScreenWidth(context) * 0.13,
+                      child: CircleAvatar(
+                        backgroundColor: Colors.amberAccent,
+                        child: IconButton(
+                          onPressed: () {  },
+                          icon: SvgPicture.asset("assets/icons/emptyProfile.svg"),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
                 IconButton(
-                  icon: SvgPicture.asset("assets/Icons/Setting.svg"),
+                  icon: SvgPicture.asset("assets/icons/Setting.svg"),
                   iconSize: 30.0,
                   color: Colors.black,
                   onPressed: () {},
@@ -111,7 +129,7 @@ class _AccountPageState extends State<AccountPage> {
             ),
           ],
         ),
-      ]),
+      ),
     );
   }
 }
