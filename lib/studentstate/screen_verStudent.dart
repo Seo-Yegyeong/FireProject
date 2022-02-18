@@ -14,7 +14,9 @@ class screen_verStudent extends StatelessWidget {
         elevation: 0.0,
         leading: IconButton(
           icon: SvgPicture.asset("assets/Icons/BackButton.svg"),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
       ),
       body: Container(

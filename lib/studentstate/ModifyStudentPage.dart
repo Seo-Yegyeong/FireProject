@@ -34,22 +34,29 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
   var _selection;
   final user = FirebaseAuth.instance.currentUser;
 
+  static const TextStyle myFontStyle =
+    TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Color(0xFF5D5D5D),);
+
+
 
   @override
   Widget build(BuildContext context) {
+
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0.0,
-          leading: IconButton(
-            icon: SvgPicture.asset("assets/Icons/BackButton.svg"),
-            onPressed: () {},
-          ),
-        ),
+        // appBar: AppBar(
+        //   backgroundColor: Colors.white,
+        //   elevation: 0.0,
+        //   leading: IconButton(
+        //     icon: SvgPicture.asset("assets/icons/BackButton.svg"),
+        //     onPressed: () {
+        //       Navigator.pop(context);
+        //     },
+        //   ),
+        // ),
         body: ListView(
           children: [
             Padding(
@@ -59,7 +66,7 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
                   Text(
                     '상태를 선택해주세요!',
                     style: TextStyle(
-                      fontFamily: "DoHyeon",
+                      fontFamily: "DoHyeonFont",
                       fontSize: 35.0,
                       fontWeight: FontWeight.bold,
                       color: Color(0xFF000000),
@@ -89,12 +96,6 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
                                       color: Colors.white),
                                   child: Column(
                                     children: [
-                                      // HoverButton(onpressed: (){},
-                                      //  child: Image.asset("assets/Icons/Good.png"),
-                                      //
-                                      //
-                                      // ),
-
                                       Expanded(
                                         child: Container(
                                           child: IconButton(
@@ -103,14 +104,16 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
                                             iconSize: num,
                                             onPressed: () {
                                               if (isHovering == true) {
-                                                isHovering = false;
-                                                num=190;
-
+                                                setState(() {
+                                                  isHovering = false;
+                                                  num=190;
+                                                });
                                               }
                                               else {
-                                                isHovering = true;
-                                                num=130;
-
+                                                setState(() {
+                                                  isHovering = true;
+                                                  num=130;
+                                                });
                                               }
                                               setState(() {
                                                 _selection= 1;
@@ -135,12 +138,7 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
                                       Container(
                                         child: Text(
                                           '좋아요',
-                                          style: TextStyle(
-                                            fontFamily: "DoHyeon",
-                                            fontSize: 20.0,
-                                            fontWeight: FontWeight.bold,
-                                            color: Color(0xFF5D5D5D),
-                                          ),
+                                          style: myFontStyle,
                                         ),
                                       ),
                                     ],
@@ -167,14 +165,16 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
                                         iconSize: num2,
                                         onPressed: () {
                                           if (isHovering == true) {
-                                            isHovering = false;
-                                            num2=160;
-
+                                            setState(() {
+                                              isHovering = false;
+                                              num2=190;
+                                            });
                                           }
                                           else {
-                                            isHovering = true;
-                                            num2=130;
-
+                                            setState(() {
+                                              isHovering = true;
+                                              num2=130;
+                                            });
                                           }
                                           setState(() {
                                             _selection=2;
@@ -200,12 +200,7 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
                                   Container(
                                     child: Text(
                                       '기뻐요',
-                                      style: TextStyle(
-                                        fontFamily: "DoHyeon",
-                                        fontSize: 20.0,
-                                        fontWeight: FontWeight.bold,
-                                        color: Color(0xFF5D5D5D),
-                                      ),
+                                      style: myFontStyle,
                                     ),
                                   )
                                 ],
@@ -236,14 +231,16 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
                                             iconSize: num4,
                                             onPressed: () {
                                               if (isHovering == true) {
-                                                isHovering = false;
-                                                num4=160;
-
+                                                setState(() {
+                                                  isHovering = false;
+                                                  num4=190;
+                                                });
                                               }
                                               else {
-                                                isHovering = true;
-                                                num4=130;
-
+                                                setState(() {
+                                                  isHovering = true;
+                                                  num4=130;
+                                                });
                                               }
                                               setState(() {
                                                 _selection=3;
@@ -268,12 +265,7 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
                                       Container(
                                         child: Text(
                                           '쉬고 싶어요',
-                                          style: TextStyle(
-                                            fontFamily: "DoHyeon",
-                                            fontSize: 20.0,
-                                            fontWeight: FontWeight.bold,
-                                            color: Color(0xFF5D5D5D),
-                                          ),
+                                          style: myFontStyle,
                                         ),
                                       )
                                     ],
@@ -300,14 +292,16 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
                                         iconSize: num6,
                                         onPressed: () {
                                           if (isHovering == true) {
-                                            isHovering = false;
-                                            num6=160;
-
+                                            setState(() {
+                                              isHovering = false;
+                                              num6=190;
+                                            });
                                           }
                                           else {
-                                            isHovering = true;
-                                            num6=130;
-
+                                            setState(() {
+                                              isHovering = true;
+                                              num6=130;
+                                            });
                                           }
                                           setState(() {
                                             _selection=4;
@@ -332,12 +326,7 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
                                   Container(
                                     child: Text(
                                       '화나요',
-                                      style: TextStyle(
-                                        fontFamily: "DoHyeon",
-                                        fontSize: 20.0,
-                                        fontWeight: FontWeight.bold,
-                                        color: Color(0xFF5D5D5D),
-                                      ),
+                                      style: myFontStyle,
                                     ),
                                   )
                                 ],
@@ -368,14 +357,16 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
                                             iconSize: num8,
                                             onPressed: () {
                                               if (isHovering == true) {
-                                                isHovering = false;
-                                                num8=160;
-
+                                                setState(() {
+                                                  isHovering = false;
+                                                  num8=190;
+                                                });
                                               }
                                               else {
-                                                isHovering = true;
-                                                num8=130;
-
+                                                setState(() {
+                                                  isHovering = true;
+                                                  num8=130;
+                                                });
                                               }
                                               setState(() {
                                                 _selection=5;
@@ -400,12 +391,7 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
                                       Container(
                                         child: Text(
                                           '제 이야기를 들어주세요',
-                                          style: TextStyle(
-                                            fontFamily: "DoHyeon",
-                                            fontSize: 20.0,
-                                            fontWeight: FontWeight.bold,
-                                            color: Color(0xFF5D5D5D),
-                                          ),
+                                          style: myFontStyle,
                                         ),
                                       )
                                     ],
@@ -432,14 +418,16 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
                                         iconSize: num10,
                                         onPressed: () {
                                           if (isHovering == true) {
-                                            isHovering = false;
-                                            num10=160;
-
+                                            setState(() {
+                                              isHovering = false;
+                                              num10=190;
+                                            });
                                           }
                                           else {
-                                            isHovering = true;
-                                            num10=130;
-
+                                            setState(() {
+                                              isHovering = true;
+                                              num10=130;
+                                            });
                                           }
                                           setState(() {
                                             _selection=6;
@@ -464,12 +452,7 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
                                   Container(
                                     child: Text(
                                       '기뻐요',
-                                      style: TextStyle(
-                                        fontFamily: "DoHyeon",
-                                        fontSize: 20.0,
-                                        fontWeight: FontWeight.bold,
-                                        color: Color(0xFF5D5D5D),
-                                      ),
+                                      style: myFontStyle,
                                     ),
                                   )
                                 ],
@@ -510,7 +493,7 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
                     child: Text(
                       '저장',
                       style: TextStyle(
-                        fontFamily: "DoHyeon",
+                        fontFamily: "DoHyeonFont",
                         fontSize: 30.0,
                         color: Color(0xFF000000),
                       ),
