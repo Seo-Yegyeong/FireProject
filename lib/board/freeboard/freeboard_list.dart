@@ -43,6 +43,7 @@ class _FreeBoardListState extends State<FreeBoardList> {
               child: FreeBoardCard(
                 freeDocs[index],
                 freeDocs[index]['wid']==user!.uid,
+                  freeDocs[index].id,
               ),
 
             );

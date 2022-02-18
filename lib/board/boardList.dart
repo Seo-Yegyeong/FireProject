@@ -6,26 +6,11 @@ class BoardList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title:const Text('board Screen'),
+    TextStyle myFontStyle = TextStyle(color: Colors.black, fontFamily: "DoHyeonFont", fontSize: 20);
 
-        titleTextStyle: const TextStyle(
-          color: Colors.black,
-        ),
-        backgroundColor: Colors.white,
-        actions: [
-          IconButton(
-            icon: const Icon(
-              Icons.exit_to_app_sharp,
-              color: Colors.amber,
-            ),
-            onPressed: (){
-            },
-          )
-        ],
-      ),
-    body: Container(
+    return Scaffold(
+    body: Padding(
+      padding: const EdgeInsets.all(8.0),
       child: ListView(
           children: <Widget>[
         Column(
@@ -38,18 +23,21 @@ class BoardList extends StatelessWidget {
                 size: 30,
                 color: Colors.amber,
               ),
-              label: Text("내가 쓴 글"),
+              label: Text("내가 쓴 글", style: myFontStyle,),
             ),
+            Divider( thickness: 1,),
             TextButton.icon(
               onPressed: () {},
-              icon: Icon(Icons.message, size: 30),
-              label: Text("내가 쓴 댓글"),
+              icon: Icon(Icons.message, size: 30, color: Colors.amber,),
+              label: Text("내가 쓴 댓글", style: myFontStyle,),
             ),
+            Divider( thickness: 1,),
             TextButton.icon(
               onPressed: () {},
-              icon: Icon(Icons.picture_in_picture, size: 30),
-              label: Text("스크랩"),
+              icon: Icon(Icons.picture_in_picture, size: 30, color: Colors.amber,),
+              label: Text("스크랩", style: myFontStyle,),
             ),
+            Divider( thickness: 1,),
             TextButton.icon(
               onPressed: () {
 
@@ -59,38 +47,44 @@ class BoardList extends StatelessWidget {
                   ),
                 );
               },
-              icon: Icon(Icons.free_breakfast, size: 30),
-              label: Text("자유게시판"),
+              icon: Icon(Icons.free_breakfast, size: 30, color: Colors.amber,),
+              label: Text("자유게시판", style: myFontStyle,),
             ),
+            Divider( thickness: 1,),
             TextButton.icon(
               onPressed: () {},
-              icon: Icon(Icons.ad_units, size: 30),
-              label: Text("홍보게시판"),
+              icon: Icon(Icons.ad_units, size: 30, color: Colors.amber,),
+              label: Text("홍보게시판", style: myFontStyle,),
             ),
+            Divider( thickness: 1,),
             TextButton.icon(
               onPressed: () {},
-              icon: Icon(Icons.work, size: 30),
-              label: Text("직업,취업게시판"),
+              icon: Icon(Icons.work, size: 30, color: Colors.amber,),
+              label: Text("직업,취업게시판", style: myFontStyle,),
             ),
+            Divider( thickness: 1,),
             TextButton.icon(
               onPressed: () {},
-              icon: Icon(Icons.add, size: 30),
-              label: Text("새내기게시판"),
+              icon: Icon(Icons.add, size: 30, color: Colors.amber,),
+              label: Text("새내기게시판", style: myFontStyle,),
             ),
+            Divider( thickness: 1,),
             TextButton.icon(
               onPressed: () {},
-              icon: Icon(Icons.add, size: 30),
-              label: Text("고민게시판"),
+              icon: Icon(Icons.add, size: 30, color: Colors.amber,),
+              label: Text("고민게시판", style: myFontStyle,),
             ),
+            Divider( thickness: 1,),
             TextButton.icon(
               onPressed: () {},
-              icon: Icon(Icons.info, size: 30),
-              label: Text("정보게시판"),
+              icon: Icon(Icons.info, size: 30, color: Colors.amber,),
+              label: Text("정보게시판", style: myFontStyle,),
             ),
+            Divider( thickness: 1,),
             TextButton.icon(
               onPressed: () {},
-              icon: Icon(Icons.connect_without_contact, size: 30),
-              label: Text("자조모임게시판"),
+              icon: Icon(Icons.connect_without_contact, size: 30, color: Colors.amber,),
+              label: Text("자조모임게시판", style: myFontStyle,),
             )
           ],
         ),

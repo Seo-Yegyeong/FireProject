@@ -17,9 +17,10 @@ class Authentication extends StatelessWidget {
           return LoginPage();
         }
         else {
-          return bottomNavigationbar(user: snapshot.data,);
+          return bottomNavigationbar(
+            //user: snapshot.data,
+          );
           //ModifyStudentPage();
-            //WriteSchoolContentsPage(user: snapshot.data);
           //   Center(
           //   child: Column(
           //     mainAxisAlignment: MainAxisAlignment.center,

@@ -73,7 +73,7 @@ class _GoogleLoginState extends State<GoogleLogin> {
 
                 Navigator.of(context).pushReplacement(
                   MaterialPageRoute(
-                    builder: (context) => const BoardList(),
+                    builder: (context) => BoardList(),
 
                   ),
                 );

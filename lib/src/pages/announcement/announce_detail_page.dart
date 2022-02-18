@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fireproject/src/pages/announcement/comment/announce_comment_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../size.dart';
@@ -7,8 +7,9 @@ import '../../size.dart';
 class AnnounceDetailPage extends StatelessWidget {
   final QueryDocumentSnapshot<Map<String, dynamic>> doc;
   //final User? writer;
+  String docId;
 
-  const AnnounceDetailPage({required this.doc
+  AnnounceDetailPage({required this.doc, required this.docId,
   //  , required this.writer
   });
 
@@ -32,14 +33,16 @@ class AnnounceDetailPage extends StatelessWidget {
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: SvgPicture.asset("assets/icons/BackButton.svg"),
+          icon: SvgPicture.asset("assets/Icons/BackButton.svg"),
         ),
-        title: Padding(
-          padding: const EdgeInsets.all(5.0),
+        title: const Padding(
+          padding: EdgeInsets.all(5.0),
           child: Text(
             "우리의 소식통",
             style: TextStyle(
               color: Colors.black,
+              fontFamily: "DoHyeonFont",
+              fontSize: 25,
             ),
           ),
         ),
@@ -138,11 +141,7 @@ class AnnounceDetailPage extends StatelessWidget {
                       width: getScreenWidth(context),
                       height: 300,
                       color: Colors.orange,
-                      child: Center(
-                        child: Text(
-                          "댓글 부분입니당",
-                        ),
-                      ),
+                      child: AnnounceCommentList(docId),
                     ),
                   ],
                 ),

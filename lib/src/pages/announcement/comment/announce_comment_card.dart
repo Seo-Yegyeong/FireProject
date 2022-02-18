@@ -1,32 +1,25 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:fireproject/board/freeboard/freeboard_screen.dart';
 import 'package:flutter/material.dart';
 
-enum choice {delete}
-
-class CommentCard extends StatefulWidget {
-  CommentCard(this.freeDoc, this.isMe, this.docId, {Key? key}) : super(key: key);
-  QueryDocumentSnapshot<Map<String, dynamic>> freeDoc;
-  bool isMe;
-  String docId;
+class AnnounceCommentCard extends StatefulWidget {
+  const AnnounceCommentCard({Key? key}) : super(key: key);
 
   @override
-  _CommentCardState createState() => _CommentCardState();
+  _AnnounceCommentCardState createState() => _AnnounceCommentCardState();
 }
 
-
-class _CommentCardState extends State<CommentCard> {
+class _AnnounceCommentCardState extends State<AnnounceCommentCard> {
   void _delete(){
     final user = FirebaseAuth.instance.currentUser;
-    FirebaseFirestore.instance.collection('board/2fw6mf2i4PHLVwjp0M3m/comment').doc(widget.docId).delete();
+    //FirebaseFirestore.instance.collection('board/2fw6mf2i4PHLVwjp0M3m/comment').doc(widget.docId).delete();
 
-    Navigator.of(context).pushReplacement(
+    /*Navigator.of(context).pushReplacement(
       MaterialPageRoute(
         builder: (context) => FreeBoardScreen(),
 
       ),
-    );
+    );*/
   }
 
   @override
@@ -35,7 +28,7 @@ class _CommentCardState extends State<CommentCard> {
       padding: const EdgeInsets.fromLTRB(16, 2, 16, 0),
       child: Column(
         children: [
-          Column(
+          /*Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
@@ -92,7 +85,7 @@ class _CommentCardState extends State<CommentCard> {
                   )
               ),
             ],
-          ),
+          ),*/
           Container(
               width: 500,
               child: Divider( thickness: 1.0)),

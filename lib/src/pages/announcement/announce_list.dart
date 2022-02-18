@@ -62,6 +62,7 @@ class _AnnounceListState extends State<AnnounceList> {
                                     AnnounceCard(
                                       doc: snapshot.data!.docs[index],
                                       writer: a,
+                                      docId: snapshot.data!.docs[index].id.toString(),
                                     ),
                                     Divider(),
                                   ],

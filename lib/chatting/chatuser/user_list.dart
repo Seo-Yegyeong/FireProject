@@ -56,7 +56,7 @@ class _UserListState extends State<UserList> {
           }
         }
 
-        return ListView.builder(
+        return ListView.separated(
           itemCount: connectId.toList().length,
           itemBuilder: (context, index){
 
@@ -76,7 +76,7 @@ class _UserListState extends State<UserList> {
             );
 
           },
-
+          separatorBuilder: (BuildContext context, int index) { return Divider(thickness: 1.0,); },
         );
       },
     );
