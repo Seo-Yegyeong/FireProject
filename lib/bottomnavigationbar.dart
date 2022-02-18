@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class bottomNavigationbar extends StatefulWidget {
+  //final user = FirebaseAuth.instance.currentUser;
   final User? user;
   const bottomNavigationbar({required this.user});
 
@@ -54,6 +55,7 @@ class _bottomNavigationbarState extends State<bottomNavigationbar> {
 
   //함수 구현
   void _onItemTapped(int index) {
+    //print(user);
     setState(() {
       _selectedIndex = index;
     });
@@ -138,7 +140,7 @@ class _bottomNavigationbarState extends State<bottomNavigationbar> {
             if(_moveWritingPage()){
               Navigator.of(context).pushReplacement(
                 MaterialPageRoute(
-                  builder: (context) => WriteAnnouncePage(user: this.user),
+                  builder: (context) => WriteAnnouncePage(user: user),
                 ),
               );
             }else{
