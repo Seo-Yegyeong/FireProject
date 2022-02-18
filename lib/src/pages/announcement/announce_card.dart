@@ -11,8 +11,10 @@ import 'home.dart';
 class AnnounceCard extends StatelessWidget {
   //final String name;
   final QueryDocumentSnapshot<Map<String, dynamic>> doc;
+  String docId;
 
-  const AnnounceCard({required this.doc, required Future<DocumentSnapshot<Map<String, dynamic>>> writer});
+  AnnounceCard({required this.doc, required Future<DocumentSnapshot<Map<String, dynamic>>> writer, required this.docId});
+
 
 
   @override
@@ -110,7 +112,7 @@ class AnnounceCard extends StatelessWidget {
             onTap: () {
               FocusScope.of(context).unfocus();
               print(doc.id);
-              Get.to(() => AnnounceDetailPage(doc: doc),
+              Get.to(() => AnnounceDetailPage(doc: doc, docId: docId),
                 //arguments: "home.dart에서 Getx로 arguments를 넘겨준 부분이야!"
               );
             },
