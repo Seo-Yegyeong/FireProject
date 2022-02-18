@@ -41,8 +41,8 @@ class _bottomNavigationbarState extends State<bottomNavigationbar> {
   static const List<Widget> _bodyOptions = <Widget>[
     HomePage(),
     ModifyStudentPage(),
-    UserList(),
     BoardList(),
+    UserList(),
     Text(
       'Index 3: Account balance',
       style: optionStyle,
@@ -114,7 +114,7 @@ class _bottomNavigationbarState extends State<bottomNavigationbar> {
             label: '학생상태',
           ),
           BottomNavigationBarItem(
-            icon: SvgPicture.asset("assets/icons/addlist.svg"),
+            icon: SvgPicture.asset("assets/icons/board.svg"),
             label: '대화방',
           ),
           BottomNavigationBarItem(

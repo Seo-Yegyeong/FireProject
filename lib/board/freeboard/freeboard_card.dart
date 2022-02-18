@@ -1,14 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fireproject/board/PopupMenu.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+enum choice {delete, edit}
 
 class FreeBoardCard extends StatefulWidget {
   //const FreeBoardCard(  {Key? key}) : super(key: key);
-  FreeBoardCard(this.freeDoc, this.isMe,   {Key? key}) : super(key: key);
+  FreeBoardCard(this.freeDoc, this.isMe, this.docId,   {Key? key}) : super(key: key);
   QueryDocumentSnapshot<Map<String, dynamic>> freeDoc;
   bool isMe;
+  String docId;
 
 
 
@@ -17,6 +19,16 @@ class FreeBoardCard extends StatefulWidget {
 }
 
 class _FreeBoardCardState extends State<FreeBoardCard> {
+  void _delete(){
+    final user = FirebaseAuth.instance.currentUser;
+    FirebaseFirestore.instance.collection('board/2fw6mf2i4PHLVwjp0M3m/freeboard').doc(widget.docId).delete();
+
+  }
+  void _edit(){
+    final user = FirebaseAuth.instance.currentUser;
+    //FirebaseFirestore.instance.collection('board/2fw6mf2i4PHLVwjp0M3m/freeboard').doc(widget.docId).delete();
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +51,26 @@ class _FreeBoardCardState extends State<FreeBoardCard> {
                             fontSize: 22,
                           )
                       ),
-                    widget.isMe? PopupMenu()
+                    widget.isMe? PopupMenuButton<choice>(
+                      onSelected: (choice result) { setState(() {
+                        if(result == choice.delete){
+                          _delete();
+                        }
+                        else if(result == choice.edit){
+                          _edit();
+                        }
+                      }); },
+                      itemBuilder: (BuildContext context) => <PopupMenuEntry<choice>>[
+                        const PopupMenuItem<choice>(
+                          value: choice.delete,
+                          child: Text('삭제'),
+                        ),
+                        const PopupMenuItem<choice>(
+                          value: choice.edit,
+                          child: Text('수정'),
+                        ),
+                      ],
+                    )
                         :Text(" ",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,

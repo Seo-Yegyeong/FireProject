@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fireproject/board/freeboard/freeboard_screen.dart';
 import 'package:flutter/material.dart';
 
 enum choice {delete}
@@ -19,6 +20,13 @@ class _CommentCardState extends State<CommentCard> {
   void _delete(){
     final user = FirebaseAuth.instance.currentUser;
     FirebaseFirestore.instance.collection('board/2fw6mf2i4PHLVwjp0M3m/comment').doc(widget.docId).delete();
+
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (context) => FreeBoardScreen(),
+
+      ),
+    );
   }
 
   @override
