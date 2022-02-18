@@ -5,6 +5,7 @@ import 'package:fireproject/src/size.dart';
 import 'package:fireproject/start_page.dart';
 import 'package:fireproject/util/validator_util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -14,8 +15,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:image_picker/image_picker.dart';
+//import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:multi_image_picker2/multi_image_picker2.dart';
 import 'dart:async';
+import 'package:video_player/video_player.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class ImagePickerBox extends StatefulWidget {
@@ -75,17 +78,17 @@ class _ImagePickerBoxState extends State<ImagePickerBox> {
     resultList = await MultiImagePicker.pickImages(
         maxImages: 10, enableCamera: true, selectedAssets: images);
 
-    // cupertinoOptions: CupertinoOptions(
-    //   takePhotoIcon: "chat",
-    //   doneButtonTitle: "Fatto",
-    // ),
-    // materialOptions: MaterialOptions(
-    //   actionBarColor: "#abcdef",
-    //   actionBarTitle: "Example App",
-    //   allViewTitle: "All Photos",
-    //   useDetailsView: false,
-    //   selectCircleStrokeColor: "#000000",
-    // ),
+        // cupertinoOptions: CupertinoOptions(
+        //   takePhotoIcon: "chat",
+        //   doneButtonTitle: "Fatto",
+        // ),
+        // materialOptions: MaterialOptions(
+        //   actionBarColor: "#abcdef",
+        //   actionBarTitle: "Example App",
+        //   allViewTitle: "All Photos",
+        //   useDetailsView: false,
+        //   selectCircleStrokeColor: "#000000",
+        // ),
     //   );
     // } on Exception catch (e) {
     //   error = e.toString();
@@ -185,15 +188,30 @@ class _ImagePickerBoxState extends State<ImagePickerBox> {
                                       ),
                                     ),
                                     TextButton(
-                                      onPressed: loadAssets,
-                                      // onPressed: () async {
-                                      //   var image = await ImagePicker.platform
-                                      //       .pickVideo(
-                                      //           source: ImageSource.gallery);
-                                      //   setState(() {
-                                      //     _image = image!;
-                                      //   });
-                                      // },
+
+                                      //onPressed: loadAssets,
+                                      onPressed: () async {
+                                        //File _video;
+                                        var image = await ImagePicker.platform
+                                            .pickVideo(
+                                            source: ImageSource.gallery);
+
+                                        setState(() {
+                                          _image = image!;
+                                        });
+                                      },
+
+                                  //PickedFile? _video;
+
+                                    //   onPressed: _pickVideo() async{
+                                    // File video = await ImagePicker.pickVideo(source: ImageSource.gallery);
+                                    // _video = video;
+                                    // _videoPlayerController = VideoPlayerController.file(_video)..initialize().then((_) {
+                                    // setState(() { });
+                                    // _videoPlayerController.play();
+                                    // });
+                                    //
+                                    // },
                                       child: const Text(
                                         "동영상 추가",
                                         style: customStyle,
@@ -230,6 +248,11 @@ class _ImagePickerBoxState extends State<ImagePickerBox> {
         ],
       ),
     );
+  }
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+   // properties.add(DiagnosticsProperty<File>('_video', _video));
   }
 }
 
@@ -274,7 +297,27 @@ class WriteAnnouncePage extends StatelessWidget {
           ],
         ),
         body: _bodyWidget(context),
-        bottomNavigationBar: buildBottomAppBar(),
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.black,
+          onPressed: () {},
+          child: IconButton(
+            icon: SvgPicture.asset("assets/Icons/DeleteButton.svg"),
+            iconSize: 25.0,
+            onPressed: () {},
+          ),
+        ),
+        // bottomNavigationBar: BottomAppBar(
+        //   child: Row(
+        //     mainAxisAlignment: MainAxisAlignment.end,
+        //     children: [
+        //       IconButton(
+        //         icon: SvgPicture.asset("assets/Icons/Delete.svg"),
+        //         iconSize: 25.0,
+        //         onPressed: () {},
+        //       ),
+        //     ],
+        //   ),
+        // ),
       ),
     );
   }

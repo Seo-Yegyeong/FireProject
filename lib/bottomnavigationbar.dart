@@ -2,6 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fireproject/src/pages/announcement/AnnouncementPage.dart';
 import 'package:fireproject/board/boardList.dart';
 import 'package:fireproject/chatting/chatuser/user_list.dart';
+import 'package:fireproject/chatting/chatuser/user_screen.dart';
+
 import 'package:fireproject/src/pages/announcement/home.dart';
 import 'package:fireproject/src/size.dart';
 import 'package:fireproject/start_page.dart';
@@ -29,7 +31,7 @@ class _bottomNavigationbarState extends State<bottomNavigationbar> {
     Text('우리의 소식통',
         style: optionStyle),
     Text('학생 상태', style: optionStyle,),
-    Text('채팅', style: optionStyle,),
+    Text('우소톡', style: optionStyle,),
     Text('참여 게시판', style: optionStyle,),
     Text('계정', style: optionStyle,),
   ];
