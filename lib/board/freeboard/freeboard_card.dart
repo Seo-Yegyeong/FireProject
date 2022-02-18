@@ -19,9 +19,21 @@ class FreeBoardCard extends StatefulWidget {
 }
 
 class _FreeBoardCardState extends State<FreeBoardCard> {
-  void _delete(){
+
+  Future<void> _delete() async {
+    CollectionReference database = FirebaseFirestore.instance.collection('board/2fw6mf2i4PHLVwjp0M3m/comment');
+    QuerySnapshot querySnapshot;
+    querySnapshot = await database.get();
+    var id = '';
+
     final user = FirebaseAuth.instance.currentUser;
     FirebaseFirestore.instance.collection('board/2fw6mf2i4PHLVwjp0M3m/freeboard').doc(widget.docId).delete();
+
+    for(int i=0; i<querySnapshot.docs.length; i++){
+      if(querySnapshot.docs[i]['documentId']==widget.docId){
+        FirebaseFirestore.instance.collection('board/2fw6mf2i4PHLVwjp0M3m/comment').doc(querySnapshot.docs[i].id).delete();
+      }
+    }
 
   }
   void _edit(){
