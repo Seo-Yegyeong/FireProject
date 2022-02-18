@@ -12,9 +12,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class bottomNavigationbar extends StatefulWidget {
-  //final user = FirebaseAuth.instance.currentUser;
-  final User? user;
-  const bottomNavigationbar({required this.user});
+  bottomNavigationbar({required this.user});
+  var user = FirebaseAuth.instance.currentUser;
 
   @override
   _bottomNavigationbarState createState() => _bottomNavigationbarState();
@@ -50,7 +49,6 @@ class _bottomNavigationbarState extends State<bottomNavigationbar> {
     ),
   ];
 
-  get user => this.user;
 
 
   //함수 구현
@@ -108,23 +106,23 @@ class _bottomNavigationbarState extends State<bottomNavigationbar> {
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: SvgPicture.asset("assets/Icons/newslist.svg"),
+            icon: SvgPicture.asset("assets/icons/newslist.svg"),
             label: '공지사항',
           ),
           BottomNavigationBarItem(
-            icon: SvgPicture.asset("assets/Icons/studentstate.svg"),
+            icon: SvgPicture.asset("assets/icons/studentstate.svg"),
             label: '학생상태',
           ),
           BottomNavigationBarItem(
-            icon: SvgPicture.asset("assets/Icons/addlist.svg"),
+            icon: SvgPicture.asset("assets/icons/addlist.svg"),
             label: '대화방',
           ),
           BottomNavigationBarItem(
-            icon: SvgPicture.asset("assets/Icons/addlist.svg"),
+            icon: SvgPicture.asset("assets/icons/send.svg"),
             label: '우소톡',
           ),
           BottomNavigationBarItem(
-            icon: SvgPicture.asset("assets/Icons/studentlist.svg"),
+            icon: SvgPicture.asset("assets/icons/studentlist.svg"),
             label: '계정',
           ),
         ],
@@ -140,7 +138,7 @@ class _bottomNavigationbarState extends State<bottomNavigationbar> {
             if(_moveWritingPage()){
               Navigator.of(context).pushReplacement(
                 MaterialPageRoute(
-                  builder: (context) => WriteAnnouncePage(user: user),
+                  builder: (context) => WriteAnnouncePage(user: widget.user),
                 ),
               );
             }else{
@@ -152,7 +150,7 @@ class _bottomNavigationbarState extends State<bottomNavigationbar> {
             }
           },
           tooltip: '글을 작성하세요.',
-          icon: SvgPicture.asset("assets/Icons/pencil.svg"),
+          icon: SvgPicture.asset("assets/icons/pencil.svg"),
           iconSize: 55.0,
         ),
         visible: _visibility,
