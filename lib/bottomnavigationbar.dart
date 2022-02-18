@@ -55,7 +55,7 @@ class _bottomNavigationbarState extends State<bottomNavigationbar> {
       _selectedIndex = index;
     });
 
-    if(_selectedIndex == 0 || _selectedIndex == 3) {
+    if(_selectedIndex == 0) {
       _show();
     } else {
       _hide();
