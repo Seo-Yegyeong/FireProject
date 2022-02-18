@@ -7,6 +7,7 @@ import 'package:fireproject/chatting/chatuser/user_screen.dart';
 import 'package:fireproject/src/pages/announcement/home.dart';
 import 'package:fireproject/src/size.dart';
 import 'package:fireproject/start_page.dart';
+import 'package:fireproject/studentstate/ModifyStudentPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -31,18 +32,15 @@ class _bottomNavigationbarState extends State<bottomNavigationbar> {
     Text('우리의 소식통',
         style: optionStyle),
     Text('학생 상태', style: optionStyle,),
+    Text('대화방', style: optionStyle,),
     Text('우소톡', style: optionStyle,),
-    Text('참여 게시판', style: optionStyle,),
     Text('계정', style: optionStyle,),
   ];
 
   //메뉴별 다른 body 지정을 위해 List<Widget> 선언
   static const List<Widget> _bodyOptions = <Widget>[
     HomePage(),
-    Text(
-      '여기에 홈페이지 당겨오면 돼용',
-      style: optionStyle,
-    ),
+    ModifyStudentPage(),
     UserList(),
     BoardList(),
     Text(
@@ -108,23 +106,23 @@ class _bottomNavigationbarState extends State<bottomNavigationbar> {
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: SvgPicture.asset("assets/icons/newslist.svg"),
+            icon: SvgPicture.asset("assets/Icons/newslist.svg"),
             label: '공지사항',
           ),
           BottomNavigationBarItem(
-            icon: SvgPicture.asset("assets/icons/studentstate.svg"),
+            icon: SvgPicture.asset("assets/Icons/studentstate.svg"),
             label: '학생상태',
           ),
           BottomNavigationBarItem(
-            icon: SvgPicture.asset("assets/icons/logo.svg"),
-            label: '채팅',
+            icon: SvgPicture.asset("assets/Icons/addlist.svg"),
+            label: '대화방',
           ),
           BottomNavigationBarItem(
-            icon: SvgPicture.asset("assets/icons/addlist.svg"),
-            label: '참여게시판',
+            icon: SvgPicture.asset("assets/Icons/addlist.svg"),
+            label: '우소톡',
           ),
           BottomNavigationBarItem(
-            icon: SvgPicture.asset("assets/icons/studentlist.svg"),
+            icon: SvgPicture.asset("assets/Icons/studentlist.svg"),
             label: '계정',
           ),
         ],
@@ -132,13 +130,15 @@ class _bottomNavigationbarState extends State<bottomNavigationbar> {
         selectedItemColor: Colors.amber[800],
         onTap: _onItemTapped,
       ),
-      floatingActionButton: Visibility(
+      floatingActionButton:
+
+      Visibility(
         child: IconButton(
           onPressed: () {
             if(_moveWritingPage()){
               Navigator.of(context).pushReplacement(
                 MaterialPageRoute(
-                  builder: (context) => WriteAnnouncePage(user: user),
+                  builder: (context) => WriteAnnouncePage(user: this.user),
                 ),
               );
             }else{
@@ -150,7 +150,7 @@ class _bottomNavigationbarState extends State<bottomNavigationbar> {
             }
           },
           tooltip: '글을 작성하세요.',
-          icon: SvgPicture.asset("assets/icons/pencil.svg"),
+          icon: SvgPicture.asset("assets/Icons/pencil.svg"),
           iconSize: 55.0,
         ),
         visible: _visibility,

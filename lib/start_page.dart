@@ -51,7 +51,7 @@ class StartPage extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    Image.asset('assets/logo.PNG'),
+                    Image.asset('assets/logo.png'),
                     // IconButton(
                     //   onPressed: () {},
                     //   icon: SvgPicture.asset("assets/logo.svg"),
