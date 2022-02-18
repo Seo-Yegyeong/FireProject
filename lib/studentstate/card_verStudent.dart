@@ -21,22 +21,22 @@ class card_verStudent extends StatelessWidget {
         .split(".")[0];
 
     if (statedoc['selection'] == 1) {
-      _icon = "assets/Icons/Good.svg";
+      _icon = "assets/icons/Good.svg";
       _text = "좋아요";
     } else if (statedoc['selection'] == 2) {
-      _icon = "assets/Icons/Good.svg";
+      _icon = "assets/icons/Good.svg";
       _text = "기뻐요";
     } else if (statedoc['selection'] == 3) {
-      _icon = "assets/Icons/Good.svg";
+      _icon = "assets/icons/Good.svg";
       _text = "쉬고 싶어요";
     } else if (statedoc['selection'] == 4) {
-      _icon = "assets/Icons/Good.svg";
+      _icon = "assets/icons/Good.svg";
       _text = "화나요";
     } else if (statedoc['selection'] == 5) {
-      _icon = "assets/Icons/Good.svg";
+      _icon = "assets/icons/Good.svg";
       _text = "제 이야기를 들어주세요";
     } else {
-      _icon = "assets/Icons/Good.svg";
+      _icon = "assets/icons/Good.svg";
       _text = "기뻐요";
     }
     return Column(

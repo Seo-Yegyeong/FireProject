@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fireproject/src/authentication/AccountPage.dart';
 import 'package:fireproject/src/pages/announcement/AnnouncementPage.dart';
 import 'package:fireproject/board/boardList.dart';
 import 'package:fireproject/chatting/chatuser/user_list.dart';
@@ -43,10 +44,7 @@ class _bottomNavigationbarState extends State<bottomNavigationbar> {
     ModifyStudentPage(),
     UserList(),
     BoardList(),
-    Text(
-      'Index 3: Account balance',
-      style: optionStyle,
-    ),
+    AccountPage()
   ];
 
   get user => this.user;
