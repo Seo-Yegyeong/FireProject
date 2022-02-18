@@ -100,7 +100,7 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
                                         child: Container(
                                           child: IconButton(
                                             icon: SvgPicture.asset(
-                                                "assets/Icons/Good.svg"),
+                                                "assets/icons/Good.svg"),
                                             iconSize: num,
                                             onPressed: () {
                                               if (isHovering == true) {
@@ -161,7 +161,7 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
                                     child: Container(
                                       child: IconButton(
                                         icon: SvgPicture.asset(
-                                            "assets/Icons/Good.svg"),
+                                            "assets/icons/Good.svg"),
                                         iconSize: num2,
                                         onPressed: () {
                                           if (isHovering == true) {
@@ -227,7 +227,7 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
                                         child: Container(
                                           child: IconButton(
                                             icon: SvgPicture.asset(
-                                                "assets/Icons/Good.svg"),
+                                                "assets/icons/Good.svg"),
                                             iconSize: num4,
                                             onPressed: () {
                                               if (isHovering == true) {
@@ -288,7 +288,7 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
                                     child: Container(
                                       child: IconButton(
                                         icon: SvgPicture.asset(
-                                            "assets/Icons/Good.svg"),
+                                            "assets/icons/Good.svg"),
                                         iconSize: num6,
                                         onPressed: () {
                                           if (isHovering == true) {
@@ -353,7 +353,7 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
                                         child: Container(
                                           child: IconButton(
                                             icon: SvgPicture.asset(
-                                                "assets/Icons/Good.svg"),
+                                                "assets/icons/Good.svg"),
                                             iconSize: num8,
                                             onPressed: () {
                                               if (isHovering == true) {
@@ -414,7 +414,7 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
                                     child: Container(
                                       child: IconButton(
                                         icon: SvgPicture.asset(
-                                            "assets/Icons/Good.svg"),
+                                            "assets/icons/Good.svg"),
                                         iconSize: num10,
                                         onPressed: () {
                                           if (isHovering == true) {

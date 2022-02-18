@@ -284,13 +284,13 @@ class WriteAnnouncePage extends StatelessWidget {
             ),
           ),
           leading: IconButton(
-            icon: SvgPicture.asset("assets/icons/BackButton.svg"),
+            icon: SvgPicture.asset("assets/Icons/BackButton.svg"),
             iconSize: 50.0,
             onPressed: () {},
           ),
           actions: [
             IconButton(
-              icon: SvgPicture.asset("assets/icons/NextButton.svg"),
+              icon: SvgPicture.asset("assets/Icons/NextButton.svg"),
               iconSize: 50.0,
               onPressed: () {},
             ),
@@ -311,7 +311,7 @@ class WriteAnnouncePage extends StatelessWidget {
         //     mainAxisAlignment: MainAxisAlignment.end,
         //     children: [
         //       IconButton(
-        //         icon: SvgPicture.asset("assets/Icons/Delete.svg"),
+        //         icon: SvgPicture.asset("assets/icons/Delete.svg"),
         //         iconSize: 25.0,
         //         onPressed: () {},
         //       ),
@@ -404,7 +404,7 @@ class WriteAnnouncePage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           IconButton(
-            icon: SvgPicture.asset("assets/icons/DeleteButton.svg"),
+            icon: SvgPicture.asset("assets/Icons/DeleteButton.svg"),
             iconSize: 30.0,
             onPressed: () {},
           ),
