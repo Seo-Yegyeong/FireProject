@@ -1,6 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fireproject/src/pages/announcement/announce_detail_page.dart';
 import 'package:fireproject/src/size.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/get_core.dart';
 import 'package:provider/provider.dart';
 
 import 'home.dart';
@@ -9,15 +12,15 @@ class AnnounceCard extends StatelessWidget {
   //final String name;
   final QueryDocumentSnapshot<Map<String, dynamic>> doc;
 
-  const AnnounceCard({required this.doc});
+  const AnnounceCard({required this.doc, required Future<DocumentSnapshot<Map<String, dynamic>>> writer});
 
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(context) {
     return bodyWidget2(context);
   }
 
-  // Padding bodyWidget1(BuildContext context) {
+  // Padding bodyWidget1(context) {
   //   return Padding(
   //   padding: EdgeInsets.only(left: 20),
   //   child: GestureDetector(
@@ -98,66 +101,73 @@ class AnnounceCard extends StatelessWidget {
   //   ),
   // );
   // }
-  Padding bodyWidget2(BuildContext context) {
-    return Padding(
-        padding: EdgeInsets.only(left: 20),
-        child: GestureDetector(
-          onTap: () {
-            FocusScope.of(context).unfocus();
-          },
-          child: SizedBox(
-            width: getScreenWidth(context)*0.9,
-            height: getScreenWidth(context)*0.5,
-            child: Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 10,
-                    vertical: 10,
-                  ),
-                  child:
-                  Column(
-                    children: [
-                      Text.rich(
-                        TextSpan(
-                          style: TextStyle(color: Colors.white),
-                          children: [
-                            TextSpan(
-                              text: doc['title'],
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontFamily: "DoHyeonFont",
-                                fontSize: 30,
-                                fontWeight: FontWeight.bold,
+  ChangeNotifierProvider<AnnounceChange> bodyWidget2(context) {
+    return ChangeNotifierProvider(
+      create: (context) => AnnounceChange(),
+      child: Padding(
+          padding: EdgeInsets.only(left: 20),
+          child: GestureDetector(
+            onTap: () {
+              FocusScope.of(context).unfocus();
+              print(doc.id);
+              Get.to(() => AnnounceDetailPage(doc: doc),
+                //arguments: "home.dart에서 Getx로 arguments를 넘겨준 부분이야!"
+              );
+            },
+            child: SizedBox(
+              width: getScreenWidth(context)*0.9,
+              height: getScreenWidth(context)*0.5,
+              child: Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 10,
+                    ),
+                    child:
+                    Column(
+                      children: [
+                        Text.rich(
+                          TextSpan(
+                            style: TextStyle(color: Colors.white),
+                            children: [
+                              TextSpan(
+                                text: doc['title'],
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontFamily: "DoHyeonFont",
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: 10,),
+                        Container(
+                          height: 85,
+                          child: Expanded(
+                            child: Text(doc['content'], style: TextStyle(
+                              fontSize: 15,
+                            ),),
+                          ),
+                        ),
+                        SizedBox(height: 10,),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text(
+                                DateTime.fromMicrosecondsSinceEpoch(doc['time'].microsecondsSinceEpoch).toString().split(" ")[0],
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w300,
+                                )
                             ),
                           ],
                         ),
-                      ),
-                      SizedBox(height: 10,),
-                      Container(
-                        height: 85,
-                        child: Expanded(
-                          child: Text(doc['content'], style: TextStyle(
-                            fontSize: 15,
-                          ),),
-                        ),
-                      ),
-                      SizedBox(height: 10,),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Text(
-                              DateTime.fromMicrosecondsSinceEpoch(doc['time'].microsecondsSinceEpoch).toString().split(" ")[0],
-                              style: TextStyle(
-                                fontWeight: FontWeight.w300,
-                              )
-                          ),
-                        ],
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
+            ),
           ),
-        ),
+      ),
     );
   }
 }
@@ -169,7 +179,7 @@ class TeacherCard extends StatelessWidget {
   const TeacherCard({required this.doc});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(context) {
     // bool isSelected = false;
     // Color myColor = Color(0xFFC4C4C4);
     return Padding(
@@ -192,18 +202,6 @@ class TeacherCard extends StatelessWidget {
                         onPressed: (){
                           print(doc.id);
                           context.read<AnnounceChange>().changeTeacher(doc.id);
-                          // if(isSelected == false){
-                          //   setState(() {
-                          //     isSelected = true;
-                          //     myColor = Color(0xFFFFC700);
-                          //   });
-                          // }
-                          // else{
-                          //   setState(() {
-                          //     isSelected = false;
-                          //     myColor = Color(0xFFC4C4C4);
-                          //   });
-                          // }
                         },
                         style: ElevatedButton.styleFrom(
                           shape: CircleBorder(side: BorderSide.none),

@@ -16,6 +16,7 @@ class _AnnounceListState extends State<AnnounceList> {
   //late CollectionReference database;
   //FirebaseFirestore database = FirebaseFirestore.instance.collection('/teacher') as FirebaseFirestore;
   //CollectionReference database = FirebaseFirestore.instance.collection('/teacher');
+  late CollectionReference database;
 
   var tempID = '6KtBHm92owdhRA4PtX89l8LgP4C3';
 
@@ -24,6 +25,7 @@ class _AnnounceListState extends State<AnnounceList> {
     return
         // var a = snapshot.data!.docs[i].id;
         // database = FirebaseFirestore.instance.collection('teacher').doc('a').collection('announcement');
+
 
         StreamBuilder(
             stream: FirebaseFirestore.instance
@@ -39,6 +41,8 @@ class _AnnounceListState extends State<AnnounceList> {
                 );
               }
 
+              var a = FirebaseFirestore.instance.collection('user').doc(context.watch<AnnounceChange>().tempID.toString()).get();
+
               return Column(
                 children: [
                   SizedBox(
@@ -50,13 +54,14 @@ class _AnnounceListState extends State<AnnounceList> {
                           shrinkWrap: true,
                           //scrollDirection: Axis.horizontal,
                           itemCount: snapshot.data!.docs.length,
-                          itemBuilder: (BuildContext context, int index) {
+                          itemBuilder: (context, int index) {
                             return Container(
                                 padding: EdgeInsets.only(right: 5),
                                 child: Row(
                                   children: [
                                     AnnounceCard(
                                       doc: snapshot.data!.docs[index],
+                                      writer: a,
                                     ),
                                     Divider(),
                                   ],

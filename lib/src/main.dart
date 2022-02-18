@@ -1,5 +1,4 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:fireproject/src/pages/announcement/announce_detail_page.dart';
 import 'package:fireproject/src/pages/announcement/home.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
@@ -57,14 +56,6 @@ class MyApp extends StatelessWidget {
           name: '/home',
           page: () => HomePage(),
         ),
-        // GetPage(
-        //   name: '/bottom',
-        //   page: () => bottomNavigationbar(),
-        // ),
-        GetPage(
-          name: '/detail',
-          page: () => AnnounceDetailPage(50),
-        )
       ],
     );
   }

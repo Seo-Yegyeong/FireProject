@@ -1,17 +1,27 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-
 import '../../size.dart';
 
 class AnnounceDetailPage extends StatelessWidget {
-  final int id;
-  const AnnounceDetailPage(this.id);
+  final QueryDocumentSnapshot<Map<String, dynamic>> doc;
+  //final User? writer;
+
+  const AnnounceDetailPage({required this.doc
+  //  , required this.writer
+  });
 
   @override
-  Widget build(BuildContext context) {
-    String data = Get.arguments;
+  Widget build(context) {
+    //String data = Get.arguments;
+
+    // var writer = FirebaseFirestore.instance
+    //     .collection('user')
+    //     .doc(context.watch<AnnounceChange>().tempID).snapshots().elementAt(1);
+
+    print("야호");
+    //print(writer);
 
     return Scaffold(
       appBar: AppBar(
@@ -52,7 +62,8 @@ class AnnounceDetailPage extends StatelessWidget {
                       width: 16,
                     ),
                     Text(
-                      "김한동",
+                      "현창기",
+                      //"writer['name']",
                       style: TextStyle(fontFamily: "DoHyeonFont", fontSize: 20),
                     ),
                   ],
@@ -68,7 +79,7 @@ class AnnounceDetailPage extends StatelessWidget {
                 child: Column(
                   children: [
                     Text(
-                      "글 제목",
+                      doc['title'],
                       style: TextStyle(fontSize: 25, fontFamily: "DoHyeonFont"),
                     ),
                     //SizedBox(height: 5,),
@@ -76,7 +87,7 @@ class AnnounceDetailPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Text(
-                          "작성 일시   ",
+                          DateTime.fromMicrosecondsSinceEpoch(doc['time'].microsecondsSinceEpoch).toString().split(" ")[0],
                           style: TextStyle(fontSize: 15),
                         ),
                       ],
@@ -84,22 +95,9 @@ class AnnounceDetailPage extends StatelessWidget {
                     SizedBox(
                       height: 10,
                     ),
-                    Text("글 내용" * 100),
+                    Text(doc['content']),
                     Row(
                       children: [
-                        Container(
-                          margin: EdgeInsets.symmetric(vertical: 10),
-                          height: 130,
-                          width: 130,
-                          color: Colors.lightGreenAccent,
-                          child: Text(
-                            "사진 넣을 자리",
-                            style: TextStyle(fontSize: 20),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 15,
-                        ),
                         Container(
                           margin: EdgeInsets.symmetric(vertical: 10),
                           height: 130,

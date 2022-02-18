@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:fireproject/AnnouncementPage.dart';
+import 'package:fireproject/src/pages/announcement/AnnouncementPage.dart';
 import 'package:fireproject/board/boardList.dart';
 import 'package:fireproject/chatting/chatuser/user_list.dart';
 import 'package:fireproject/src/pages/announcement/home.dart';
