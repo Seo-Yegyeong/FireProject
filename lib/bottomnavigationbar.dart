@@ -41,10 +41,7 @@ class _bottomNavigationbarState extends State<bottomNavigationbar> {
     ModifyStudentPage(),
     BoardList(),
     UserList(),
-    Text(
-      'Index 3: Account balance',
-      style: optionStyle,
-    ),
+    AccountPage()
   ];
 
 
