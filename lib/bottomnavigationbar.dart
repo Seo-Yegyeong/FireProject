@@ -113,7 +113,7 @@ class _bottomNavigationbarState extends State<bottomNavigationbar> {
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset("assets/icons/board.svg"),
-            label: '대화방',
+            label: '게시판',
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset("assets/icons/send.svg"),
