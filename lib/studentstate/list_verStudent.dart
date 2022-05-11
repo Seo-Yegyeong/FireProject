@@ -13,7 +13,7 @@ class list_verStudent extends StatefulWidget {
 class _list_verStudentState extends State<list_verStudent> {
   @override
   Widget build(BuildContext context) {
-    print("tttt");
+
     return StreamBuilder(
       stream: FirebaseFirestore.instance.collection("state").orderBy('time',descending:true).snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
