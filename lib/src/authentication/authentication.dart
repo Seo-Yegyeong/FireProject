@@ -1,6 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-
-import 'package:fireproject/studentstate/ModifyStudentPage.dart';
 import 'package:fireproject/bottomnavigationbar.dart';
 import 'package:flutter/material.dart';
 import 'login_page.dart';
@@ -18,6 +16,7 @@ class Authentication extends StatelessWidget {
         }
         else {
           return bottomNavigationbar(
+            //menu: 0,
             //user: snapshot.data,
           );
           //ModifyStudentPage();

@@ -1,3 +1,4 @@
+import 'package:fireproject/bottomnavigationbar.dart';
 import 'package:fireproject/src/components/custom_ElevatedButton.dart';
 import 'package:fireproject/src/components/custom_RadioButton.dart';
 import 'package:fireproject/src/components/custom_TextFormField.dart';
@@ -10,15 +11,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-//import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:image_picker/image_picker.dart';
-//import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:multi_image_picker2/multi_image_picker2.dart';
 import 'dart:async';
-import 'package:video_player/video_player.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class ImagePickerBox extends StatefulWidget {
@@ -256,9 +254,10 @@ class _ImagePickerBoxState extends State<ImagePickerBox> {
   }
 }
 
+
+
 class WriteAnnouncePage extends StatelessWidget {
   final User? user;
-  final _formKey = GlobalKey<FormState>();
 
   WriteAnnouncePage({required this.user});
 
@@ -286,7 +285,9 @@ class WriteAnnouncePage extends StatelessWidget {
           leading: IconButton(
             icon: SvgPicture.asset("assets/Icons/BackButton.svg"),
             iconSize: 50.0,
-            onPressed: () {},
+            onPressed: () {
+              Get.off(()=> bottomNavigationbar());
+            },
           ),
           actions: [
             IconButton(
@@ -297,65 +298,58 @@ class WriteAnnouncePage extends StatelessWidget {
           ],
         ),
         body: _bodyWidget(context),
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.black,
-          onPressed: () {},
-          child: IconButton(
-            icon: SvgPicture.asset("assets/Icons/DeleteButton.svg"),
-            iconSize: 25.0,
-            onPressed: () {},
-          ),
-        ),
-        // bottomNavigationBar: BottomAppBar(
-        //   child: Row(
-        //     mainAxisAlignment: MainAxisAlignment.end,
-        //     children: [
-        //       IconButton(
-        //         icon: SvgPicture.asset("assets/icons/Delete.svg"),
-        //         iconSize: 25.0,
-        //         onPressed: () {},
-        //       ),
-        //     ],
-        //   ),
-        // ),
+        // bottomNavigationBar: buildBottomAppBar(),
       ),
     );
   }
 
   Widget _bodyWidget(BuildContext context) {
-    late TextEditingController _controller;
-    //bool isButtonActive = true;
+    final _formKey = GlobalKey<FormState>();
+    // final _titleController = TextEditingController();
+    // final _contentContoller = TextEditingController();
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Form(
         key: _formKey,
+        autovalidateMode: AutovalidateMode.always,
         child: ListView(
           children: [
             ImagePickerBox(user: user),
-            const Text(
-              "제목",
-              style: customStyle,
+            const Padding(
+              padding: EdgeInsets.only(left: 8.0),
+              child: Text(
+                "제목",
+                style: customStyle,
+              ),
             ),
             const SizedBox(
               height: 10.0,
             ),
             CustomTextFormField(
+              //myController: _titleController,
               hint: '제목을 입력해주세요.',
               funValidator: validateTitle(),
+              lineNum: 1,
             ),
             const SizedBox(
               height: 30.0,
             ),
-            const Text(
-              "내용",
-              style: customStyle,
+            const Padding(
+              padding: EdgeInsets.only(left: 8.0),
+              child: Text(
+                "내용",
+                style: customStyle,
+              ),
             ),
             const SizedBox(
               height: 10.0,
             ),
             CustomTextFormField(
+              //myController: _contentContoller,
               hint: '내용을 입력해주세요.',
               funValidator: validateContent(),
+              lineNum: 15,
             ),
             const SizedBox(
               height: 50,
@@ -363,6 +357,7 @@ class WriteAnnouncePage extends StatelessWidget {
             Container(
               height: 180,
               width: getScreenWidth(context) * 0.9,
+              margin: EdgeInsets.symmetric(horizontal: 8.0),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   border: Border.all(
@@ -371,8 +366,8 @@ class WriteAnnouncePage extends StatelessWidget {
                   )),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Text(
+                children: [
+                  const Text(
                     "서명이 필요한 공지인가요?",
                     style: customStyle,
                   ),
@@ -386,11 +381,21 @@ class WriteAnnouncePage extends StatelessWidget {
             Custom_ElevatedButton(
               text: '등록',
               funPageRoute: () {
-                if(_formKey.currentState!.validate())
-                  //https://blog.codefactory.ai/flutter/form/
-                  print(_formKey.currentState);
-                  Get.to(() => StartPage());
+                if(_formKey.currentState!.validate()) {
+                  Get.snackbar(
+                    '저장완료!',
+                    '폼 저장이 완료되었습니다!',
+                    backgroundColor: Colors.white,
+                  );
+                  //print(_titleController.text);
+                  _formKey.currentState!.save();
+                  Get.off(() => StartPage());
+                }
+
               },
+            ),
+            SizedBox(
+              height: 50,
             ),
           ],
         ),
@@ -398,18 +403,17 @@ class WriteAnnouncePage extends StatelessWidget {
     );
   }
 
-  BottomAppBar buildBottomAppBar() {
-    return BottomAppBar(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          IconButton(
-            icon: SvgPicture.asset("assets/Icons/DeleteButton.svg"),
-            iconSize: 30.0,
-            onPressed: () {},
-          ),
-        ],
-      ),
-    );
-  }
+  // BottomAppBar buildBottomAppBar() {
+  //   return BottomAppBar(
+  //     child: Row(
+  //       mainAxisAlignment: MainAxisAlignment.end,
+  //       children: [
+  //         IconButton(
+  //           icon: SvgPicture.asset("assets/Icons/DeleteButton.svg"),
+  //           iconSize: 30.0,
+  //           onPressed: () {},
+  //         ),
+  //       ],
+  //     ),
+  //   );
 }

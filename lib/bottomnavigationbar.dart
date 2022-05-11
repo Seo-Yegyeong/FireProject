@@ -12,6 +12,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class bottomNavigationbar extends StatefulWidget {
   var user = FirebaseAuth.instance.currentUser;
+  // final int menu;
+  //
+  // bottomNavigationbar({required this.menu});
 
   @override
   _bottomNavigationbarState createState() => _bottomNavigationbarState();
@@ -20,6 +23,8 @@ class bottomNavigationbar extends StatefulWidget {
 class _bottomNavigationbarState extends State<bottomNavigationbar> {
   int _selectedIndex = 0; //선택한 메뉴의 인덱스를 기억
   bool _visibility = true; //floating button의 표시 여부 결정'
+
+
 
   //특정 텍스트 스타일을 상수로 지정
   static const TextStyle optionStyle =
@@ -45,6 +50,13 @@ class _bottomNavigationbarState extends State<bottomNavigationbar> {
   ];
 
 
+// @override
+//   void initState() {
+//     // TODO: implement initState
+//     super.initState();
+//     _selectedIndex = widget.menu;
+//   }
+
 
   //함수 구현
   void _onItemTapped(int index) {
@@ -52,7 +64,7 @@ class _bottomNavigationbarState extends State<bottomNavigationbar> {
       _selectedIndex = index;
     });
 
-    if(_selectedIndex == 0) {
+    if(_selectedIndex == 0 || _selectedIndex == 3) {
       _show();
     } else {
       _hide();
@@ -71,17 +83,17 @@ class _bottomNavigationbarState extends State<bottomNavigationbar> {
   }
 
   /*유용한 코드*/
-  // bool _moveWritingPage() {
-  //   bool writingType = true;
-  //
-  //   if(_selectedIndex == 0) {
-  //     writingType = true;
-  //   } else if(_selectedIndex == 3) {
-  //     writingType = false;
-  //   }
-  //
-  //   return writingType;
-  // }
+  bool _moveWritingPage() {
+    bool writingType = true;
+
+    if(_selectedIndex == 0) {
+      writingType = true;
+    } else if(_selectedIndex == 3) {
+      writingType = false;
+    }
+
+    return writingType;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -89,7 +101,7 @@ class _bottomNavigationbarState extends State<bottomNavigationbar> {
       appBar: AppBar(
         toolbarHeight: getAppBarHeight(context),
         backgroundColor: Colors.white,
-        elevation: 0.1,
+        elevation: 0.3,
         title: Padding(
           padding: const EdgeInsets.all(5.0),
           child: Center(child: _appBarOptions.elementAt(_selectedIndex)),
@@ -109,11 +121,11 @@ class _bottomNavigationbarState extends State<bottomNavigationbar> {
             label: '학생상태',
           ),
           BottomNavigationBarItem(
-            icon: SvgPicture.asset("assets/icons/board.svg"),
+            icon: SvgPicture.asset("assets/Icons/board.svg"),
             label: '게시판',
           ),
           BottomNavigationBarItem(
-            icon: SvgPicture.asset("assets/icons/send.svg"),
+            icon: SvgPicture.asset("assets/Icons/send.svg"),
             label: '우소톡',
           ),
           BottomNavigationBarItem(
@@ -130,11 +142,21 @@ class _bottomNavigationbarState extends State<bottomNavigationbar> {
       Visibility(
         child: IconButton(
           onPressed: () {
-            Navigator.of(context).pushReplacement(
-              MaterialPageRoute(
-                builder: (context) => WriteAnnouncePage(user: widget.user),
-              ),
-            );
+            if(_moveWritingPage()){
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (context) => WriteAnnouncePage(user: widget.user),
+                ),
+              );
+            }
+            else{
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (context) => WriteAnnouncePage(user: widget.user),
+                ),
+              );
+            }
+
           },
           tooltip: '글을 작성하세요.',
           icon: SvgPicture.asset("assets/Icons/pencil.svg"),

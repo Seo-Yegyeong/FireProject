@@ -1,13 +1,9 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:fireproject/studentstate/IdentifyStudentPage.dart';
+import 'package:fireproject/src/size.dart';
 import 'package:fireproject/studentstate/screen_verStudent.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
-
-
 
 class ModifyStudentPage extends StatefulWidget {
   const ModifyStudentPage({Key? key}) : super(key: key);
@@ -19,445 +15,121 @@ class ModifyStudentPage extends StatefulWidget {
 class _ModifyStudentPageState extends State<ModifyStudentPage> {
   bool click = true;
   bool isHovering = false;
-  double num=100;
 
-  double num2=100;
-
-  double num4=100;
-
-  double num6=100;
-
-  double num8=100;
-
-  double num10=100;
+  List<Color> edge = <Color>[
+    Color(0XFFffffff),
+    Color(0XFFffffff),
+    Color(0XFFffffff),
+    Color(0XFFffffff),
+    Color(0XFFffffff),
+    Color(0XFFffffff)
+  ];
 
   var _selection;
   final user = FirebaseAuth.instance.currentUser;
 
-  static const TextStyle myFontStyle =
-    TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Color(0xFF5D5D5D),);
-
-
+  static const TextStyle myFontStyle = TextStyle(
+    fontSize: 20.0,
+    fontWeight: FontWeight.bold,
+    color: Color(0xFF5D5D5D),
+  );
 
   @override
   Widget build(BuildContext context) {
-
+    const List<String> status_svg_list = <String>[
+      "Good.svg",
+      "Good.svg",
+      "Good.svg",
+      "Good.svg",
+      "Good.svg",
+      "Good.svg"
+    ];
+    const List<String> status_list = <String>[
+      "좋아요",
+      "기뻐요",
+      "쉬고 싶어요",
+      "화나요",
+      "말하고 싶어요",
+      "궁금해요"
+    ];
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
-        body: ListView(
-          children: [
-            Padding(
-              padding: EdgeInsets.all(20),
-              child: Column(
-                children: [
-                  Text(
-                    '상태를 선택해주세요!',
-                    style: TextStyle(
-                      fontFamily: "DoHyeonFont",
-                      fontSize: 35.0,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF000000),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    padding: EdgeInsets.all(20),
-                    width: 350,
-                    height: 700,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.amber),
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            Column(
-                              children: [
-                                Container(
-                                  width: 150,
-                                  height: 200,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: Colors.white),
-                                  child: Column(
-                                    children: [
-                                      Expanded(
-                                        child: Container(
-                                          child: IconButton(
-                                            icon: SvgPicture.asset(
-                                                "assets/Icons/Good.svg"),
-                                            iconSize: num,
-                                            onPressed: () {
-                                              if (isHovering == true) {
-                                                setState(() {
-                                                  isHovering = false;
-                                                  num=190;
-                                                });
-                                              }
-                                              else {
-                                                setState(() {
-                                                  isHovering = true;
-                                                  num=130;
-                                                });
-                                              }
-                                              setState(() {
-                                                _selection= 1;
-                                              });
-                                              print('좋아요');
-                                            },
-                                          ),
-                                        ),
-                                      ),
-
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                      Container(
-                                        height: 1.0,
-                                        width: 150,
-                                        decoration: BoxDecoration(
-                                          border: Border.all(
-                                              color: Colors.grey, width: 1.0),
-                                        ),
-                                      ),
-                                      Container(
-                                        child: Text(
-                                          '좋아요',
-                                          style: myFontStyle,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Container(
-                              width: 150,
-                              height: 200,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: Colors.white),
-                              child: Column(
-                                children: [
-                                  Expanded(
-                                    child: Container(
-                                      child: IconButton(
-                                        icon: SvgPicture.asset(
-                                            "assets/Icons/Good.svg"),
-                                        iconSize: num2,
-                                        onPressed: () {
-                                          if (isHovering == true) {
-                                            setState(() {
-                                              isHovering = false;
-                                              num2=190;
-                                            });
-                                          }
-                                          else {
-                                            setState(() {
-                                              isHovering = true;
-                                              num2=130;
-                                            });
-                                          }
-                                          setState(() {
-                                            _selection=2;
-                                          });
-                                          print('기뻐요');
-                                        },
-                                      ),
-
-                                    ),
-                                  ),
-
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Container(
-                                    height: 1.0,
-                                    width: 150,
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                          color: Colors.grey, width: 1.0),
-                                    ),
-                                  ),
-                                  Container(
-                                    child: Text(
-                                      '기뻐요',
-                                      style: myFontStyle,
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          children: [
-                            Column(
-                              children: [
-                                Container(
-                                  width: 150,
-                                  height: 200,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: Colors.white),
-                                  child: Column(
-                                    children: [
-                                      Expanded(
-                                        child: Container(
-                                          child: IconButton(
-                                            icon: SvgPicture.asset(
-                                                "assets/Icons/Good.svg"),
-                                            iconSize: num4,
-                                            onPressed: () {
-                                              if (isHovering == true) {
-                                                setState(() {
-                                                  isHovering = false;
-                                                  num4=190;
-                                                });
-                                              }
-                                              else {
-                                                setState(() {
-                                                  isHovering = true;
-                                                  num4=130;
-                                                });
-                                              }
-                                              setState(() {
-                                                _selection=3;
-                                              });
-                                              print('쉬고 싶어요');
-                                            },
-                                          ),
-
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-                                      Container(
-                                        height: 1.0,
-                                        width: 150,
-                                        decoration: BoxDecoration(
-                                          border: Border.all(
-                                              color: Colors.grey, width: 1.0),
-                                        ),
-                                      ),
-                                      Container(
-                                        child: Text(
-                                          '쉬고 싶어요',
-                                          style: myFontStyle,
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Container(
-                              width: 150,
-                              height: 200,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: Colors.white),
-                              child: Column(
-                                children: [
-                                  Expanded(
-                                    child: Container(
-                                      child: IconButton(
-                                        icon: SvgPicture.asset(
-                                            "assets/Icons/Good.svg"),
-                                        iconSize: num6,
-                                        onPressed: () {
-                                          if (isHovering == true) {
-                                            setState(() {
-                                              isHovering = false;
-                                              num6=190;
-                                            });
-                                          }
-                                          else {
-                                            setState(() {
-                                              isHovering = true;
-                                              num6=130;
-                                            });
-                                          }
-                                          setState(() {
-                                            _selection=4;
-                                          });
-                                          print('화나요');
-                                        },
-                                      ),
-
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Container(
-                                    height: 1.0,
-                                    width: 150,
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                          color: Colors.grey, width: 1.0),
-                                    ),
-                                  ),
-                                  Container(
-                                    child: Text(
-                                      '화나요',
-                                      style: myFontStyle,
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          children: [
-                            Column(
-                              children: [
-                                Container(
-                                  width: 150,
-                                  height: 200,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: Colors.white),
-                                  child: Column(
-                                    children: [
-                                      Expanded(
-                                        child: Container(
-                                          child: IconButton(
-                                            icon: SvgPicture.asset(
-                                                "assets/Icons/Good.svg"),
-                                            iconSize: num8,
-                                            onPressed: () {
-                                              if (isHovering == true) {
-                                                setState(() {
-                                                  isHovering = false;
-                                                  num8=190;
-                                                });
-                                              }
-                                              else {
-                                                setState(() {
-                                                  isHovering = true;
-                                                  num8=130;
-                                                });
-                                              }
-                                              setState(() {
-                                                _selection=5;
-                                              });
-                                              print('제 이야기를 들어주세요');
-                                            },
-                                          ),
-
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-                                      Container(
-                                        height: 1.0,
-                                        width: 150,
-                                        decoration: BoxDecoration(
-                                          border: Border.all(
-                                              color: Colors.grey, width: 1.0),
-                                        ),
-                                      ),
-                                      Container(
-                                        child: Text(
-                                          '제 이야기를 들어주세요',
-                                          style: myFontStyle,
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Container(
-                              width: 150,
-                              height: 200,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: Colors.white),
-                              child: Column(
-                                children: [
-                                  Expanded(
-                                    child: Container(
-                                      child: IconButton(
-                                        icon: SvgPicture.asset(
-                                            "assets/Icons/Good.svg"),
-                                        iconSize: num10,
-                                        onPressed: () {
-                                          if (isHovering == true) {
-                                            setState(() {
-                                              isHovering = false;
-                                              num10=190;
-                                            });
-                                          }
-                                          else {
-                                            setState(() {
-                                              isHovering = true;
-                                              num10=130;
-                                            });
-                                          }
-                                          setState(() {
-                                            _selection=6;
-                                          });
-                                          print('기뻐요');
-                                        },
-                                      ),
-
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Container(
-                                    height: 1.0,
-                                    width: 150,
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                          color: Colors.grey, width: 1.0),
-                                    ),
-                                  ),
-                                  Container(
-                                    child: Text(
-                                      '기뻐요',
-                                      style: myFontStyle,
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+        body: GridView.builder(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
             ),
-          ],
-        ),
+            itemCount: 6,
+            itemBuilder: (BuildContext context, int index) {
+              return Card(
+                color: edge[index],
+                child: Column(
+                  children: [
+                    Container(
+                      width: getScreenWidth(context) * 0.35,
+                      height: getScreenHeight(context) * 0.2,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: edge[index]),
+                      child: Column(
+                        children: [
+                          Expanded(
+                            child: Container(
+                              child: IconButton(
+                                icon: SvgPicture.asset(
+                                    "assets/Icons/" + status_svg_list[index]),
+                                iconSize: 100,
+                                onPressed: () {
+                                  if (isHovering == true) {
+                                    setState(() {
+                                      isHovering = false;
+                                      for(int i=0; i<6; i++){
+                                        if(i==index)
+                                          edge[i] = Color(0XFF003201);
+                                        else
+                                          edge[i] = Color(0XFFffffff);
+                                      }
+                                    });
+                                  } else {
+                                    setState(() {
+                                      isHovering = true;
+                                      edge[index] = Colors.white;
+                                    });
+                                  }
+                                  setState(() {
+                                    _selection = index;
+                                  });
+                                },
+                                color: edge[index],
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Container(
+                            height: 1.0,
+                            width: 150,
+                            decoration: BoxDecoration(
+                              border:
+                                  Border.all(color: Colors.grey, width: 1.0),
+                            ),
+                          ),
+                          Container(
+                            child: Text(
+                              status_list[index],
+                              style: myFontStyle,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            }),
         bottomNavigationBar: BottomAppBar(
           child: SizedBox(
             height: 70,
@@ -471,9 +143,8 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
                       FirebaseFirestore.instance.collection('state').add({
                         'selection': _selection,
                         'name': user!.displayName,
-                        'uid' : user!.uid,
+                        'uid': user!.uid,
                         'time': Timestamp.now(),
-
                       });
                       Navigator.push(
                           context,
@@ -495,6 +166,7 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
                     ),
                   ),
                 ),
+                SizedBox(width: 16,),
               ],
             ),
           ),

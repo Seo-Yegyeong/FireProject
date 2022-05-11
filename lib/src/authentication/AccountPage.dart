@@ -43,29 +43,18 @@ class _AccountPageState extends State<AccountPage> {
                         backgroundColor: Colors.amberAccent,
                         child: IconButton(
                           onPressed: () {  },
-                          icon: SvgPicture.asset("assets/icons/emptyProfile.svg"),
+                          icon: SvgPicture.asset("assets/Icons/emptyProfile.svg"),
                         ),
                       ),
                     ),
                   ],
                 ),
-                IconButton(
-                  icon: SvgPicture.asset("assets/icons/Setting.svg"),
-                  iconSize: 30.0,
-                  color: Colors.black,
-                  onPressed: () {},
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                IconButton(
-                  icon: SvgPicture.asset("assets/Icons/Setting.svg"),
-                  iconSize: 30.0,
-                  color: Colors.black,
-                  onPressed: () {},
-                ),
+                // IconButton(
+                //   icon: SvgPicture.asset("assets/Icons/Setting.svg"),
+                //   iconSize: 30.0,
+                //   color: Colors.black,
+                //   onPressed: () {},
+                // ),
                 Column(children: [
                   Text(
                     '3',
@@ -104,6 +93,12 @@ class _AccountPageState extends State<AccountPage> {
                     ),
                   ],
                 ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+
               ],
             ),
             SizedBox(

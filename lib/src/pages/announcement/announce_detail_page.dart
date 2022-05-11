@@ -63,7 +63,7 @@ class AnnounceDetailPage extends StatelessWidget {
                         backgroundColor: Colors.amberAccent,
                         child:IconButton(
                           onPressed: () {  },
-                          icon: SvgPicture.asset("assets/icons/emptyProfile.svg"),
+                          icon: SvgPicture.asset("assets/Icons/emptyProfile.svg"),
                         ),
                       ),
                     ),
