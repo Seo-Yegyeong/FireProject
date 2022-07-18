@@ -17,42 +17,39 @@ class _HomePageState extends State<HomePage> {
       create: (context) => AnnounceChange(),
       child: Material(
         color: Colors.white,
-        child: Padding(
-          padding: EdgeInsets.all(0),
-          child:
-          ListView(
-            children: <Widget>[
-              Column(
-                children: [
-                  Container(
-                    child: Column(
-                      children: [
-                        TeacherList(),
-                        AnnounceList(),
-                        // SizedBox(
-                        //   height: 300,
-                        //   child: ListView.separated(
-                        //     itemCount: 20,
-                        //     itemBuilder: (context, index) {
-                        //       return ListTile(
-                        //         onTap: () {
-                        //           //Get.to(AnnounceDetailPage(index), arguments: "home.dart에서 Getx로 arguments를 넘겨준 부분이야!");
-                        //         },
-                        //         title: Text("제목1"),
-                        //         leading: Text("1"),
-                        //       );
-                        //     },
-                        //     separatorBuilder: (context, index) {
-                        //       return Divider();
-                        //     },
-                        //   ),
-                        // ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ],
+        child: Container(
+          color: Color(0xFFF2F2F2),
+          child: Padding(
+            padding: EdgeInsets.all(0),
+            child:
+            ListView(
+              children: <Widget>[
+                Column(
+                  children: [
+                    TeacherList(),
+                    AnnounceList(),
+                    // SizedBox(
+                    //   height: 300,
+                    //   child: ListView.separated(
+                    //     itemCount: 20,
+                    //     itemBuilder: (context, index) {
+                    //       return ListTile(
+                    //         onTap: () {
+                    //           //Get.to(AnnounceDetailPage(index), arguments: "home.dart에서 Getx로 arguments를 넘겨준 부분이야!");
+                    //         },
+                    //         title: Text("제목1"),
+                    //         leading: Text("1"),
+                    //       );
+                    //     },
+                    //     separatorBuilder: (context, index) {
+                    //       return Divider();
+                    //     },
+                    //   ),
+                    // ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

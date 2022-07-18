@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -23,9 +24,8 @@ class _AccountPageState extends State<AccountPage> {
         child: Column(
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-
                 Column(
                   children: [
                     Text(
@@ -42,37 +42,37 @@ class _AccountPageState extends State<AccountPage> {
                       child: CircleAvatar(
                         backgroundColor: Colors.amberAccent,
                         child: IconButton(
-                          onPressed: () {  },
-                          icon: SvgPicture.asset("assets/Icons/emptyProfile.svg"),
+                          onPressed: () {},
+                          icon:
+                              SvgPicture.asset("assets/Icons/emptyProfile.svg"),
                         ),
                       ),
                     ),
                   ],
                 ),
-                // IconButton(
-                //   icon: SvgPicture.asset("assets/Icons/Setting.svg"),
-                //   iconSize: 30.0,
-                //   color: Colors.black,
-                //   onPressed: () {},
-                // ),
-                Column(children: [
-                  Text(
-                    '3',
-                    style: TextStyle(
-                      fontFamily: "DoHyeon",
-                      fontSize: 20.0,
-                      color: Colors.black,
-                    ),
-                  ),
-                  Text(
-                    '게시물',
-                    style: TextStyle(
-                      fontFamily: "DoHyeon",
-                      fontSize: 20.0,
-                      color: Colors.black,
-                    ),
-                  ),
-                ]),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(children: [
+                      Text(
+                        '3',
+                        style: TextStyle(
+                          fontFamily: "DoHyeon",
+                          fontSize: 20.0,
+                          color: Colors.black,
+                        ),
+                      ),
+                      Text(
+                        '게시물',
+                        style: TextStyle(
+                          fontFamily: "DoHyeon",
+                          fontSize: 20.0,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ]),
+                  ],
+                ),
                 Column(
                   children: [
                     Text(
@@ -97,13 +97,12 @@ class _AccountPageState extends State<AccountPage> {
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-
-              ],
+              children: [],
             ),
             SizedBox(
               height: 15,
             ),
+            Divider(),
             ElevatedButton(
               onPressed: () {},
               child: Text(
@@ -114,15 +113,15 @@ class _AccountPageState extends State<AccountPage> {
                   color: Colors.black,
                 ),
               ),
-
               style: ElevatedButton.styleFrom(
-
                 primary: Colors.grey,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20.0)),
               ),
             ),
-          ],
+            SizedBox(height: 15,),
+            IconButton(icon: Icon(Icons.exit_to_app), onPressed: (){FirebaseAuth.instance.signOut();},),
+            ]
         ),
       ),
     );

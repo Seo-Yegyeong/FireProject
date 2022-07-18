@@ -13,9 +13,10 @@ class AnnounceCard extends StatelessWidget {
   final QueryDocumentSnapshot<Map<String, dynamic>> doc;
   String docId;
 
-  AnnounceCard({required this.doc, required Future<DocumentSnapshot<Map<String, dynamic>>> writer, required this.docId});
-
-
+  AnnounceCard(
+      {required this.doc,
+      required Future<DocumentSnapshot<Map<String, dynamic>>> writer,
+      required this.docId});
 
   @override
   Widget build(context) {
@@ -107,73 +108,74 @@ class AnnounceCard extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => AnnounceChange(),
       child: Padding(
-          padding: EdgeInsets.only(left: 20),
-          child: GestureDetector(
-            onTap: () {
-              FocusScope.of(context).unfocus();
-              print(doc.id);
-              Get.to(() => AnnounceDetailPage(doc: doc, docId: docId),
-                //arguments: "home.dart에서 Getx로 arguments를 넘겨준 부분이야!"
-              );
-            },
-            child: SizedBox(
-              width: getScreenWidth(context)*0.9,
-              height: getScreenWidth(context)*0.5,
-              child: Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 10,
-                      vertical: 10,
-                    ),
-                    child:
-                    Column(
-                      children: [
-                        Text.rich(
-                          TextSpan(
-                            style: TextStyle(color: Colors.white),
-                            children: [
-                              TextSpan(
-                                text: doc['title'],
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontFamily: "DoHyeonFont",
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(height: 10,),
-                        Container(
-                          height: 85,
-                          child: Expanded(
-                            child: Text(doc['content'], style: TextStyle(
-                              fontSize: 15,
-                            ),),
-                          ),
-                        ),
-                        SizedBox(height: 10,),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Text(
-                                DateTime.fromMicrosecondsSinceEpoch(doc['time'].microsecondsSinceEpoch).toString().split(" ")[0],
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w300,
-                                )
-                            ),
-                          ],
-                        ),
-                      ],
+        padding: EdgeInsets.only(left: 20),
+        child: GestureDetector(
+          onTap: () {
+            FocusScope.of(context).unfocus();
+            print(doc.id);
+            Get.to(
+              () => AnnounceDetailPage(doc: doc, docId: docId),
+              //arguments: "home.dart에서 Getx로 arguments를 넘겨준 부분이야!"
+            );
+          },
+          child: SizedBox(
+            width: getScreenWidth(context) * 0.9,
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: 7,
+                vertical: 3,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    doc['title'],
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontFamily: "DoHyeonFont",
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    height: 85,
+                    child: Expanded(
+                      child: Text(
+                        doc['content'],
+                        style: TextStyle(
+                          fontSize: 15,
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                          DateTime.fromMicrosecondsSinceEpoch(
+                                  doc['time'].microsecondsSinceEpoch)
+                              .toString()
+                              .split(" ")[0],
+                          style: TextStyle(
+                            fontWeight: FontWeight.w300,
+                          )),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
+        ),
       ),
     );
   }
 }
-
 
 class TeacherCard extends StatelessWidget {
   final QueryDocumentSnapshot<Map<String, dynamic>> doc;
@@ -185,47 +187,55 @@ class TeacherCard extends StatelessWidget {
     // bool isSelected = false;
     // Color myColor = Color(0xFFC4C4C4);
     return Padding(
-        padding: EdgeInsets.only(left: 10),
-        child: SizedBox(
-          width: getScreenWidth(context) * 0.23,
-          height: getScreenWidth(context) * 0.3,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(100),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      width: 80,
-                      height: 80,
-                      child: ElevatedButton(
-                        onPressed: (){
-                          print(doc.id);
-                          context.read<AnnounceChange>().changeTeacher(doc.id);
-                        },
-                        style: ElevatedButton.styleFrom(
-                          shape: CircleBorder(side: BorderSide.none),
-                          primary: Color(0xFFe1e1e1),
-                          elevation: 5.0,
-                        ),
-                        child: Text(
-                          doc['name'],
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                          ),
+      padding: EdgeInsets.only(left: 5),
+      child: SizedBox(
+        width: getScreenWidth(context) * 0.23,
+        height: getScreenWidth(context) * 0.3,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(100),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    width: 70,
+                    height: 70,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        print(doc.id);
+                        context.read<AnnounceChange>().changeTeacher(doc.id);
+                      },
+                      style: ElevatedButton.styleFrom(
+                        shape: CircleBorder(side: BorderSide.none),
+                        primary: Color(0xFFe1e1e1),
+                        elevation: 5.0,
+                      ),
+                      child: Text(
+                        "image",
+                        style: TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
                         ),
                       ),
                     ),
-                  ],
+                  ),
+                ],
+              ),
+              Text(
+                doc['name'],
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
+      ),
     );
   }
 }

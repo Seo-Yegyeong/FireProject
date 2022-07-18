@@ -26,7 +26,9 @@ class _FreeBoardListState extends State<FreeBoardList> {
             child:CircularProgressIndicator(),
           );
         }
+
         final freeDocs = snapshot.data!.docs;
+
         return ListView.builder(
           itemCount: freeDocs.length,
           itemBuilder: (BuildContext context, int index) {
@@ -43,7 +45,7 @@ class _FreeBoardListState extends State<FreeBoardList> {
               child: FreeBoardCard(
                 freeDocs[index],
                 freeDocs[index]['wid']==user!.uid,
-                  freeDocs[index].id,
+                freeDocs[index].id,
               ),
 
             );

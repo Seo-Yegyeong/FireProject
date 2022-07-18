@@ -49,15 +49,6 @@ class _bottomNavigationbarState extends State<bottomNavigationbar> {
     AccountPage()
   ];
 
-
-// @override
-//   void initState() {
-//     // TODO: implement initState
-//     super.initState();
-//     _selectedIndex = widget.menu;
-//   }
-
-
   //함수 구현
   void _onItemTapped(int index) {
     setState(() {
@@ -104,7 +95,7 @@ class _bottomNavigationbarState extends State<bottomNavigationbar> {
         elevation: 0.3,
         title: Padding(
           padding: const EdgeInsets.all(5.0),
-          child: Center(child: _appBarOptions.elementAt(_selectedIndex)),
+          child: _appBarOptions.elementAt(_selectedIndex),
         ),
       ),
       body: Center(

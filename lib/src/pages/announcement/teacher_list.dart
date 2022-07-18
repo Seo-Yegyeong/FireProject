@@ -28,26 +28,25 @@ class _TeacherListState extends State<TeacherList> {
 
           return Container(
             color: Color(0xFFF2F2F2),
-            child: Row(
-              children: [
-                Expanded(
-                  child: SizedBox(
-                    height: getScreenHeight(context) * 0.15,
-                    child: ListView.builder(
-                      shrinkWrap: true,
-                      scrollDirection: Axis.horizontal,
-                      itemCount: snapshot.data!.docs.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return TeacherCard(doc: snapshot.data!.docs[index]);
-                      },
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: SizedBox(
+                      height: getScreenHeight(context) * 0.15,
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        scrollDirection: Axis.horizontal,
+                        itemCount: snapshot.data!.docs.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return TeacherCard(doc: snapshot.data!.docs[index]);
+                        },
+                      ),
                     ),
                   ),
-                ),
-                const Divider(
-                  thickness: 1,
-                  color: Colors.black54,
-                ),
-              ],
+                ],
+              ),
             ),
           );
         });

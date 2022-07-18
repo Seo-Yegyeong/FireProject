@@ -48,10 +48,10 @@ class MyApp extends StatelessWidget {
           name: '/NaverLogin',
           page: () => NaverLogin(),
         ),
-        GetPage(
-          name: '/KakaoLogin',
-          page: () => KakaoLogin(),
-        ),
+        // GetPage(
+        //   name: '/KakaoLogin',
+        //   page: () => KakaoLogin(),
+        // ),
         GetPage(
           name: '/home',
           page: () => HomePage(),

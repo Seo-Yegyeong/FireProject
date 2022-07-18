@@ -16,7 +16,7 @@ class _NewCommentState extends State<NewComment> {
 
   void _sendMessage(){
     FocusScope.of(context).unfocus();
-    final user = FirebaseAuth.instance.currentUser;
+    User? user = FirebaseAuth.instance.currentUser;
     FirebaseFirestore.instance.collection('board/2fw6mf2i4PHLVwjp0M3m/comment').add({
       'comment': _userEnterMessage,
       'time': Timestamp.now(),
