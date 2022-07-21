@@ -45,14 +45,6 @@ class MyApp extends StatelessWidget {
           page: () => GoogleLogin(),
         ),
         GetPage(
-          name: '/NaverLogin',
-          page: () => NaverLogin(),
-        ),
-        // GetPage(
-        //   name: '/KakaoLogin',
-        //   page: () => KakaoLogin(),
-        // ),
-        GetPage(
           name: '/home',
           page: () => HomePage(),
         ),
