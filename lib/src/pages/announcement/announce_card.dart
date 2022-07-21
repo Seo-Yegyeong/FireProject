@@ -252,14 +252,5 @@ class profile_image extends StatelessWidget {
             fit: BoxFit.cover);
       },
     );
-
-    //   Text(
-    //   "image",
-    //   style: TextStyle(
-    //     fontSize: 13,
-    //     fontWeight: FontWeight.bold,
-    //     color: Colors.black,
-    //   ),
-    // );
   }
 }

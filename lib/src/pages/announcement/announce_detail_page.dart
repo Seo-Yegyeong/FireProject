@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../size.dart';
 
-class AnnounceDetailPage extends StatelessWidget {
+class AnnounceDetailPage extends StatefulWidget {
   final QueryDocumentSnapshot<Map<String, dynamic>> doc;
   //final User? writer;
   String docId;
@@ -14,15 +14,17 @@ class AnnounceDetailPage extends StatelessWidget {
   });
 
   @override
+  State<AnnounceDetailPage> createState() => _AnnounceDetailPageState();
+}
+
+class _AnnounceDetailPageState extends State<AnnounceDetailPage> {
+  @override
   Widget build(context) {
     //String data = Get.arguments;
 
     // var writer = FirebaseFirestore.instance
     //     .collection('user')
     //     .doc(context.watch<AnnounceChange>().tempID).snapshots().elementAt(1);
-
-    print("야호");
-    //print(writer);
 
     return Scaffold(
       appBar: AppBar(
@@ -33,17 +35,14 @@ class AnnounceDetailPage extends StatelessWidget {
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: SvgPicture.asset("assets/Icons/BackButton.svg"),
+          icon: Icon(Icons.arrow_back, color: Colors.black,),
         ),
-        title: const Padding(
-          padding: EdgeInsets.all(5.0),
-          child: Text(
-            "우리의 소식통",
-            style: TextStyle(
-              color: Colors.black,
-              fontFamily: "DoHyeonFont",
-              fontSize: 25,
-            ),
+        title: Text(
+          "우리의 소식통",
+          style: TextStyle(
+            color: Colors.black,
+            fontFamily: "DoHyeonFont",
+            fontSize: 25,
           ),
         ),
       ),
@@ -52,27 +51,25 @@ class AnnounceDetailPage extends StatelessWidget {
         child: Center(
           child: Column(
             children: [
-              //Text("TEST: id is $id \n\n$data"),
               Container(
                 child: Row(
                   children: [
-                    Container(
-                      height: getScreenWidth(context) * 0.13,
-                      width: getScreenWidth(context) * 0.13,
-                      child: CircleAvatar(
-                        backgroundColor: Colors.amberAccent,
-                        child:IconButton(
-                          onPressed: () {  },
-                          icon: SvgPicture.asset("assets/Icons/emptyProfile.svg"),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Container(
+                        height: getScreenWidth(context) * 0.13,
+                        width: getScreenWidth(context) * 0.13,
+                        child: CircleAvatar(
+                          backgroundColor: Colors.amberAccent,
+                          child:GestureDetector(
+                            onTap: () {  },
+                            child: SvgPicture.asset("assets/Icons/emptyProfile.svg"),
+                          ),
                         ),
                       ),
                     ),
-                    SizedBox(
-                      width: 13,
-                    ),
                     Text(
-                      "현창기",
-                      //"writer['name']",
+                      widget.doc['writer'],
                       style: TextStyle(fontFamily: "DoHyeonFont", fontSize: 20),
                     ),
                   ],
@@ -85,73 +82,88 @@ class AnnounceDetailPage extends StatelessWidget {
               ),
               Expanded(
                   child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    Text(
-                      doc['title'],
-                      style: TextStyle(fontSize: 25, fontFamily: "DoHyeonFont"),
-                    ),
-                    //SizedBox(height: 5,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Text(
-                          DateTime.fromMicrosecondsSinceEpoch(doc['time'].microsecondsSinceEpoch).toString().split(" ")[0],
-                          style: TextStyle(fontSize: 15),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text(doc['content']),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Row(
-                      children: [
-                        Container(
-                          margin: EdgeInsets.symmetric(vertical: 10),
-                          height: 130,
-                          width: 130,
-                          color: Color(0xFFBDBDBD),
-                        ),
-                        SizedBox(
-                          width: 15,
-                        ),
-                        Container(
-                          margin: EdgeInsets.symmetric(vertical: 10),
-                          height: 130,
-                          width: 130,
-                          color: Color(0xFFBDBDBD),
-                        ),
-                      ],
-                    ),
-                    Divider(
-                      height: 30,
-                      thickness: 1,
-                      color: Colors.black,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text("좋아요 : "),
-                        Text(doc['loveCount'].toString()),
-                      ],
-                    ),
-                    Container(
-                      width: getScreenWidth(context),
-                      height: 300,
-                      color: Color(0xFFBDBDBD),
-                      child: AnnounceCommentList(docId),
-                    ),
-                  ],
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(6.0,0,6.0,0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        widget.doc['title'],
+                        style: TextStyle(fontSize: 25, fontFamily: "DoHyeonFont"),
+                      ),
+                      //SizedBox(height: 5,),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text(
+                            DateTime.fromMicrosecondsSinceEpoch(widget.doc['time'].microsecondsSinceEpoch).toString().split(" ")[0],
+                            style: TextStyle(fontSize: 15),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(widget.doc['content']),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        children: [
+                          ImageSpace(),
+                          SizedBox(
+                            width: 15,
+                          ),
+                          ImageSpace(),
+                        ],
+                      ),
+                      Divider(
+                        height: 30,
+                        thickness: 1,
+                        color: Colors.black,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text("좋아요 : "),
+                          Text(widget.doc['loveCount'].toString()),
+                        ],
+                      ),
+                      Container(
+                        width: getScreenWidth(context),
+                        height: 300,
+                        color: Color(0xFFBDBDBD),
+                        child: AnnounceCommentList(widget.docId),
+                      ),
+                    ],
+                  ),
                 ),
               )),
             ],
           ),
         ),
       ),
+    );
+  }
+}
+
+class ImageSpace extends StatelessWidget {
+  const ImageSpace({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Container(
+          margin: EdgeInsets.symmetric(vertical: 10),
+          height: 130,
+          width: 130,
+          color: Color(0xFFBDBDBD),
+        ),
+        Positioned(child: Text('Image'), top: 50, left: 50,),
+      ],
     );
   }
 }
