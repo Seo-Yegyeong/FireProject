@@ -27,28 +27,28 @@ class _AnnounceDetailPageState extends State<AnnounceDetailPage> {
     //     .doc(context.watch<AnnounceChange>().tempID).snapshots().elementAt(1);
 
     return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: getAppBarHeight(context),
-        backgroundColor: Colors.white,
-        elevation: 0.0,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: Icon(Icons.arrow_back, color: Colors.black,),
-        ),
-        title: Text(
-          "우리의 소식통",
-          style: TextStyle(
-            color: Colors.black,
-            fontFamily: "DoHyeonFont",
-            fontSize: 25,
-          ),
-        ),
-      ),
+      // appBar: AppBar(
+      //   toolbarHeight: getAppBarHeight(context),
+      //   backgroundColor: Colors.white,
+      //   elevation: 0.0,
+      //   leading: IconButton(
+      //     onPressed: () {
+      //       Navigator.pop(context);
+      //     },
+      //     icon: Icon(Icons.arrow_back, color: Colors.black,),
+      //   ),
+      //   title: Text(
+      //     "가정통신문",
+      //     style: TextStyle(
+      //       color: Colors.black,
+      //       fontFamily: "DoHyeonFont",
+      //       fontSize: 25,
+      //     ),
+      //   ),
+      // ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Center(
+        child: SafeArea(
           child: Column(
             children: [
               Container(
@@ -143,6 +143,13 @@ class _AnnounceDetailPageState extends State<AnnounceDetailPage> {
           ),
         ),
       ),
+      floatingActionButton: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: SvgPicture.asset("assets/Icons/BackButton.svg")
+          ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniStartFloat,
     );
   }
 }
