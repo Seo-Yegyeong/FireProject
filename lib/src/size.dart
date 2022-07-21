@@ -11,3 +11,7 @@ double getScreenHeight(BuildContext context){
 double getAppBarHeight(BuildContext context){
   return getScreenWidth(context) * 0.14;
 }
+
+double getBottomBarHeight(BuildContext context){
+  return getScreenWidth(context) * 0.15;
+}

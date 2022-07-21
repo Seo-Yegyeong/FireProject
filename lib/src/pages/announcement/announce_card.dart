@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:fireproject/src/pages/announcement/announce_detail_page.dart';
 import 'package:fireproject/src/size.dart';
+import 'package:fireproject/util/storage_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/get_core.dart';
@@ -184,58 +186,80 @@ class TeacherCard extends StatelessWidget {
 
   @override
   Widget build(context) {
-    // bool isSelected = false;
-    // Color myColor = Color(0xFFC4C4C4);
-    return Padding(
-      padding: EdgeInsets.only(left: 5),
-      child: SizedBox(
-        width: getScreenWidth(context) * 0.23,
-        height: getScreenWidth(context) * 0.3,
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(100),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return SizedBox(
+      width: getScreenWidth(context) * 0.23,
+      height: getScreenWidth(context) * 0.3,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    width: 70,
-                    height: 70,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        print(doc.id);
-                        context.read<AnnounceChange>().changeTeacher(doc.id);
-                      },
-                      style: ElevatedButton.styleFrom(
-                        shape: CircleBorder(side: BorderSide.none),
-                        primary: Color(0xFFe1e1e1),
-                        elevation: 5.0,
-                      ),
-                      child: Text(
-                        "image",
-                        style: TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                        ),
-                      ),
+              Container(
+                  width: 70,
+                  height: 70,
+                  child: GestureDetector(
+                    onTap: () {
+                      context.read<AnnounceChange>().changeTeacher(doc.id);
+                    },
+                    child: profile_image(
+                      doc: doc,
                     ),
-                  ),
-                ],
-              ),
-              Text(
-                doc['name'],
-                style: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
-              ),
+                  )),
             ],
           ),
-        ),
+          Text(
+            doc['name'],
+            style: TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
+          ),
+        ],
       ),
     );
+  }
+}
+
+class profile_image extends StatelessWidget {
+  final QueryDocumentSnapshot<Map<String, dynamic>> doc;
+  const profile_image({
+    Key? key,
+    required this.doc,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final Storage storage = Storage();
+
+    return FutureBuilder(
+      future: storage.downloadURL("profile_image", doc.id + ".PNG"),
+      builder: (BuildContext context, AsyncSnapshot<String> snap) {
+        if (snap.connectionState == ConnectionState.done && snap.hasData) {
+          return ClipRRect(
+            borderRadius: BorderRadius.circular(100),
+            child: Image.network(
+              snap.data!,
+              fit: BoxFit.fitWidth,
+            ),
+          );
+        }
+        if (snap.connectionState == ConnectionState.waiting) {
+          return Center(child: CircularProgressIndicator());
+        }
+        return Image.network('https://i.stack.imgur.com/l60Hf.png',
+            fit: BoxFit.cover);
+      },
+    );
+
+    //   Text(
+    //   "image",
+    //   style: TextStyle(
+    //     fontSize: 13,
+    //     fontWeight: FontWeight.bold,
+    //     color: Colors.black,
+    //   ),
+    // );
   }
 }

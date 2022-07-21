@@ -43,41 +43,32 @@ class _AnnounceListState extends State<AnnounceList> {
 
               var a = FirebaseFirestore.instance.collection('user').doc(context.watch<AnnounceChange>().tempID.toString()).get();
 
-              return Column(
-                children: [
-                  SizedBox(
-                    height: getScreenHeight(context) * 0.7,
-                    child: Column(
-                      children: [
-                        Divider(),
-                        ListView.separated(
-                          shrinkWrap: true,
-                          //scrollDirection: Axis.horizontal,
-                          itemCount: snapshot.data!.docs.length,
-                          itemBuilder: (context, int index) {
-                            return Container(
-                                padding: EdgeInsets.only(right: 5),
-                                child: Row(
-                                  children: [
-                                    AnnounceCard(
-                                      doc: snapshot.data!.docs[index],
-                                      writer: a,
-                                      docId: snapshot.data!.docs[index].id.toString(),
-                                    ),
-                                    Divider(),
-                                  ],
-                                ));
-                          },
-                          separatorBuilder: (context, index) {
-                            return Divider(
-                              thickness: 1,
-                            );
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
+              return SizedBox(
+                //height: getScreenHeight(context) - (getAppBarHeight(context) + ),
+                child: ListView.separated(
+                  shrinkWrap: true,
+                  //scrollDirection: Axis.horizontal,
+                  itemCount: snapshot.data!.docs.length,
+                  itemBuilder: (context, int index) {
+                    return Container(
+                        padding: EdgeInsets.only(right: 5),
+                        child: Row(
+                          children: [
+                            AnnounceCard(
+                              doc: snapshot.data!.docs[index],
+                              writer: a,
+                              docId: snapshot.data!.docs[index].id.toString(),
+                            ),
+                            Divider(),
+                          ],
+                        ));
+                  },
+                  separatorBuilder: (context, index) {
+                    return Divider(
+                      thickness: 1,
+                    );
+                  },
+                ),
               );
             });
   }
