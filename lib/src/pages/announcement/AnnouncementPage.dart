@@ -9,8 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'dart:io';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -20,8 +18,7 @@ import 'dart:async';
 import 'package:permission_handler/permission_handler.dart';
 
 class ImagePickerBox extends StatefulWidget {
-  final User? user;
-  const ImagePickerBox({Key? key, required this.user}) : super(key: key);
+  const ImagePickerBox({Key? key, }) : super(key: key);
 
   @override
   _ImagePickerBoxState createState() => _ImagePickerBoxState();
@@ -32,9 +29,6 @@ class _ImagePickerBoxState extends State<ImagePickerBox> {
 
   late var downloadUrl;
   List<Asset> images = <Asset>[];
-  String _error = 'No Error Dectected';
-
-  late CollectionReference database;
 
   static const TextStyle customStyle = TextStyle(
     fontFamily: "DoHyeonFont",
@@ -43,15 +37,6 @@ class _ImagePickerBoxState extends State<ImagePickerBox> {
 
   void imageInitState() {
     super.initState();
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    database = FirebaseFirestore.instance
-        .collection('user')
-        .doc(widget.user!.uid)
-        .collection('Product');
   }
 
   Widget buildGridView() {
@@ -70,7 +55,6 @@ class _ImagePickerBoxState extends State<ImagePickerBox> {
 
   Future<void> loadAssets() async {
     List<Asset> resultList = <Asset>[];
-    String error = 'No Error Detected';
 
     // try {
     resultList = await MultiImagePicker.pickImages(
@@ -91,11 +75,6 @@ class _ImagePickerBoxState extends State<ImagePickerBox> {
     // } on Exception catch (e) {
     //   error = e.toString();
     // }
-
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    // if (!mounted) return;
 
     // setState(() {
     //   images = resultList;
@@ -257,9 +236,6 @@ class _ImagePickerBoxState extends State<ImagePickerBox> {
 
 
 class WriteAnnouncePage extends StatelessWidget {
-  final User? user;
-
-  WriteAnnouncePage({required this.user});
 
   static const TextStyle customStyle = TextStyle(
     fontFamily: "DoHyeonFont",
@@ -315,7 +291,7 @@ class WriteAnnouncePage extends StatelessWidget {
         autovalidateMode: AutovalidateMode.always,
         child: ListView(
           children: [
-            ImagePickerBox(user: user),
+            ImagePickerBox(),
             const Padding(
               padding: EdgeInsets.only(left: 8.0),
               child: Text(

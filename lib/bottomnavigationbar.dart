@@ -2,12 +2,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fireproject/src/authentication/AccountPage.dart';
 import 'package:fireproject/board/boardList.dart';
 import 'package:fireproject/chatting/chatuser/user_list.dart';
+import 'package:fireproject/src/pages/announcement/AnnouncementPage.dart';
 
 import 'package:fireproject/src/pages/announcement/home.dart';
 import 'package:fireproject/src/size.dart';
 import 'package:fireproject/studentstate/ModifyStudentPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 class bottomNavigationbar extends StatefulWidget {
   var user = FirebaseAuth.instance.currentUser;
@@ -107,7 +109,9 @@ class _bottomNavigationbarState extends State<bottomNavigationbar> {
           child: _appBarOptions.elementAt(_selectedIndex),
         ),
         actions: [
-          if (_selectedIndex == 0) IconButton(onPressed:(){}, icon: Icon(Icons.brush_sharp, color: Colors.black,)
+          if (_selectedIndex == 0) IconButton(onPressed:(){
+            Get.to(WriteAnnouncePage());
+          }, icon: Icon(Icons.brush_sharp, color: Colors.black,)
           //SvgPicture.asset("assets/Icons/pencil.svg")
           ),
         ],
