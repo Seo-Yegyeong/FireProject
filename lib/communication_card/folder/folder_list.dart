@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fireproject/communication_card/card/card_screen.dart';
 import 'package:fireproject/communication_card/folder/folder_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +34,7 @@ class _FolderListState extends State<FolderList> {
             return GestureDetector(
               child: FolderCard(doc[index]),
               onTap: (){
-                //Get.to();
+                Get.to(CardScreen(doc[index].id));
               },
             );
           },

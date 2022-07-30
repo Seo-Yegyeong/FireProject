@@ -39,7 +39,7 @@ class FolderCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               FutureBuilder(
-                  future: storage.downloadURL("profile_image/card_image", doc['name']+'/'+doc['image']),
+                  future: storage.downloadURL("profile_image/card_image", doc['image']),
                 builder: (BuildContext context, AsyncSnapshot<String> snap) {
                   if (snap.connectionState == ConnectionState.done && snap.hasData) {
                     return ClipRRect(
@@ -48,8 +48,7 @@ class FolderCard extends StatelessWidget {
                       ),
                       child: Image.network(
                         snap.data!,
-                        fit: BoxFit.fitHeight,
-                        width: 100,
+                        height: 70,
                       ),
                     );
                   }
