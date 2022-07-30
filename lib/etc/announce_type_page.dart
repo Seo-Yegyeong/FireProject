@@ -41,13 +41,6 @@ class AnnounceTypePage extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    // Text('새로운 소식통',
-                    //   style: TextStyle(
-                    //     fontFamily: "DoHyeon",
-                    //     fontSize: 25.0,
-                    //     color: Color(0xFF000000),
-                    //   ),
-                    // ),
                     Text(
                       '가정통신문',
                       style: TextStyle(
@@ -76,13 +69,6 @@ class AnnounceTypePage extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // Text('생성된 소식통',
-                  //   style: TextStyle(
-                  //     fontFamily: "DoHyeon",
-                  //     fontSize: 25.0,
-                  //     color: Color(0xFF000000),
-                  //   ),
-                  // ),
                   Text(
                     '학생별 공지',
                     style: TextStyle(

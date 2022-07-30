@@ -64,37 +64,34 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: TextFormField(
-        validator: widget.funValidator,
-        //controller: widget.myController,
-        //focusNode: _thisFocusNode,
-        maxLines: widget.lineNum,
-        decoration: InputDecoration(
-          labelText: "$hint",
-          fillColor: Colors.grey,
-          contentPadding: const EdgeInsets.all(20),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(15),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(15),
-          ),
-          errorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(15),
-          ),
-          focusedErrorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(15),
-          ),
+    return TextFormField(
+      validator: widget.funValidator,
+      //controller: widget.myController,
+      //focusNode: _thisFocusNode,
+      maxLines: widget.lineNum,
+      decoration: InputDecoration(
+        labelText: "$hint",
+        fillColor: Colors.grey,
+        contentPadding: const EdgeInsets.all(20),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(15),
         ),
-        // onFieldSubmitted: (_){
-        //   FocusScope.of(context).requestFocus(_thisFocusNode);
-        // },
-        onChanged: (value){
-
-        },
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(15),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(15),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(15),
+        ),
       ),
+      // onFieldSubmitted: (_){
+      //   FocusScope.of(context).requestFocus(_thisFocusNode);
+      // },
+      onChanged: (value){
+
+      },
     );
   }
 
