@@ -3,214 +3,17 @@ import 'package:fireproject/src/components/custom_ElevatedButton.dart';
 import 'package:fireproject/src/size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:multi_image_picker2/multi_image_picker2.dart';
-import 'dart:async';
-import 'package:permission_handler/permission_handler.dart';
 
-class ImagePickerBox extends StatefulWidget {
-  const ImagePickerBox({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  _ImagePickerBoxState createState() => _ImagePickerBoxState();
-}
-
-class _ImagePickerBoxState extends State<ImagePickerBox> {
-  PickedFile? _image;
-
-  late var downloadUrl;
-  List<Asset> images = <Asset>[];
-
-  static const TextStyle customStyle = TextStyle(
-    fontFamily: "DoHyeonFont",
-    fontSize: 20.0,
-  );
-
-  void imageInitState() {
-    super.initState();
-  }
-
-  Widget buildGridView() {
-    return GridView.count(
-      crossAxisCount: 3,
-      children: List.generate(images.length, (index) {
-        Asset asset = images[index];
-        return AssetThumb(
-          asset: asset,
-          width: 300,
-          height: 300,
-        );
-      }),
-    );
-  }
-
-  Future<void> loadAssets() async {
-    List<Asset> resultList = <Asset>[];
-
-    resultList = await MultiImagePicker.pickImages(
-        maxImages: 10, enableCamera: true, selectedAssets: images);
-  }
-
-  Widget build(BuildContext context) {
-    return Container(
-      height: 170,
-      margin: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 10.0),
-      padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 10.0),
-      // decoration: BoxDecoration(a
-      //     color: Color(0xFF8EB680), borderRadius: BorderRadius.circular(15.0)),
-      child: Column(
-        children: <Widget>[
-          Column(
-            children: <Widget>[
-              Container(
-                width: 100,
-                height: 100,
-                decoration: const BoxDecoration(
-                    shape: BoxShape.rectangle, color: Color(0xFFFFC700)),
-                child: _image == null
-                    ? IconButton(
-                        icon: const Icon(
-                          Icons.add,
-                          size: 40,
-                        ),
-                        onPressed: loadAssets,
-                      )
-                    : ClipRect(
-                        child: Image.file(
-                          File(_image!.path),
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-              ),
-              Column(
-                children: [
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(primary: Color(0xFFFFC700)),
-                    child: Text(
-                      '사진 및 동영상 선택',
-                      style: customStyle,
-                    ),
-                    onPressed: () {
-                      Future<bool> _getStatuses() async {
-                        Map<Permission, PermissionStatus> statuses = await [
-                          Permission.storage,
-                          Permission.camera
-                        ].request();
-
-                        if (await Permission.camera.isGranted &&
-                            await Permission.storage.isGranted) {
-                          return Future.value(true);
-                        } else {
-                          return Future.value(false);
-                        }
-                      }
-
-                      showDialog(
-                          context: context,
-                          barrierDismissible: true,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              title: Text(
-                                '사진 및 동영상 선택',
-                                style: customStyle,
-                              ),
-                              content: SingleChildScrollView(
-                                child: ListBody(
-                                  children: [
-                                    TextButton(
-                                      onPressed: loadAssets,
-                                      // async {
-                                      //   var multiImagePicker;
-                                      //   var image = await multiImagePicker.platform
-                                      //       .pickImage(
-                                      //           source: ImageSource.gallery);
-                                      //   setState(() {
-                                      //     _image = image!;
-                                      //   });
-                                      // },
-                                      child: const Text(
-                                        "사진 추가",
-                                        style: customStyle,
-                                      ),
-                                    ),
-                                    TextButton(
-                                      //onPressed: loadAssets,
-                                      onPressed: () async {
-                                        //File _video;
-                                        var image = await ImagePicker.platform
-                                            .pickVideo(
-                                                source: ImageSource.gallery);
-
-                                        setState(() {
-                                          _image = image!;
-                                        });
-                                      },
-
-                                      //PickedFile? _video;
-
-                                      //   onPressed: _pickVideo() async{
-                                      // File video = await ImagePicker.pickVideo(source: ImageSource.gallery);
-                                      // _video = video;
-                                      // _videoPlayerController = VideoPlayerController.file(_video)..initialize().then((_) {
-                                      // setState(() { });
-                                      // _videoPlayerController.play();
-                                      // });
-                                      //
-                                      // },
-                                      child: const Text(
-                                        "동영상 추가",
-                                        style: customStyle,
-                                      ),
-                                    ),
-                                    TextButton(
-                                      onPressed: () async {
-                                        var image = await ImagePicker.platform
-                                            .pickImage(
-                                                source: ImageSource.camera);
-                                        setState(() {
-                                          _image = image!;
-                                        });
-                                      },
-                                      child: const Text(
-                                        "카메라",
-                                        style: customStyle,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            );
-                          });
-                    },
-                  ),
-                ],
-              ),
-            ],
-          ),
-          const SizedBox(
-            width: 5,
-          ),
-        ],
-      ),
-    );
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    // properties.add(DiagnosticsProperty<File>('_video', _video));
-  }
-}
+import '../../../util/ImagePicker.dart';
 
 class WriteAnnouncePage extends StatelessWidget {
   static const TextStyle customStyle =
       TextStyle(fontFamily: "DoHyeonFont", fontSize: 27.0, color: Colors.black);
+
+  WriteAnnouncePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -229,50 +32,50 @@ class WriteAnnouncePage extends StatelessWidget {
             ),
           ),
           leading: IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_back_rounded,
               color: Colors.black,
               size: 30,
             ),
-            //SvgPicture.asset("assets/Icons/BackButton.svg"),
             iconSize: 50.0,
             onPressed: () {
               Get.off(() => bottomNavigationbar());
             },
           ),
           actions: [
-            IconButton(
-              icon: Icon(
-                Icons.arrow_forward_rounded,
-                color: Colors.black,
-                size: 30,
+            ElevatedButton(
+              onPressed: (){},
+              child: const Text("완료", style: TextStyle(
+                color: Colors.amber,
+                fontSize: 20,
+                decoration: TextDecoration.underline,
+                ),
               ),
-              iconSize: 50.0,
-              onPressed: () {},
-            ),
+              style: ButtonStyle(
+                backgroundColor: MaterialStateColor.resolveWith((color) => Colors.white),
+                elevation: MaterialStateProperty.resolveWith((elevation) => 0.0)
+              ),
+            )
           ],
         ),
         body: FormScreen(),
-        // bottomNavigationBar: buildBottomAppBar(),
       ),
     );
   }
 }
 
-enum Choice { Yes, No }
-
 class FormScreen extends StatefulWidget {
-  const FormScreen({Key? key}) : super(key: key);
+  FormScreen({Key? key}) : super(key: key);
 
   @override
   State<FormScreen> createState() => _FormScreenState();
 }
 
 class _FormScreenState extends State<FormScreen> {
-  final _formKey = GlobalKey<FormState>();
   static const TextStyle customStyle =
       TextStyle(fontFamily: "DoHyeonFont", fontSize: 27.0, color: Colors.black);
-  Choice _Choice = Choice.Yes;
+  bool isChecked = false;
+  final _formKey = GlobalKey<FormState>();
 
   String _title = "";
   String _content = "";
@@ -280,29 +83,33 @@ class _FormScreenState extends State<FormScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Color getColor(Set<MaterialState> states) {
+      const Set<MaterialState> interactiveStates = <MaterialState>{
+        MaterialState.pressed,
+        MaterialState.hovered,
+        MaterialState.focused,
+      };
+      if (states.any(interactiveStates.contains)) {
+        return Colors.blue;
+      }
+      return Colors.red;
+    }
+
     return ListView(
       children: [
-        GestureDetector(
-          //onTap: Focus.of().unfocus(),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-            child: Form(
-              key: _formKey,
-              //autovalidateMode: AutovalidateMode.always,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.only(left: 5.0),
-                    child: Text(
-                      "제목",
-                      style: customStyle,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10.0,
-                  ),
-                  TextFormField(
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(
+                  height: 10.0,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 8.0),
+                  child: TextFormField(
                     onSaved: (value) {
                       setState((){
                         _title = value as String;
@@ -317,41 +124,18 @@ class _FormScreenState extends State<FormScreen> {
                       return null;
                     },
                     maxLines: 1,
-                    decoration: InputDecoration(
-                      labelText: "제목을 입력해주세요.",
-                      fillColor: Colors.grey,
-                      contentPadding: const EdgeInsets.all(20),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      errorBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      focusedErrorBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                    ),
-                    // onFieldSubmitted: (_){
-                    //   FocusScope.of(context).requestFocus(_thisFocusNode);
-                    // },
-                    // onChanged: (value){
-                    //
-                    // },
-                  ),
-                  const SizedBox(
-                    height: 20.0,
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 5.0),
-                    child: Text(
-                      "내용",
-                      style: customStyle,
+                    decoration: const InputDecoration(
+                      hintText: "제목",
+                        hintStyle: TextStyle(color: Colors.black45),
+                      contentPadding: EdgeInsets.all(10),
+                        border: InputBorder.none
                     ),
                   ),
-                  TextFormField(
+                ),
+                Divider(thickness: 2,),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: TextFormField(
                     onSaved: (value){
                       setState((){
                         _content = value as String;
@@ -369,106 +153,67 @@ class _FormScreenState extends State<FormScreen> {
                       return null;
                     },
                     maxLines: 15,
-                    decoration: InputDecoration(
-                      labelText: "내용을 입력해주세요",
-                      fillColor: Colors.grey,
-                      contentPadding: const EdgeInsets.all(20),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      errorBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      focusedErrorBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15),
-                      ),
+                    decoration: const InputDecoration(
+                      hintText: "내용",
+                      hintStyle: TextStyle(color: Colors.black45),
+                      contentPadding: EdgeInsets.all(10),
+                      border: InputBorder.none
                     ),
-                    // onFieldSubmitted: (_){
-                    //   FocusScope.of(context).requestFocus(_thisFocusNode);
-                    // },
                   ),
-                  const SizedBox(
-                    height: 50,
-                  ),
-                  Container(
-                    height: 180,
-                    width: getScreenWidth(context) * 0.9,
-                    margin: EdgeInsets.symmetric(horizontal: 8.0),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        border: Border.all(
-                          width: 1,
-                          color: Colors.black,
-                        )),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+
+                ImagePickerBox(),
+                Divider(thickness: 2,),
+                Row(
+                  children: <Widget>[
+                    Row(
                       children: [
-                        const Text(
-                          "서명이 필요한 공지인가요?",
-                          style: customStyle,
-                        ),
-                        Column(
-                          children: <Widget>[
-                            ListTile(
-                              //ListTile - title에는 내용,
-                              //leading or trailing에 체크박스나 더보기와 같은 아이콘을 넣는다.
-                              title: Text('네', style: TextStyle(fontSize: 20, fontFamily: "DoHyeonFont"),),
-                              leading: Radio<Choice>(
-                                value: Choice.Yes,
-                                groupValue: _Choice,
-                                onChanged: (value) {
-                                  setState(() {
-                                    _Choice = value!;
-                                  });
-                                },
-                              ),
-                            ),
-                            ListTile(
-                              title: const Text('아니오', style: TextStyle(fontSize: 20, fontFamily: "DoHyeonFont")),
-                              leading: Radio<Choice>(
-                                value: Choice.No,
-                                groupValue: _Choice,
-                                onChanged: (value) {
-                                  setState(() {
-                                    _Choice = value!;
-                                  });
-                                },
-                              ),
-                            ),
-                          ],
-                        ),
-                        //RadioButtonWidget()
+                Checkbox(
+                  checkColor: Colors.white,
+                  fillColor: MaterialStateProperty.resolveWith(getColor),
+                  value: isChecked,
+                  onChanged: (bool? value) {
+                    setState(() {
+                      isChecked = value!;
+                    });
+                  },
+                ),
+                        GestureDetector(onTap: (){
+                          setState(() {
+                            isChecked = !isChecked;
+                          });
+                        },
+                            child: Text("서명이 필요합니까?"))
                       ],
                     ),
-                  ),
-                  Center(child: ImagePickerBox()),
-                  const SizedBox(
-                    height: 50,
-                  ),
-                  Custom_ElevatedButton(
-                    text: '등록',
-                    funPageRoute: () {
-                      if (_formKey.currentState!.validate()) {
-                        _formKey.currentState!.save();
+                  ],
+                ),
+                const SizedBox(
+                  height: 50,
+                ),
+                Custom_ElevatedButton(
+                  text: '등록',
+                  funPageRoute: () {
+                    if (_formKey.currentState!.validate()) {
+                      _formKey.currentState!.save();
 
-                        Get.snackbar(
-                          '저장완료!',
-                          '폼 저장이 완료되었습니다!',
-                          backgroundColor: Colors.white,
-                        );
+                      Get.snackbar(
+                        '저장완료!',
+                        '폼 저장이 완료되었습니다!',
+                        backgroundColor: Colors.white,
+                      );
 
-                        //Get.off(() => StartPage());
-                      }
-                    },
-                  ),
-                  SizedBox(
-                    height: 50,
-                  ),
-                ],
-              ),
+                      //Get.off(() => StartPage());
+                    }
+                  },
+                ),
+                const SizedBox(
+                  height: 50,
+                ),
+              ],
             ),
           ),
         ),
