@@ -12,7 +12,7 @@ import '../../../util/ImagePicker.dart';
 
 class WriteAnnouncePage extends StatefulWidget {
   static const TextStyle customStyle =
-      TextStyle(fontFamily: "DoHyeonFont", fontSize: 27.0, color: Colors.black);
+  TextStyle(fontFamily: "DoHyeonFont", fontSize: 27.0, color: Colors.black);
 
   WriteAnnouncePage({Key? key}) : super(key: key);
 
@@ -61,9 +61,9 @@ class _WriteAnnouncePageState extends State<WriteAnnouncePage> {
               ),
               style: ButtonStyle(
                   backgroundColor:
-                      MaterialStateColor.resolveWith((color) => Colors.white),
+                  MaterialStateColor.resolveWith((color) => Colors.white),
                   elevation:
-                      MaterialStateProperty.resolveWith((elevation) => 0.0)),
+                  MaterialStateProperty.resolveWith((elevation) => 0.0)),
             )
           ],
         ),
@@ -183,7 +183,7 @@ class _FormScreenState extends State<FormScreen> {
                         Checkbox(
                           checkColor: Colors.white,
                           fillColor:
-                              MaterialStateProperty.resolveWith(getColor),
+                          MaterialStateProperty.resolveWith(getColor),
                           value: _sign,
                           onChanged: (bool? value) {
                             setState(() {
@@ -207,7 +207,7 @@ class _FormScreenState extends State<FormScreen> {
                 ),
                 Custom_ElevatedButton(
                   text: '등록',
-                  funPageRoute: () async {
+                  funPageRoute: () {
                     if (_formKey.currentState!.validate()) {
                       _formKey.currentState!.save();
 
@@ -238,10 +238,7 @@ class _FormScreenState extends State<FormScreen> {
                       //   'teacherID' : user.uid
                       // });
 
-                      //.collection('announcement').withConverter<AddAnnouncement>(fromFirestore: , toFirestore: );
-                      //AddAnnouncement(title: _title, content: _content, writer: user!.displayName as String, sign: _sign, loveCount: 0, teacherId: user.uid,);
-                      print('is it going well?');
-                      //Get.off(() => StartPage());
+                      Get.off(() => StartPage());
                     }
                   },
                 ),

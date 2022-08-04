@@ -14,11 +14,51 @@
       },
       "oauth_client": [
         {
+          "client_id": "509353600078-16nirft76j1v6f0mcou0eu33bh1666lh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fireproject",
+            "certificate_hash": "445879f3079b8144ffde4f1028e1538be8952bab"
+          }
+        },
+        {
+          "client_id": "509353600078-5us3k5d50da78101tudocaf83k9brkbe.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fireproject",
+            "certificate_hash": "55da1cef43354a5df2bbbeca28deca258dc1e77f"
+          }
+        },
+        {
+          "client_id": "509353600078-g2i1c8rdfgsebbmkpnuf9i4r8ciod70o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fireproject",
+            "certificate_hash": "a467c7cd7156d4c5fd94d8444ddca4b34eb10d8f"
+          }
+        },
+        {
           "client_id": "509353600078-h16dt10o1tpgskpo1un25sk4n5aihosg.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.fireproject",
             "certificate_hash": "8b05eb30df339bc274d675a8d2c23401d0089d8d"
+          }
+        },
+        {
+          "client_id": "509353600078-p7bcjo0lr95skbvc3shus8dbcbddj2b7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fireproject",
+            "certificate_hash": "937da20f0e0ca0ce31066893522bdb6b1b787016"
+          }
+        },
+        {
+          "client_id": "509353600078-p7s3pnef60iunaroj45g1vmq2u0e0qb4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fireproject",
+            "certificate_hash": "a0c288522988efc31a1096ad2593d5d038dba3d6"
           }
         },
         {
@@ -37,6 +77,13 @@
             {
               "client_id": "509353600078-lpml12glvenvj8v88dfqn8qcs791q0kp.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "509353600078-ga84bmir359r6oi13fgodalot0n5qt3d.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.fireproject"
+              }
             }
           ]
         }
