@@ -1,20 +1,26 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fireproject/bottomnavigationbar.dart';
 import 'package:fireproject/src/components/custom_ElevatedButton.dart';
-import 'package:fireproject/src/size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
+import '../../../util/Announcement.dart';
 import '../../../util/ImagePicker.dart';
 
-class WriteAnnouncePage extends StatelessWidget {
+class WriteAnnouncePage extends StatefulWidget {
   static const TextStyle customStyle =
       TextStyle(fontFamily: "DoHyeonFont", fontSize: 27.0, color: Colors.black);
 
   WriteAnnouncePage({Key? key}) : super(key: key);
 
+  @override
+  State<WriteAnnouncePage> createState() => _WriteAnnouncePageState();
+}
+
+class _WriteAnnouncePageState extends State<WriteAnnouncePage> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -28,7 +34,7 @@ class WriteAnnouncePage extends StatelessWidget {
           title: const Center(
             child: Text(
               "가정통신문 등록",
-              style: customStyle,
+              style: WriteAnnouncePage.customStyle,
             ),
           ),
           leading: IconButton(
@@ -44,17 +50,20 @@ class WriteAnnouncePage extends StatelessWidget {
           ),
           actions: [
             ElevatedButton(
-              onPressed: (){},
-              child: const Text("완료", style: TextStyle(
-                color: Colors.amber,
-                fontSize: 20,
-                decoration: TextDecoration.underline,
+              onPressed: () {},
+              child: const Text(
+                "완료",
+                style: TextStyle(
+                  color: Colors.amber,
+                  fontSize: 20,
+                  decoration: TextDecoration.underline,
                 ),
               ),
               style: ButtonStyle(
-                backgroundColor: MaterialStateColor.resolveWith((color) => Colors.white),
-                elevation: MaterialStateProperty.resolveWith((elevation) => 0.0)
-              ),
+                  backgroundColor:
+                      MaterialStateColor.resolveWith((color) => Colors.white),
+                  elevation:
+                      MaterialStateProperty.resolveWith((elevation) => 0.0)),
             )
           ],
         ),
@@ -72,8 +81,6 @@ class FormScreen extends StatefulWidget {
 }
 
 class _FormScreenState extends State<FormScreen> {
-  static const TextStyle customStyle =
-      TextStyle(fontFamily: "DoHyeonFont", fontSize: 27.0, color: Colors.black);
   bool isChecked = false;
   final _formKey = GlobalKey<FormState>();
 
@@ -95,6 +102,7 @@ class _FormScreenState extends State<FormScreen> {
       return Colors.red;
     }
 
+
     return ListView(
       children: [
         Padding(
@@ -111,7 +119,7 @@ class _FormScreenState extends State<FormScreen> {
                   padding: const EdgeInsets.only(bottom: 8.0),
                   child: TextFormField(
                     onSaved: (value) {
-                      setState((){
+                      setState(() {
                         _title = value as String;
                       });
                     },
@@ -125,19 +133,20 @@ class _FormScreenState extends State<FormScreen> {
                     },
                     maxLines: 1,
                     decoration: const InputDecoration(
-                      hintText: "제목",
+                        hintText: "제목",
                         hintStyle: TextStyle(color: Colors.black45),
-                      contentPadding: EdgeInsets.all(10),
-                        border: InputBorder.none
-                    ),
+                        contentPadding: EdgeInsets.all(10),
+                        border: InputBorder.none),
                   ),
                 ),
-                Divider(thickness: 2,),
+                Divider(
+                  thickness: 2,
+                ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: TextFormField(
-                    onSaved: (value){
-                      setState((){
+                    onSaved: (value) {
+                      setState(() {
                         _content = value as String;
                       });
                     },
@@ -154,38 +163,40 @@ class _FormScreenState extends State<FormScreen> {
                     },
                     maxLines: 15,
                     decoration: const InputDecoration(
-                      hintText: "내용",
-                      hintStyle: TextStyle(color: Colors.black45),
-                      contentPadding: EdgeInsets.all(10),
-                      border: InputBorder.none
-                    ),
+                        hintText: "내용",
+                        hintStyle: TextStyle(color: Colors.black45),
+                        contentPadding: EdgeInsets.all(10),
+                        border: InputBorder.none),
                   ),
                 ),
                 const SizedBox(
                   height: 20,
                 ),
-
                 ImagePickerBox(),
-                Divider(thickness: 2,),
+                Divider(
+                  thickness: 2,
+                ),
                 Row(
                   children: <Widget>[
                     Row(
                       children: [
-                Checkbox(
-                  checkColor: Colors.white,
-                  fillColor: MaterialStateProperty.resolveWith(getColor),
-                  value: isChecked,
-                  onChanged: (bool? value) {
-                    setState(() {
-                      isChecked = value!;
-                    });
-                  },
-                ),
-                        GestureDetector(onTap: (){
-                          setState(() {
-                            isChecked = !isChecked;
-                          });
-                        },
+                        Checkbox(
+                          checkColor: Colors.white,
+                          fillColor:
+                              MaterialStateProperty.resolveWith(getColor),
+                          value: _sign,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              _sign = value!;
+                            });
+                          },
+                        ),
+                        GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                _sign = !_sign;
+                              });
+                            },
                             child: Text("서명이 필요합니까?"))
                       ],
                     ),
@@ -196,7 +207,7 @@ class _FormScreenState extends State<FormScreen> {
                 ),
                 Custom_ElevatedButton(
                   text: '등록',
-                  funPageRoute: () {
+                  funPageRoute: () async {
                     if (_formKey.currentState!.validate()) {
                       _formKey.currentState!.save();
 
@@ -205,7 +216,31 @@ class _FormScreenState extends State<FormScreen> {
                         '폼 저장이 완료되었습니다!',
                         backgroundColor: Colors.white,
                       );
+                      User? user = FirebaseAuth.instance.currentUser;
+                      // CollectionReference announcementRef =
+                      //     FirebaseFirestore.instance.collection('teacher');
+                      //
+                      // await announcementRef.add({
+                      //   'title': _title,
+                      //   'content': _content,
+                      //   'writer': user!.displayName as String,
+                      //   'sign': _sign,
+                      //   'loveCount': 0,
+                      //   'teacherID': user.uid
+                      // });
+                      AddAnnouncement(title: _title, content: _content, writer: user!.displayName as String, sign: _sign, loveCount: 0, teacherId: user.uid).addAnnouncement();
+                      //      announcementRef.doc(user!.uid)
+                      //     .set({'title' : _title,
+                      //           'content' : _content,
+                      //           'writer' : user!.displayName as String,
+                      //   'sign' : _sign,
+                      //   'loveCount' : 0,
+                      //   'teacherID' : user.uid
+                      // });
 
+                      //.collection('announcement').withConverter<AddAnnouncement>(fromFirestore: , toFirestore: );
+                      //AddAnnouncement(title: _title, content: _content, writer: user!.displayName as String, sign: _sign, loveCount: 0, teacherId: user.uid,);
+                      print('is it going well?');
                       //Get.off(() => StartPage());
                     }
                   },
