@@ -45,7 +45,6 @@ class _ImagePickerBoxState extends State<ImagePickerBox> {
   }
 
   Future<void> loadAssets() async {
-    List<Asset> resultList = <Asset>[];
 
     resultList = await MultiImagePicker.pickImages(
         maxImages: 10, enableCamera: true, selectedAssets: images);
@@ -93,15 +92,6 @@ class _ImagePickerBoxState extends State<ImagePickerBox> {
                             children: [
                               TextButton(
                                 onPressed: loadAssets,
-                                // async {
-                                //   var multiImagePicker;
-                                //   var image = await multiImagePicker.platform
-                                //       .pickImage(
-                                //           source: ImageSource.gallery);
-                                //   setState(() {
-                                //     _image = image!;
-                                //   });
-                                // },
                                 child: const Text(
                                   "사진 추가",
                                   style: customStyle,
@@ -121,18 +111,6 @@ class _ImagePickerBoxState extends State<ImagePickerBox> {
                                     _image = image!;
                                   });
                                 },
-
-                                //PickedFile? _video;
-
-                                //   onPressed: _pickVideo() async{
-                                // File video = await ImagePicker.pickVideo(source: ImageSource.gallery);
-                                // _video = video;
-                                // _videoPlayerController = VideoPlayerController.file(_video)..initialize().then((_) {
-                                // setState(() { });
-                                // _videoPlayerController.play();
-                                // });
-                                //
-                                // },
                                 child: const Text(
                                   "동영상 추가",
                                   style: customStyle,

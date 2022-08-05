@@ -1,13 +1,11 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fireproject/bottomnavigationbar.dart';
-import 'package:fireproject/src/components/custom_ElevatedButton.dart';
+import 'package:fireproject/util/test_image_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-import '../../../util/Announcement.dart';
 import '../../../util/ImagePicker.dart';
 
 class WriteAnnouncePage extends StatefulWidget {
@@ -172,7 +170,11 @@ class _FormScreenState extends State<FormScreen> {
                 const SizedBox(
                   height: 20,
                 ),
-                ImagePickerBox(),
+                ElevatedButton(
+                  onPressed: (){Get.to(MyHomePage());},
+                  child: Text("hello", style: TextStyle(color: Colors.black),),
+                ),
+                const ImagePickerBox(),
                 Divider(
                   thickness: 2,
                 ),
@@ -205,43 +207,43 @@ class _FormScreenState extends State<FormScreen> {
                 const SizedBox(
                   height: 50,
                 ),
-                Custom_ElevatedButton(
-                  text: '등록',
-                  funPageRoute: () {
-                    if (_formKey.currentState!.validate()) {
-                      _formKey.currentState!.save();
-
-                      Get.snackbar(
-                        '저장완료!',
-                        '폼 저장이 완료되었습니다!',
-                        backgroundColor: Colors.white,
-                      );
-                      User? user = FirebaseAuth.instance.currentUser;
-                      // CollectionReference announcementRef =
-                      //     FirebaseFirestore.instance.collection('teacher');
-                      //
-                      // await announcementRef.add({
-                      //   'title': _title,
-                      //   'content': _content,
-                      //   'writer': user!.displayName as String,
-                      //   'sign': _sign,
-                      //   'loveCount': 0,
-                      //   'teacherID': user.uid
-                      // });
-                      AddAnnouncement(title: _title, content: _content, writer: user!.displayName as String, sign: _sign, loveCount: 0, teacherId: user.uid).addAnnouncement();
-                      //      announcementRef.doc(user!.uid)
-                      //     .set({'title' : _title,
-                      //           'content' : _content,
-                      //           'writer' : user!.displayName as String,
-                      //   'sign' : _sign,
-                      //   'loveCount' : 0,
-                      //   'teacherID' : user.uid
-                      // });
-
-                      Get.off(() => StartPage());
-                    }
-                  },
-                ),
+                // Custom_ElevatedButton(
+                //   text: '등록',
+                //   funPageRoute: () {
+                //     if (_formKey.currentState!.validate()) {
+                //       _formKey.currentState!.save();
+                //
+                //       Get.snackbar(
+                //         '저장완료!',
+                //         '폼 저장이 완료되었습니다!',
+                //         backgroundColor: Colors.white,
+                //       );
+                //       User? user = FirebaseAuth.instance.currentUser;
+                //       // CollectionReference announcementRef =
+                //       //     FirebaseFirestore.instance.collection('teacher');
+                //       //
+                //       // await announcementRef.add({
+                //       //   'title': _title,
+                //       //   'content': _content,
+                //       //   'writer': user!.displayName as String,
+                //       //   'sign': _sign,
+                //       //   'loveCount': 0,
+                //       //   'teacherID': user.uid
+                //       // });
+                //       AddAnnouncement(title: _title, content: _content, writer: user!.displayName as String, sign: _sign, loveCount: 0, teacherId: user.uid).addAnnouncement();
+                //       //      announcementRef.doc(user!.uid)
+                //       //     .set({'title' : _title,
+                //       //           'content' : _content,
+                //       //           'writer' : user!.displayName as String,
+                //       //   'sign' : _sign,
+                //       //   'loveCount' : 0,
+                //       //   'teacherID' : user.uid
+                //       // });
+                //
+                //       Get.off(() => bottomNavigationbar());
+                //     }
+                //   },
+                // ),
                 const SizedBox(
                   height: 50,
                 ),
