@@ -1,6 +1,6 @@
 ## 프로젝트 소개
    
-![LOGO Image](assets/logo.PNG)   
+![LOGO Image](assets/logo.png)   
 
 **우리의 소식통**
    >  교사와 학부모 간에 더 원활한 소통   
