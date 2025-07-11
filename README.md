@@ -7,4 +7,22 @@
    >  배리어프리에 더 가까워진 사용법
 
    
-* GitHub: <https://github.com/Seo-Yegyeong>
+# 📦 FreshBox
+> **특수교사와 학부모 간의 원활한 소통을 위한 알림장 어픔**
+
+<br />  
+
+## 🗓️ 개발 기간 
+2022-01-14 ~ 2022-02-18 (약 18일간)
+
+<br />  
+
+## 🛠️ 개발 스택
+
+- **언어:** C#, XAML
+- **프레임워크:** .NET WPF
+- **디자인 패턴:** MVVM 패턴
+- **데이터베이스:** MySQL
+- **버전 관리:** Git, GitFlow 브랜치 전략
+- **툴:** Visual Studio, MySQL Workbench
+- **라이브러리:**
