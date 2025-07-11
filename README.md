@@ -1,5 +1,3 @@
-## 프로젝트 소개
-   
 ![LOGO Image](assets/logo.png)   
 
 **우리의 소식통**
@@ -19,10 +17,9 @@
 
 ## 🛠️ 개발 스택
 
-- **언어:** C#, XAML
-- **프레임워크:** .NET WPF
-- **디자인 패턴:** MVVM 패턴
-- **데이터베이스:** MySQL
-- **버전 관리:** Git, GitFlow 브랜치 전략
-- **툴:** Visual Studio, MySQL Workbench
+- **언어:** dart, (Java, Kotlin)
+- **프레임워크:** Flutter (Cross Platform Framework)
+- **데이터베이스:** Firebase (NoSQL)
+- **버전 관리:** Git, Github
+- **툴:** Android Studio
 - **라이브러리:**
